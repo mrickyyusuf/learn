@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I'm Learning CSS</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <!-- Cascade -->
+    <!-- <link rel="stylesheet" href="hello.css"> -->
+    <!-- <link rel="stylesheet" href="style/large.css" media="(min-width: 10px)"> -->
+    <!-- <link rel="stylesheet" href="style/small.css" media="(min-width: 500px)"> -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Agbalumo"
+    />
+    <!-- internal <style> removed to avoid duplicate examples; using style/style.css -->
+  </head>
+  <body>
+    <!-- ID CSS 
+    <h1 id="judul">Ini Adalah Judul</h1>
+    <h1>ini bukan judul</h1> -->
+
+    <!-- Class & Multiple Class 
+    ini multiple class
+    <h1 class="red upper">Ini Judul Artikel</h1>
+    ini juga
+    <h2 class="red upper">Ini Sub Artikel</h2>
+    ini class
+    <p class="red">Ini Artikel</p> -->
+
+    <!-- Selector: Simple Selector, Type Selector, ID Selector, Class Selector, Selector List 
+    <h1>Judul Artikel</h1>
+    <h2>Sub Artikel</h2>
+    <p>Artikel</p>
+    <h3 id="title">Contoh 1</h3>
+    <span class="merah">Contoh 2</span> -->
+
+    <!-- Combinator Selector: Descendant, Child, Adjacent Sibling, General Sibling 
+    <div>
+      <article>
+        <p>digubris keturunan</p>
+      </article>
+      <p>digubris anak, keturunan</p>
+    </div>
+    <p>Ini tak digubris adik/saudara dibawah 1 tingkat</p>
+    <p>Lorem ipsum dolor sit amet. Adik/saudara umum</p> -->
+
+    <!-- Attribute Selector 
+    <a href="" target="_blank">Example 1</a>
+    <a href="">Example 2</a>
+    <a href="" target="_self">Example 3</a>
+    <a href="">Example 4</a> 
+
+    <p title="belajar">Lorem ipsum dolor sit amet.</p>
+    <p title="belajarpemrograman">Lorem ipsum dolor sit amet.</p>
+    <p title="belajar-pemrograman">Lorem ipsum dolor sit amet.</p>
+    <p title="pemrograman belajar">Lorem ipsum dolor sit amet.</p>
+    <span title="pemrograman belajar">Span Example</span>
+    <p title="belajar" class="example">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, ut.
+    </p> -->
+
+    <!-- Color 
+    <h1>Test</h1>
+    <h2>Sub Title Example</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, hic.</p> -->
+
+    <!-- Text: Alignment, Decoration, Transformation, Spacing, Shadow, Reference 
+    <h1>Judul Belajar Text</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem necessitatibus, temporibus modi magni dolorum quam sapiente debitis quibusdam consequuntur fugit? Inventore ipsum maxime at, similique reprehenderit rerum accusantium explicabo ducimus.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, dignissimos.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, dolor?
+    </p> -->
+
+    <!-- Font: Family, Style, Size, Google Font 
+     <h1>Learn Font</h1>
+     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea vero ab maxime praesentium laudantium optio quaerat, nulla tenetur asperiores totam inventore dolore, qui tempora, ipsa veritatis sit commodi saepe nobis!</p> -->
+
+    <!-- Background & Background Color 
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias reiciendis reprehenderit, rem eius quibusdam laudantium, blanditiis voluptate similique odit voluptates dolor? Voluptatibus ut ea nemo iste quidem incidunt in, voluptates minus. Ipsum illo voluptatem provident libero rerum pariatur mollitia perferendis accusamus, nulla, nihil vel officia ducimus inventore sapiente fugit quas natus autem facere. Corrupti reprehenderit autem saepe deleniti aliquid ut accusantium, aliquam laudantium qui quidem non exercitationem! Dicta, labore vero nulla totam praesentium hic aut ut. Alias similique libero quisquam beatae rem facilis. Alias esse laudantium in sunt obcaecati commodi sit rem dolorum ea id! Tenetur asperiores inventore repudiandae nihil.</p> -->
+
+    <!-- Box Model: Size, Content, Padding, Border, Margin 
+    <div class="artikel1">
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis
+        maxime earum natus quod distinctio deleniti maiores, laboriosam nulla
+        nihil exercitationem reprehenderit, est expedita qui ea dicta?
+        Reiciendis quod voluptatem dicta?Lorem ipsum dolor, sit amet consectetur
+        adipisicing elit. Pariatur iusto similique dolor voluptatem recusandae,
+        fugiat doloribus illo. Sunt laboriosam deserunt ad architecto dolor ea,
+        harum rerum, recusandae aperiam impedit necessitatibus!
+      </p>
+    </div>
+    <div class="artikel2">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
+        voluptas, id dolores qui rerum quibusdam eligendi voluptatum sunt
+        aliquid voluptate, accusantium eaque perferendis! Optio illum nam ea
+        quisquam totam adipisci.
+      </p>
+    </div> -->
+
+    <!-- Debug -->
+
+    <!-- Min & Max Size 
+     <div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias error impedit beatae eligendi assumenda nam explicabo accusamus! Pariatur deleniti velit necessitatibus, dolor nisi, dicta ullam cumque eligendi cupiditate vel voluptas.</p>
+     </div> -->
+
+    <!-- Border Detail & Border Radius -->
+
+    <!-- Outline 
+    <div class="artikel1">
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis
+        maxime earum natus quod distinctio deleniti maiores, laboriosam nulla
+        nihil exercitationem reprehenderit, est expedita qui ea dicta?
+        Reiciendis quod voluptatem dicta?Lorem ipsum dolor, sit amet consectetur
+        adipisicing elit. Pariatur iusto similique dolor voluptatem recusandae,
+        fugiat doloribus illo. Sunt laboriosam deserunt ad architecto dolor ea,
+        harum rerum, recusandae aperiam impedit necessitatibus!
+      </p>
+    </div>
+    <div class="artikel2">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
+        voluptas, id dolores qui rerum quibusdam eligendi voluptatum sunt
+        aliquid voluptate, accusantium eaque perferendis! Optio illum nam ea
+        quisquam totam adipisci.
+      </p>
+    </div> -->
+
+    <!-- Background Image, Gradient  
+    <div class="konten">
+      <h1>Heading 1 of Paragraph</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita animi
+        quas, incidunt deleniti hic eum nisi dolore quisquam itaque. Autem sequi
+        rem libero assumenda ex praesentium deserunt totam ab. Dignissimos.
+      </p>
+      <p>
+        The Paragraph, Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Sint, aut.
+      </p>
+    </div> -->
+
+    <!-- Opacity -->
+
+    <!-- Value & Unit, Length -->
+
+    <!-- Writing Mode 
+    <div class="artikel1">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloremque in necessitatibus quos vero dicta corrupti adipisci porro aperiam, accusamus temporibus voluptates ipsa nisi modi? Animi harum fugiat quasi nostrum!</p>
+    </div>
+    <div class="artikel2">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloremque in necessitatibus quos vero dicta corrupti adipisci porro aperiam, accusamus temporibus voluptates ipsa nisi modi? Animi harum fugiat quasi nostrum!</p>
+    </div> -->
+
+    <!-- Overflow 
+    <div class="artikel1">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloremque in necessitatibus quos vero dicta corrupti adipisci porro aperiam, accusamus temporibus voluptates ipsa nisi modi? Animi harum fugiat quasi nostrum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit nobis ex est repellat, eius quos amet provident. Reiciendis aspernatur iusto culpa illo! Iste sit nesciunt rerum assumenda, suscipit quia exercitationem!</p>
+    </div>
+    <div class="artikel2">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloremque in necessitatibus quos vero dicta corrupti adipisci porro aperiam, accusamus temporibus voluptates ipsa nisi modi? Animi harum fugiat quasi nostrum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae a qui perspiciatis laboriosam iusto inventore expedita asperiores excepturi laborum aliquam eum, placeat facilis modi molestias ipsam, nemo culpa blanditiis dolorum.</p>
+    </div> -->
+
+    <!-- Pseudo-Elements Selector -->
+
+    <!-- Pseudo-Classes Selector -->
+
+    <!-- Link 
+    <div>
+      <a href="https://www.youtube.com/">Youtube Link</a>
+      <a href="https://www.facebook.com/?locale=id_ID">Instagram Link</a>
+      <a href="https://www.tiktok.com/id-ID/">Tiktok Link</a>
+    </div> -->
+
+    <!-- List 
+    <ul class="daftar">
+      <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam asperiores, ipsum itaque provident pariatur debitis modi voluptatem cumque accusamus doloribus ad labore quo repudiandae delectus magnam impedit libero corporis praesentium?</li>
+      <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sit nam officia quibusdam sequi saepe esse, nisi neque. Porro consequuntur asperiores cumque excepturi optio recusandae impedit ratione cupiditate in explicabo.</li>
+      <li>satu</li>
+      <li>dua</li>
+      <li>tiga</li>
+      <li>empat</li>
+    </ul> -->
+
+    <!-- Table: Border, Size, Alignment 
+    <table>
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Nilai</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="ganjil">
+          <td>Muhhamad</td>
+          <td>80</td>
+        </tr>
+        <tr class="genap">
+          <td>Ricky</td>
+          <td>85</td>          
+        </tr>
+        <tr class="ganjil">
+          <td>Yusuf</td>
+          <td>90</td>          
+        </tr>
+        <tr class="genap">
+          <td>Ryu</td>
+          <td>95</td>          
+        </tr>
+        <tr class="ganjil">
+          <td>Joseph</td>
+          <td>100</td>
+        </tr>
+      </tbody>
+    </table> -->
+
+    <!-- Form 
+    <form action="">
+      <label for="username"
+        >Username: <input type="text" required id="username" /><br
+      /></label>
+      <label for="password"
+        >Password: <input type="password" required id="password"
+      /></label>
+      <br />
+      <input type="submit" id="login" />
+    </form> -->
+
+    <!-- Content 
+    <p class="konten">Ini Konten, dan isinya: Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p> -->
+
+    <!-- Counter 
+    <h1>Judul</h1>
+    <h2>Sub Judul</h2>
+    <h2>Sub Judul</h2>
+    <h2>Sub Judul</h2>
+    <h1>Judul</h1>
+    <h2>Sub Judul</h2>
+    <h2>Sub Judul</h2>
+    <h1>Judul</h1>
+    <h2>Sub Judul</h2>
+    <h2>Sub Judul</h2>
+    <h2>Sub Judul</h2>
+    <h2>Sub Judul</h2>
+    <h1>Judul</h1>
+    <h2>Sub Judul</h2>
+    <h2>Sub Judul</h2>
+    <h1>Judul</h1>
+    <h2>Sub Judul</h2>
+    <h2>Sub Judul</h2> -->
+
+    <!-- Filter 
+     <img src="assets/godzilla.png" alt="">
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque consequuntur fugiat cumque, voluptate quisquam doloremque harum similique mollitia soluta rem accusantium consectetur minima nemo non animi quae vel rerum dicta!</p> -->
+
+    <!-- Import 
+    <h1>Ini Judul</h1>
+    <h2>Ini Sub Judul</h2> -->
+
+    <!-- Cascade: User Agent Stylesheet, Author Stylesheet, User Stylesheet, Cascade Order, !important 
+    <h1>Ini Judul</h1>
+    <h2>Ini Sub Judul</h2> -->
+
+    <!-- Layer 
+    <h1>Ini Judul</h1>    
+    <h2>Ini Sub Judul</h2> -->
+
+    <!-- CSS Layout Starts Here -->
+    <!-- Normal Flow 
+     <h1>Belajar normal flow</h1>
+     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo possimus dicta, maxime tempore beatae molestias hic aspernatur totam quasi rem asperiores quas fuga voluptate reiciendis corrupti officiis ipsam ut excepturi.</p>
+     <h2>Normal Flow Ditampilkan Secara Urut</h2>
+     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, delectus.</p> -->
+
+    <!-- Display 
+      <div class="content">
+        <h1>Ini konten 1</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio illo ipsam est dicta consequuntur modi libero voluptatum quos reprehenderit excepturi labore sint, molestiae vero explicabo, ea recusandae! Fuga, earum!</p>
+      </div>
+
+      <div class="content">
+        <h1>konten 2</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio sequi nulla asperiores ut veniam recusandae iure officiis dolore voluptatem ullam, tempore atque dolores nostrum eos magni distinctio autem aliquid expedita.</p>
+      </div> -->
+
+    <!-- Flexbox 
+       <div class="container">
+          <div class="content" style="order: 2;">
+            <h1>Content 1</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptatum rerum adipisci, voluptas sequi obcaecati earum officiis deserunt explicabo ex quibusdam ad possimus facere commodi animi? Eos error consequatur natus!</p>
+          </div>
+          <div class="content" style="order: 3;">
+            <h1>Content 2</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptatum rerum adipisci, voluptas sequi obcaecati earum officiis deserunt explicabo ex quibusdam ad possimus facere commodi animi? Eos error consequatur natus!</p>
+          </div>
+          <div class="content" style="order: 1;">
+            <h1>Content 3</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptatum rerum adipisci, voluptas sequi obcaecati earum officiis deserunt explicabo ex quibusdam ad possimus facere commodi animi? Eos error consequatur natus!</p>
+          </div>
+          <div class="content">
+            <h1>Content 4</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptatum rerum adipisci, voluptas sequi obcaecati earum officiis deserunt explicabo ex quibusdam ad possimus facere commodi animi? Eos error consequatur natus!</p>
+          </div>
+          <div class="content">
+            <h1>Content 5</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptatum rerum adipisci, voluptas sequi obcaecati earum officiis deserunt explicabo ex quibusdam ad possimus facere commodi animi? Eos error consequatur natus!</p>
+          </div>
+          <div class="content">
+            <h1>Content 6</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptatum rerum adipisci, voluptas sequi obcaecati earum officiis deserunt explicabo ex quibusdam ad possimus facere commodi animi? Eos error consequatur natus!</p>
+          </div>
+       </div> -->
+
+    <!-- Flex Grow 
+        <div class="container">
+          <div class="content small">A</div>
+          <div class="content large">B</div>
+          <div class="content small">C</div>
+          <div class="content large">D</div>
+          <div class="content small">E</div>
+        </div> -->
+
+    <!-- Flex Shrink 
+         <div class="container">
+          <div class="content content1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas cum enim quisquam ea expedita nihil exercitationem excepturi maiores pariatur quis necessitatibus quam ducimus laborum vero officiis id minus, laboriosam amet!</div>
+          <div class="content content2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque recusandae culpa eligendi accusantium numquam qui tempora illum! Quis adipisci placeat voluptas beatae ad porro corrupti? Quo, nostrum. Eius, culpa tempora!</div>
+          <div class="content content3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum velit ea expedita esse reiciendis laboriosam iure suscipit. Error expedita voluptas autem, aut velit rem, sequi magni debitis vel nulla veniam?</div>
+         </div> -->
+
+    <!-- Flex Basis 
+    <div class="container">
+      <div class="content content1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas cum
+        enim quisquam ea expedita nihil exercitationem excepturi maiores
+        pariatur quis necessitatibus quam ducimus laborum vero officiis id
+        minus, laboriosam amet!
+      </div>
+      <div class="content content2">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque
+        recusandae culpa eligendi accusantium numquam qui tempora illum! Quis
+        adipisci placeat voluptas beatae ad porro corrupti? Quo, nostrum. Eius,
+        culpa tempora!
+      </div>
+      <div class="content content3">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum velit
+        ea expedita esse reiciendis laboriosam iure suscipit. Error expedita
+        voluptas autem, aut velit rem, sequi magni debitis vel nulla veniam?
+      </div> 
+    </div> -->
+
+    <!-- Flex Alignment: Justify Content 
+    <div class="container">
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+    </div> -->
+
+    <!-- Flex Alignment: Align Items 
+    <div class="container">
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+    </div> -->
+
+    <!-- Flex Alignment: Align Content 
+    <div class="container">
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+    </div> -->
+
+    <!-- Flex Alignment: Gap 
+    <div class="container">
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+    </div> -->
+
+    <!-- Grid 
+    <div class="container">
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+    </div> -->
+
+    <!-- grid template 
+    <div class="container">
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+      <div class="content">
+        <h1>Content1</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur,
+          qui mollitia temporibus magni neque voluptates voluptate odio
+          veritatis corporis perferendis a explicabo eos sunt recusandae
+          dignissimos ducimus laborum illo quidem
+        </p>
+      </div>
+    </div> -->
+
+    <!-- Grid Line Name, Grid Item Start, Grid Item End 
+    <div class="container">
+      <div class="header">
+        Hi! Welcome^^
+      </div>
+      <div class="content">
+        <h1>You're Right Now In Our Content Page</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, exercitationem temporibus pariatur cum qui at, repudiandae aliquid, ipsa repellat commodi necessitatibus? Voluptate quaerat aspernatur ratione libero hic itaque, est amet.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem itaque assumenda aperiam, totam ducimus dolorem molestiae illum placeat saepe consectetur? Nulla dicta molestiae recusandae harum et repellendus quia. Aperiam, inventore.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi saepe, quisquam, laborum laboriosam dolores, fugit enim distinctio ex recusandae consequatur repudiandae veritatis odio! Temporibus ad non dolor maiores, voluptate quo.</p>
+      </div>
+      <div class="footer">
+        Made With Love by Muhhamad Ricky Yusuf
+      </div>
+    </div> -->
+
+    <!-- Grid Template Area 
+    <div class="container">
+      <div class="header">
+        Hi! Welcome^^
+      </div>
+      <div class="content">
+        <h1>You're Right Now In Our Content Page</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, exercitationem temporibus pariatur cum qui at, repudiandae aliquid, ipsa repellat commodi necessitatibus? Voluptate quaerat aspernatur ratione libero hic itaque, est amet.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem itaque assumenda aperiam, totam ducimus dolorem molestiae illum placeat saepe consectetur? Nulla dicta molestiae recusandae harum et repellendus quia. Aperiam, inventore.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi saepe, quisquam, laborum laboriosam dolores, fugit enim distinctio ex recusandae consequatur repudiandae veritatis odio! Temporibus ad non dolor maiores, voluptate quo.</p>
+      </div>
+      <div class="footer">
+        Made With Love by Muhhamad Ricky Yusuf
+      </div>
+    </div> -->
+
+    <!-- Grid Alignment: Justify Content, Align Content, Justify Items, Align Items, Justify & Align Self, Gap 
+    <div class="container">
+      <div class="content content1">1</div>
+      <div class="content">2</div>
+      <div class="content">3</div>
+      <div class="content">4</div>
+      <div class="content">5</div>
+      <div class="content">6</div>
+      <div class="content">7</div>
+      <div class="content">8</div>
+      <div class="content">9</div>
+    </div> -->
+
+    <!-- Nested Grid & Subgrid 
+    <div class="container">
+      <div class="content1">
+        <div class="inner"></div>
+      </div>
+    </div> -->
+
+    <!-- Multiple Column & Column Style 
+    <div class="container">
+      <h1>Title</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi omnis
+        debitis at minima est accusantium laborum itaque, ea fugit cum veritatis
+        dicta, sit eveniet mollitia placeat perspiciatis eaque voluptatem
+        tenetur!
+      </p>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni saepe
+        delectus consequuntur? Sunt vero aliquid sapiente adipisci voluptatem
+        suscipit! Explicabo iste, sed quia inventore saepe repellat atque
+        necessitatibus esse cumque!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla
+        accusamus quod ullam quibusdam possimus corrupti reiciendis culpa quae
+        animi id pariatur consequuntur suscipit, tempore, alias molestias ad cum
+        ipsam nesciunt.
+      </p>
+    </div> -->
+
+    <!-- Float 
+     <div class="container">
+      <h1>JUDUL</h1>
+      <div class="image">A</div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores omnis debitis dicta error expedita odit, ducimus, obcaecati a quod aut cumque doloribus ipsum ut voluptates! Impedit cupiditate non consectetur debitis.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores omnis debitis dicta error expedita odit, ducimus, obcaecati a quod aut cumque doloribus ipsum ut voluptates! Impedit cupiditate non consectetur debitis.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores omnis debitis dicta error expedita odit, ducimus, obcaecati a quod aut cumque doloribus ipsum ut voluptates! Impedit cupiditate non consectetur debitis.</p>
+     </div> -->
+
+    <!-- Position: Relative, Absolute, Absolute with Z-Index, Fixed, Sticky Positioning 
+     <div class="content content1">
+      <h1>Content 1</h1>
+     </div>
+     <div class="content content2">
+      <h1>Content 2</h1>
+     </div>
+     <div class="content content3">
+      <h1>Content 3</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ab quaerat, minima culpa totam aliquam molestias id quasi accusantium eaque consequatur cupiditate fugiat, eius pariatur velit, perspiciatis enim? Dicta, inventore?</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ab quaerat, minima culpa totam aliquam molestias id quasi accusantium eaque consequatur cupiditate fugiat, eius pariatur velit, perspiciatis enim? Dicta, inventore?</p>
+      <p class="sticky">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ab quaerat, minima culpa totam aliquam molestias id quasi accusantium eaque consequatur cupiditate fugiat, eius pariatur velit, perspiciatis enim? Dicta, inventore?</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ab quaerat, minima culpa totam aliquam molestias id quasi accusantium eaque consequatur cupiditate fugiat, eius pariatur velit, perspiciatis enim? Dicta, inventore?</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ab quaerat, minima culpa totam aliquam molestias id quasi accusantium eaque consequatur cupiditate fugiat, eius pariatur velit, perspiciatis enim? Dicta, inventore?</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ab quaerat, minima culpa totam aliquam molestias id quasi accusantium eaque consequatur cupiditate fugiat, eius pariatur velit, perspiciatis enim? Dicta, inventore?</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ab quaerat, minima culpa totam aliquam molestias id quasi accusantium eaque consequatur cupiditate fugiat, eius pariatur velit, perspiciatis enim? Dicta, inventore?</p>
+     </div> -->
+
+    <!-- Fraction Unit 
+      <div class="container">
+        <div class="sidebar">
+          <h1>SIDEBAR</h1>
+        </div>
+        <div class="content">Content</div>
+        <div class="content">Content</div>
+        <div class="content">Content</div>
+        <div class="content">Content</div>
+      </div> -->
+
+    <!-- Media Queries 
+      <div class="container">
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+      </div> -->
+
+    <!-- Media Query 
+      <div class="container">
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, earum iure! Quos eveniet architecto nulla, odio fugiat voluptatum magni repellendus? Voluptates mollitia ipsam iusto nulla! Praesentium tempore labore eveniet ea!</div>
+      </div> -->
+
+    <!-- Display None 
+    <div class="menubar">
+      <button class="menu">Social Media</button>
+      <div class="menulist">
+        <a href="#">Facebook</a>
+        <a href="#">Youtube</a>
+        <a href="#">Instagram</a>
+        <a href="#">Tiktok</a>
+      </div>
+    </div>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis
+      exercitationem earum laboriosam est necessitatibus? Unde dolorum sint
+      possimus magnam, quibusdam, repudiandae eum neque debitis beatae
+      consectetur expedita architecto odit commodi.
+    </p>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis
+      exercitationem earum laboriosam est necessitatibus? Unde dolorum sint
+      possimus magnam, quibusdam, repudiandae eum neque debitis beatae
+      consectetur expedita architecto odit commodi.
+    </p> -->
+  </body>
+</html>

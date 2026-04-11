@@ -1,0 +1,23 @@
+1. HTML FORM -> google, youtube, facebook
+
+2. form tag -> deklarasi ingin membuat form
+
+3. input tag -> type, value, disabled, readonly, required. Input text -> cocok untuk input 1 baris dan data yang tak memerlukan enter/baris baru
+
+4. input-label tag -> recommend pakai label untuk input ketimbang text biasa, ketika klik input jika ada screen reader, label akan terbaca olehnya, gunakan for="id" agar label bisa membaca input
+
+5. input-submit tag -> ubah type ke submit, valune-nya = tulisan tombol
+
+6. form action (action="...") -> defaultnya ke web/file sendiri, method default get dikirim lewat query parameter. (Encoded character? Symbol). Kalau post di request body (biasanya untuk input/data sensitif), kalau ngarahin form action ke non-available file menggunakan method get maka cannot get muncul, kalau filenya available maka menuju file tsb dan menampilkan input di query parameter, kalau post -> error yang muncul (begitupun kalau filenya available), kalau ke file sendiri -> get muncul di query parameter, sedangkan post ngga (tapi di request body)
+
+7. memproses input data pakai web server
+
+8. input reset -> tombol, nilai default ketika diklik
+
+9. bikin button pakai type="button" bisa tapi ga guna karena tak ada interaksi sedangkan web esensinya menekankan interaksi, untuk membuat inteaksi button pakai css & js
+
+10. input color -> type="color", hex code, web color-hex
+
+11. males nulis gw, lu cek aja slide, github, ama yt-nya pzn kalau mau review ulang
+
+12. next materi: css & js

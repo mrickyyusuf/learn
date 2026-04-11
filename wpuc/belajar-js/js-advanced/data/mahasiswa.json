@@ -1,0 +1,30 @@
+[
+  {
+    "nama": "Ucup",
+    "npm": "10124996",
+    "email": "@example.com",
+    "jurusan": "Sistem informasi",
+    "idDospem": 1
+  },
+  {
+    "nama": "Yusuf",
+    "npm": "10124997",
+    "email": "@example.com",
+    "jurusan": "Teknik informatika",
+    "idDospem": 2
+  },
+  {
+    "nama": "Ricky",
+    "npm": "10124998",
+    "email": "@example.com",
+    "jurusan": "Teknologi informasi",
+    "idDospem": 3
+  },
+  {
+    "nama": "Rika",
+    "npm": "10124999",
+    "email": "@example.com",
+    "jurusan": "Teknik komputer",
+    "idDospem": 4
+  }
+]

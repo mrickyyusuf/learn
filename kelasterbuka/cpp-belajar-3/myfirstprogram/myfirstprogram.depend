@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1726800456 source:c:\users\ricky\onedrive\desktop\myfirstprogram.cpp\myfirstprogram\main.cpp
+	<iostream>
+
+1726798405 source:c:\users\ricky\onedrive\desktop\myfirstprogram.cpp\myfirstprogram\cobacoba.c
+
+1726805231 source:c:\users\ricky\onedrive\desktop\myfirstprogram.cpp\myfirstprogram\calculator.cpp
+	<iostream>
+

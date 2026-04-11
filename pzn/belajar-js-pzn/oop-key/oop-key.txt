@@ -1,0 +1,1 @@
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFO9ed7MiDit0xhzq+It3CnRjk+28VyiJph1qsWUuEZ/ rickyyusuf78@gmail.com

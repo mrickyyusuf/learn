@@ -1,0 +1,138 @@
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #1f2937;
+        font-family: "Inter", sans-serif, Arial;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh; /* Kunci: Tinggi pas layar */
+        overflow: hidden; /* Kunci: Anti scroll */
+      }
+
+      #container {
+        background-color: #6943ff;
+        color: #ffffff;
+        width: 100%;
+        /* Menggunakan flex-grow agar container atas mengambil ruang yang pas */
+        flex: 0 0 35%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2vh; /* Jarak antar elemen dalam % tinggi layar */
+      }
+
+      h1 {
+        font-size: 4vmin;
+        margin: 0;
+      }
+
+      input {
+        font-weight: bold;
+        color: #ffffff;
+        font-size: 7vmin;
+        width: 25vmin;
+        height: 10vmin;
+        border: 2px solid #b295ff;
+        border-radius: 8px;
+        background: transparent;
+        text-align: center;
+        outline: none;
+      }
+
+      button {
+        border: none;
+        border-radius: 5px;
+        width: 18vmin; /* Ukuran tombol dinamis */
+        height: 6vmin;
+        background: #ffffff;
+        color: #3d3d3d;
+        font-size: 2.5vmin;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      /* Section hasil konversi */
+      .container-meter,
+      .container-volume,
+      .container-mass {
+        background-color: #273549;
+        color: #ffffff;
+        width: 85vw;
+        max-width: 500px;
+        /* Memberikan flex agar ketiga box ini berbagi sisa layar sama rata */
+        flex: 1;
+        margin: 1.5vh 0; /* Jarak antar box berbasis tinggi layar */
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      /* Margin bawah khusus box terakhir agar tidak mepet dasar */
+      .container-mass {
+        margin-bottom: 2vh;
+      }
+
+      h2 {
+        color: #ccc1ff;
+        font-size: 3.5vmin;
+        margin: 0 0 0.5vh 0;
+      }
+
+      p {
+        font-size: 3vmin;
+        margin: 0;
+        line-height: 1.3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Metric/Imperial Unit Conversion</h1>
+      <input type="text" id="input" />
+      <button id="convert">Convert</button>
+    </div>
+
+    <div class="container-meter">
+      <h2>Length (Meters/Feets)</h2>
+      <p id="length">0 meters = 0 feet | 0 feet = 0 meters</p>
+    </div>
+    <div class="container-volume">
+      <h2>Volume (Liters/Gallons)</h2>
+      <p id="volume">0 liters = 0 gallons | 0 gallon = 0 liters</p>
+    </div>
+    <div class="container-mass">
+      <h2>Mass (Kilograms/Pounds)</h2>
+      <p id="mass">0 kilograms = 0 pounds | 0 pounds = 0 kilograms</p>
+    </div>
+
+    <script>
+      /*
+        1 meter = 3.281 feet
+        1 liter = 0.264 gallon
+        1 kilogram = 2.204 pound
+    */
+
+      const meter = 3.281;
+      const liter = 0.264;
+      const kilogram = 2.204;
+      const input = document.getElementById("input");
+      const lengthMFt = document.getElementById("length");
+      const volumeLGl = document.getElementById("volume");
+      const massKgP = document.getElementById("mass");
+      const convert = document.getElementById("convert");
+      convert.addEventListener("click", () => {
+        lengthMFt.textContent = `${Number(input.value)} meters = ${(Number(input.value) * meter).toFixed(3)} feets | ${Number(input.value)} feets = ${(Number(input.value) / meter).toFixed(3)} meters`;
+        volumeLGl.textContent = `${Number(input.value)} liters = ${(Number(input.value) * liter).toFixed(3)} gallons | ${Number(input.value)} gallons = ${(Number(input.value) / liter).toFixed(3)} liters`;
+        massKgP.textContent = `${Number(input.value)} kilos = ${(Number(input.value) * kilogram).toFixed(3)} pounds | ${Number(input.value)} pounds = ${(Number(input.value) / kilogram).toFixed(3)} kilos`;
+      });
+    </script>
+  </body>
+</html>

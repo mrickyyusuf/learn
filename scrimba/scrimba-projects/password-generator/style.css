@@ -1,0 +1,45 @@
+#password-generator {
+    margin: 30px;
+    padding: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #111827;
+    border-radius: 10px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.white-text {
+    color: whitesmoke;
+}
+
+.green-text {
+    color: #10B981;
+}
+
+p {
+    color: darkgray; 
+    margin: 10px auto 0;   
+}
+
+button {
+    background-color: #10B981;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 30px 0 15px;
+}
+
+#pw-box {
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.pw {
+    background-color: #1F2937;
+    color: #10B981;
+    padding: 5px 30px;
+    border-radius: 5px;
+}

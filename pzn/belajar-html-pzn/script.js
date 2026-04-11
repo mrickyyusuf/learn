@@ -1,0 +1,1 @@
+alert("Selamat Datang! Anda sedang belajar HTML^^");

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3 - color button</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body, .button-bar {
+            height: 100%;
+        }
+
+        .button-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-bar">
+        <button data-color="red">Red</button>
+        <button data-color="yellow">Yellow</button>
+        <button data-color="green">Green</button>
+        <button data-color="purple">Purple</button>
+    </div>
+
+    <script>
+        const buttonBar = document.querySelector(".button-bar");
+
+        // Add your code here
+        function color(e) {
+            buttonBar.style.backgroundColor = e.target.getAttribute("data-color");
+        }
+
+        buttonBar.addEventListener("click", color);
+
+    </script>
+</body>
+</html>

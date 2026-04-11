@@ -1,0 +1,65 @@
+https://docs.google.com/presentation/d/12FFSrcueNzmXzX5TvDc5lzD2raABvLzRntdmEjFzZaY/edit?slide=id.g29983cede36_0_271#slide=id.g29983cede36_0_271
+https://www.youtube.com/watch?v=8FhmFuGLhaQ&t=239s
+Materi Video :  
+00:00:00 - Pendahuluan
+00:01:23 - Membuat Project
+00:03:59 - Pengenalan CSS
+00:09:02 - Menambah CSS
+00:14:49 - Comment
+00:16:59 - ID
+00:19:50 - Class
+00:25:38 - Selector
+00:30:44 - Combinator Selector
+00:38:55 - Attribute Selector
+00:51:41 - Color
+00:58:30 - Text
+01:15:33 - Font
+01:27:35 - Background
+01:30:15 - Box Model
+01:43:25 - Debug dengan Browser
+01:46:02 - Mix dan Max Size
+01:50:30 - Border
+01:58:08 - Outline
+02:02:38 - Background Image
+02:12:08 - Opacity
+02:13:46 - Value dan Unit
+02:20:13 - Writing Mode
+02:22:15 - Overflow
+02:24:45 - Pseudo Elements
+02:27:12 - Pseudo Classes
+02:29:17 - Link
+02:36:06 - List
+02:41:26 - Table
+02:48:20 - Form
+02:57:30 - Content
+03:01:33 - Counter
+03:07:04 - Filter
+03:10:37 - Import
+03:12:43 - Cascade
+03:22:11 - Layer
+
+https://docs.google.com/presentation/d/1gEKdrMnGJnLHBviG_e3McIvzn3gKwr-WsdzhsdH13t0/edit
+https://youtu.be/nm-r8-JLDvE?si=MK-mVlQhGQQpCIM5
+Materi Video :
+00:00:00 - Pendahuluan 
+00:01:23 - Pengenalan CSS Layout: Styling tata letak
+00:03:54 - Membuat Project 
+00:05:01 - Normal Flow: Tata letak default, kode atas ke bawah
+00:10:55 - Display: Bagaimana sifat posisi dan pemenuhan ruang di web dari tiap element html , inline, block, inline-block, none
+00:18:46 - Flexbox: seperti karet
+00:29:59 - Flex Items: anak flexbox di dalam container, menentukan ukurannya, flex grow masih bingung -> di code: total flex itemnya 5, total flex grownya 7 (3*1 + 2*2), berarti 7 = 100%, 3:4 = 40%:60%
+00:46:25 - Flex Alignment: posisi, justify-content, align-items, align-content, flex-wrap, gap
+01:02:03 - Grids: 
+01:05:56 - Grid Terminology
+01:10:11 - Grid Templates
+01:15:09 - Grid Items
+01:34:08 - Grid Alignment
+01:48:06 - Subgrid
+01:56:12 - Multiple Column
+02:00:41 - Float
+02:05:08 - Positioning
+02:22:46 - Fraction Unit
+02:28:41 - Media Queries
+02:48:43 - Display None
+02:59:45 - Penutup
+https://gemini.google.com/app/68874bd4963b4ab8
