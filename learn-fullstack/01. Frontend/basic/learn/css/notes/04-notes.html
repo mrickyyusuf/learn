@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Syntax Basics — Rules, Selectors, Declarations, Properties & Values,
+      Comments, Simple Selectors
+    </title>
+    <style>
+      /* Universal: CSS reset agar tampilan konsisten lintas browser */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Element: baseline untuk seluruh halaman */
+      body {
+        font-family: Georgia, serif;
+        background: #f9f6f0;
+        color: #333;
+        padding: 24px;
+      }
+
+      /* Grouping: semua heading berbagi font yang sama */
+      h1,
+      h2,
+      h3 {
+        color: #1b5e20;
+        margin-bottom: 8px;
+      }
+
+      /* Class: kartu produk — reusable untuk semua produk */
+      .kartu {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 12px;
+      }
+
+      /* Class: harga — bisa dipakai di mana saja */
+      .harga {
+        color: #2e7d32;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 4px;
+      }
+
+      /* Class: badge stok kritis */
+      .stok-kritis {
+        color: #c62828;
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Katalog Produk</h1>
+
+    <article class="kartu">
+      <h3>Beras Premium 5kg</h3>
+      <p class="harga">Rp 78.000</p>
+    </article>
+
+    <article class="kartu">
+      <h3>Gula Pasir 1kg</h3>
+      <p class="harga">Rp 14.000</p>
+      <p class="stok-kritis">⚠ Stok hampir habis</p>
+    </article>
+  </body>
+</html>

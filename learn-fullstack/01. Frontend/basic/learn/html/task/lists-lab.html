@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Lab latihan HTML Lists oleh Muhammad Ricky Yusuf"
+    />
+    <title>Lists Lab | Ricky</title>
+  </head>
+  <body>
+    <!-- ============================================================
+         CHALLENGE 1 — SOP, PERLENGKAPAN, GLOSARIUM
+         ============================================================ -->
+
+    <!--
+      ✅ Pilihan <ol> untuk SOP sudah tepat dan alasannya benar.
+      ✅ Pilihan <ul> untuk perlengkapan sudah tepat.
+      ✅ Penggunaan <b> untuk penekanan visual di dalam <li> — acceptable
+         di sini karena ini adalah label/judul langkah, bukan teks naratif.
+         Tapi karena label ini memang "penting" secara konten, <strong>
+         sebenarnya lebih tepat semantik. Ini gray area yang valid.
+    -->
+    <section id="sop">
+      <h2>SOP Pembukaan Toko Setiap Pagi</h2>
+      <ol>
+        <li>
+          <strong>Datang lebih awal</strong> (±30 menit sebelum jam buka) untuk
+          persiapan.
+        </li>
+        <li>
+          <strong>Buka pintu dan nyalakan listrik:</strong> lampu, kipas/AC,
+          serta perangkat elektronik kasir.
+        </li>
+        <li>
+          <strong>Periksa stok barang di rak depan:</strong> pastikan produk
+          tertata rapi, tidak ada kemasan rusak atau kedaluwarsa.
+        </li>
+        <li>
+          <strong>Siapkan kasir:</strong> hidupkan komputer/mesin kasir, cek
+          saldo uang kecil untuk kembalian.
+        </li>
+        <li>
+          <strong>Bersihkan area toko:</strong> sapu lantai, lap meja kasir,
+          rapikan rak agar terlihat menajar.
+        </li>
+        <li>
+          <strong>Cek keamanan:</strong> pastikan CCTV aktif, pintu belakang
+          terkunci, dan APAR (alat pemadam) siap.
+        </li>
+        <li>
+          <strong>Siapkan catatan harian:</strong> tulis target penjualan atau
+          agenda khusus hari ini.
+        </li>
+      </ol>
+    </section>
+
+    <section id="perlengkapan">
+      <h2>Perlengkapan Wajib di Meja Kasir</h2>
+      <ul>
+        <li>Mesin kasir / komputer POS</li>
+        <li>Laci uang dengan pecahan kecil untuk kembalian</li>
+        <li>Struk printer &amp; kertas thermal cadangan</li>
+        <li>Kalkulator manual (cadangan jika sistem bermasalah)</li>
+        <li>Pulpen &amp; buku catatan transaksi darurat</li>
+        <li>Barcode scanner</li>
+        <li>Kantong plastik/kertas untuk belanja pelanggan</li>
+        <li>Hand sanitizer / tisu basah</li>
+      </ul>
+    </section>
+
+    <!--
+      ✅ Penggunaan <dl> untuk glosarium sudah sangat tepat semantik.
+      ✅ Variasi 1 term–many desc (Elements) dan many term–1 desc
+         (Tag & Attribute) sudah benar.
+
+      KOREKSI #1 — Definisi "Tag" dan "Attribute" digabung dalam satu <dd>
+      padahal keduanya adalah konsep yang BERBEDA dan masing-masing
+      seharusnya punya deskripsi sendiri.
+
+      Kamu menulis: <dt>Tag</dt> <dt>Attribute</dt> <dd>...satu deskripsi...</dd>
+      Ini mengatakan "Tag DAN Attribute adalah hal yang sama" — padahal tidak.
+
+      Pola many-term–one-desc yang valid adalah ketika dua term memang
+      identik atau sinonim, misalnya:
+        <dt>HTML</dt>
+        <dt>HyperText Markup Language</dt>
+        <dd>Bahasa markup standar untuk membuat halaman web.</dd>
+
+      Untuk Tag dan Attribute yang berbeda konsep, masing-masing
+      harus punya <dd> sendiri seperti di bawah ini.
+    -->
+    <section id="glosarium">
+      <h2>Glosarium HTML yang Saya Ketahui</h2>
+      <dl>
+        <dt>Markup</dt>
+        <dd>
+          Secara bahasa berarti "penanda." Dalam konteks web dan HTML, markup
+          adalah sistem penanda konten menggunakan tag sehingga browser tahu
+          cara memperlakukan tiap bagian — mana yang header, mana section, mana
+          paragraf, dan sebagainya.
+        </dd>
+
+        <dt>XML</dt>
+        <!--
+          KOREKSI #2 — Penulisan singkatan teknis sebaiknya
+          menggunakan huruf kapital sesuai standarnya: XML, HTML, CSS.
+          "Xml" terlihat seperti nama orang, bukan akronim teknis.
+        -->
+        <dd>
+          Extensible Markup Language — berbeda dengan HTML yang merenderkonten
+          ke layar, XML digunakan untuk menyimpan dan mentransfer data antar
+          sistem. Jika dibuka di browser, XML menampilkan struktur datanya apa
+          adanya tanpa styling.
+        </dd>
+
+        <dt>Element</dt>
+        <dd>Satu unit konten lengkap dalam HTML.</dd>
+        <dd>Terdiri dari tag pembuka, konten di dalamnya, dan tag penutup.</dd>
+        <dd>
+          Contoh: <code>&lt;p&gt;Ini sebuah paragraf.&lt;/p&gt;</code>
+          — seluruhnya adalah satu element.
+        </dd>
+
+        <!--
+          KOREKSI #1 applied: Tag dan Attribute dipisah karena
+          keduanya adalah konsep yang berbeda, bukan sinonim.
+        -->
+        <dt>Tag</dt>
+        <dd>
+          Penanda yang ditulis dalam tanda kurung siku &lt; &gt; yang
+          memberitahu browser di mana suatu element dimulai dan berakhir. Hampir
+          semua tag berpasangan: tag pembuka
+          <code>&lt;p&gt;</code> dan tag penutup <code>&lt;/p&gt;</code>.
+        </dd>
+
+        <dt>Attribute</dt>
+        <dd>
+          Informasi tambahan yang ditulis di dalam tag pembuka, selalu dalam
+          format <code>nama="nilai"</code>. Attribute memodifikasi perilaku atau
+          memberi identitas pada element. Contoh:
+          <code>&lt;a href="toko.html" target="_blank"&gt;</code> —
+          <code>href</code> dan <code>target</code> adalah attribute.
+        </dd>
+      </dl>
+    </section>
+
+    <hr />
+
+    <!-- ============================================================
+         CHALLENGE 2 — NESTED LIST KATALOG PRODUK
+         ============================================================ -->
+
+    <!--
+      ✅ Struktur nested list sudah benar — <ul> ada di dalam <li>,
+         bukan langsung di dalam <ol>. Ini perbaikan dari kesalahan
+         sebelumnya dan sudah benar sepenuhnya.
+      ✅ Kedalaman 3 level (kategori → sub-kategori → produk) logis
+         dan tidak berlebihan.
+
+      KOREKSI #3 — Challenge meminta atribut data-kategori pada
+      setiap <li> level 1. Kamu belum menambahkan atribut ini.
+      data-kategori berguna agar JavaScript nanti bisa membaca
+      kategori mana yang diklik tanpa harus parsing teks.
+    -->
+    <section id="katalog">
+      <h2>Katalog Produk</h2>
+      <!-- ol karena diurutkan berdasarkan volume penjualan tertinggi -->
+      <ol>
+        <!-- KOREKSI #3 applied: tambah data-kategori pada setiap li level 1 -->
+        <li data-kategori="bahan-pokok">
+          Bahan Pokok
+          <ul>
+            <li>
+              Beras
+              <ul>
+                <li>Beras Premium 5kg</li>
+                <li>Beras Medium 5kg</li>
+              </ul>
+            </li>
+            <li>
+              Tepung
+              <ul>
+                <li>Tepung Terigu 1kg</li>
+                <li>Tepung Beras 1kg</li>
+              </ul>
+            </li>
+            <li>
+              Minyak
+              <ul>
+                <li>Minyak Goreng 1L</li>
+                <li>Minyak Goreng 2L</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li data-kategori="makanan-minuman-kemasan">
+          Makanan &amp; Minuman Kemasan
+          <ul>
+            <li>
+              Minuman
+              <ul>
+                <li>Teh Celup 25 sachet</li>
+                <li>Kopi Sachet 10 pcs</li>
+              </ul>
+            </li>
+            <li>
+              Makanan Ringan
+              <ul>
+                <li>Biskuit Kaleng 500g</li>
+                <li>Keripik Singkong 200g</li>
+              </ul>
+            </li>
+            <li>
+              Susu
+              <ul>
+                <li>Susu Bubuk 400g</li>
+                <li>Susu Kental Manis 390g</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li data-kategori="produk-rumah-tangga">
+          Produk Rumah Tangga
+          <ul>
+            <li>
+              Kebersihan
+              <ul>
+                <li>Sabun Cuci Piring 800ml</li>
+                <li>Deterjen Bubuk 1kg</li>
+              </ul>
+            </li>
+            <li>
+              Perawatan Tubuh
+              <ul>
+                <li>Sabun Mandi Batang 100g</li>
+                <li>Pasta Gigi 120g</li>
+              </ul>
+            </li>
+            <li>
+              Perlengkapan
+              <ul>
+                <li>Kantong Plastik ukuran L</li>
+                <li>Korek Api isi 10</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <hr />
+
+    <!-- ============================================================
+         CHALLENGE 3 — DEFINITION LIST SPESIFIKASI PRODUK
+         ============================================================ -->
+
+    <!--
+      ✅ Penggunaan <dl> untuk spesifikasi produk sangat tepat.
+      ✅ Variasi 1 term–many desc (Kegunaan) sudah benar.
+      ✅ Variasi many term–1 desc (Harga & Kode Produk) — HAMPIR benar,
+         tapi lihat koreksi di bawah.
+
+      KOREKSI #4 — Pasangan <dt>Harga</dt><dt>Kode produk</dt>
+      diikuti <dd>Rp 75.000 (BR-PREM-5KG)</dd> yang menggabungkan
+      dua nilai berbeda dalam satu <dd>.
+
+      Ini bermasalah karena: harga dan kode produk adalah dua
+      informasi yang berbeda jenis — satu adalah nilai Rupiah,
+      satu adalah string identifier. Menggabungkannya dalam satu
+      <dd> membuat data tidak bisa dibaca oleh mesin secara terpisah.
+
+      Pola many-term–one-desc yang tepat adalah ketika DUA TERM
+      memang merujuk pada SATU nilai yang sama. Contoh valid:
+        <dt>Harga</dt>
+        <dt>Banderol</dt>   ← "Harga" dan "Banderol" adalah sinonim
+        <dd>Rp 75.000</dd>
+
+      Untuk Harga dan Kode Produk yang nilainya berbeda,
+      berikan masing-masing <dd> sendiri.
+
+      Catatan tambahan: link <a href="toko.html#produk"> dengan
+      target="_blank" perlu ditambahkan title untuk aksesibilitas.
+    -->
+    <section id="detail-produk">
+      <h2>Detail Produk</h2>
+      <h3>Beras Premium Cap Jago 5kg</h3>
+      <h4>Spesifikasi</h4>
+      <dl>
+        <dt>Jenis beras</dt>
+        <dd>Premium, pulen, putih bersih</dd>
+
+        <dt>Berat bersih</dt>
+        <dd>5 kg</dd>
+
+        <dt>Kemasan</dt>
+        <dd>Plastik tebal vakum</dd>
+
+        <dt>Asal</dt>
+        <dd>Jawa Tengah</dd>
+
+        <dt>Umur simpan</dt>
+        <dd>6 bulan sejak tanggal produksi</dd>
+
+        <dt>Kualitas</dt>
+        <dd>Bebas kutu, kadar air rendah</dd>
+
+        <!-- 1 term → many desc: Kegunaan punya 4 deskripsi ✅ -->
+        <dt>Kegunaan</dt>
+        <dd>Cocok untuk nasi harian keluarga</dd>
+        <dd>Bisa dipakai untuk nasi goreng</dd>
+        <dd>Sesuai untuk lontong dan ketupat</dd>
+        <dd>Ideal untuk usaha kuliner</dd>
+
+        <!--
+          KOREKSI #4 applied: Harga dan Kode Produk dipisah.
+          Keduanya bukan sinonim, jadi masing-masing punya <dd> sendiri.
+          
+          Contoh many-term–one-desc yang valid di bawah ini:
+          "Harga" dan "Banderol" adalah sinonim → sah berbagi satu <dd>.
+        -->
+        <dt>Harga</dt>
+        <dt>Banderol</dt>
+        <dd>Rp 75.000</dd>
+
+        <dt>Kode produk</dt>
+        <dd><code>BR-PREM-5KG</code></dd>
+        <!--
+          <code> dipakai karena kode produk adalah identifier teknis —
+          sama seperti kita pakai <code> untuk nama variabel atau
+          perintah CLI. Ini pilihan semantik yang bagus.
+        -->
+      </dl>
+
+      <!-- Link dengan title untuk aksesibilitas yang lebih baik -->
+      <a
+        href="toko.html#produk"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Buka halaman produk Toko Maju Jaya di tab baru"
+        >Lihat semua produk di Toko Maju Jaya</a
+      >
+    </section>
+  </body>
+</html>

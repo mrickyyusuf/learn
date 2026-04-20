@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05 · Combinator Selectors</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.6;
+      }
+
+      .kartu {
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+
+      /* ─────────────────────────────────────────
+       1. DESCENDANT  ( spasi )
+       Menarget SEMUA <p> di mana saja di dalam .kartu,
+       tidak peduli seberapa dalam posisinya.
+       Ini berlaku untuk <p> langsung maupun <p> di dalam <article>.
+    ──────────────────────────────────────────── */
+      .kartu p {
+        color: #444;
+        margin-top: 0.5rem;
+      }
+
+      /* ─────────────────────────────────────────
+       2. CHILD  ( > )
+       Hanya <h2> yang LANGSUNG menjadi child dari .kartu.
+       <h2> di dalam <article> di dalam .kartu TIDAK terkena.
+       Coba bandingkan dengan ".kartu h2" (descendant) — hasilnya berbeda.
+    ──────────────────────────────────────────── */
+      .kartu > h2 {
+        font-size: 1.3rem;
+        color: #1b5e20;
+        border-left: 4px solid #2e7d32;
+        padding-left: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      /* <h3> di dalam <article> di dalam .kartu — ini descendant, bukan child langsung .kartu */
+      .kartu article h3 {
+        font-size: 1rem;
+        color: #2e7d32;
+        margin-bottom: 0.25rem;
+      }
+
+      /* ─────────────────────────────────────────
+       3. NEXT SIBLING  ( + )
+       <p> yang LANGSUNG mengikuti <h2> (tanpa elemen apapun di antaranya).
+       Hanya paragraf pertama setelah heading yang terkena — sisanya tidak.
+       Jika ada <br> atau elemen lain di antara h2 dan p, selector ini tidak cocok.
+    ──────────────────────────────────────────── */
+      h2 + p {
+        font-weight: bold;
+        color: #1a2c3e;
+        font-size: 1.05rem;
+      }
+
+      /* ─────────────────────────────────────────
+       4. SUBSEQUENT SIBLING  ( ~ )
+       SEMUA <p> yang berada setelah <h2>, dalam parent yang sama.
+       Tidak harus langsung bersebelahan — boleh ada elemen lain di antaranya.
+       Ini menimpa .kartu p di atas untuk semua <p> setelah <h2>.
+    ──────────────────────────────────────────── */
+      h2 ~ p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      /* ─────────────────────────────────────────
+       KOMBINASI PRAKTIS:
+       Badge harga: hanya <span> yang langsung berada di dalam .harga
+       Ini child selector yang presisi — tidak menyentuh <span> lain
+       yang mungkin ada di dalam elemen lain di halaman.
+    ──────────────────────────────────────────── */
+      .harga > span {
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #2e7d32;
+      }
+
+      /* Tanda stok: <small> yang langsung mengikuti .harga (next sibling) */
+      .harga + small {
+        color: #c62828;
+        font-size: 0.8rem;
+        display: block;
+        margin-top: 0.25rem;
+      }
+
+      /* Semua <article> setelah <article> pertama (subsequent sibling) —
+       memberi border atas sebagai pemisah visual */
+      article ~ article {
+        border-top: 1px solid #eee;
+        padding-top: 1rem;
+        margin-top: 1rem;
+      }
+
+      /* Label visualisasi — untuk menunjukkan selector mana yang aktif */
+      .label-selector {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-family: monospace;
+        background: #e8f5e9;
+        color: #1b5e20;
+        border: 1px solid #a5d6a7;
+        border-radius: 4px;
+        padding: 1px 6px;
+        margin-left: 6px;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    KARTU 1: Demonstrasi descendant vs child
+    
+    .kartu > h2  → hanya <h2> ini yang terkena (child langsung .kartu)
+    .kartu p     → semua <p> di mana saja di dalam .kartu (descendant)
+    .kartu article h3 → <h3> di dalam article (descendant bertingkat)
+  -->
+    <section class="kartu">
+      <h2>
+        Katalog Produk
+        <span class="label-selector">.kartu > h2</span>
+      </h2>
+
+      <!-- 
+      <p> ini kena TIGA selector sekaligus:
+      1. .kartu p (descendant) → color: #444
+      2. h2 + p (next sibling) → font-weight: bold (menang karena lebih spesifik)
+      3. h2 ~ p (subsequent sibling) → font-size: 0.95rem
+    -->
+      <p>
+        Paragraf pertama setelah h2.
+        <span class="label-selector">h2 + p (next sibling)</span>
+        <span class="label-selector">h2 ~ p (subsequent sibling)</span>
+      </p>
+
+      <article>
+        <!--
+        <h2> ini TIDAK terkena .kartu > h2
+        karena parent langsungnya adalah <article>, bukan .kartu.
+        Ia hanya terkena .kartu article h3 (descendant bertingkat).
+      -->
+        <h3>
+          Beras Premium 5kg
+          <span class="label-selector">.kartu article h3</span>
+        </h3>
+        <p class="harga">
+          Harga: <span>Rp 78.000</span>
+          <span class="label-selector">.harga > span (child)</span>
+        </p>
+        <small
+          >⚠ Stok hampir habis<span class="label-selector"
+            >.harga + small (next sibling)</span
+          ></small
+        >
+      </article>
+
+      <!--
+      article ~ article: semua article SETELAH article pertama
+      mendapat border-top sebagai pemisah.
+      Article pertama tidak terkena — tidak ada article sebelumnya.
+    -->
+      <article>
+        <h3>
+          Gula Pasir 1kg <span class="label-selector">article ~ article</span>
+        </h3>
+        <p class="harga">Harga: <span>Rp 14.000</span></p>
+      </article>
+
+      <article>
+        <h3>
+          Minyak Goreng 2L <span class="label-selector">article ~ article</span>
+        </h3>
+        <p class="harga">Harga: <span>Rp 32.500</span></p>
+        <small
+          >⚠ Stok habis<span class="label-selector"
+            >.harga + small (next sibling)</span
+          ></small
+        >
+      </article>
+
+      <!-- 
+      <p> ini kena h2 ~ p (subsequent sibling) tapi TIDAK kena h2 + p
+      karena ada elemen lain (article) di antara h2 dan p ini.
+    -->
+      <p>
+        Paragraf setelah beberapa artikel.
+        <span class="label-selector">h2 ~ p saja, bukan h2 + p</span>
+      </p>
+    </section>
+
+    <!--
+    KARTU 2: Demonstrasi child vs descendant secara eksplisit
+    Perhatikan perbedaan antara .kartu > h2 dan .kartu p
+  -->
+    <section class="kartu">
+      <h2>
+        Perbedaan Child vs Descendant
+        <span class="label-selector">.kartu > h2 ✓ (child langsung)</span>
+      </h2>
+      <p>
+        Ini <strong>child selector (&gt;)</strong>: hanya menarget elemen yang
+        LANGSUNG di bawah parent — seperti anak kandung, bukan cucu.
+      </p>
+      <p>
+        Ini <strong>descendant selector (spasi)</strong>: menarget semua elemen
+        di dalam parent, tidak peduli seberapa dalam — seperti semua keturunan.
+      </p>
+      <div>
+        <!-- <h2> ini tidak terkena .kartu > h2 karena parent langsungnya <div> -->
+        <h2 style="font-size: 0.9rem; color: #999; border: none; padding: 0">
+          ← h2 ini di dalam div, tidak terkena .kartu &gt; h2
+        </h2>
+      </div>
+    </section>
+  </body>
+</html>

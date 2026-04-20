@@ -1,0 +1,397 @@
+/* ============================================
+   CSS Complete Reference — Stylesheet
+   ============================================ */
+
+:root {
+  --hijau: #1b5e20;
+  --hijau-muda: #e8f5e9;
+  --biru: #1565c0;
+  --kuning: #fff9c4;
+  --merah: #c62828;
+  --abu: #f5f5f5;
+  --teks: #212121;
+  --border: #e0e0e0;
+  --font-mono: "Courier New", Courier, monospace;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Georgia, serif;
+  color: var(--teks);
+  line-height: 1.7;
+  background: #fafafa;
+}
+
+/* ========== COVER ========== */
+.cover {
+  background: var(--hijau);
+  color: white;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.cover h1 {
+  font-size: 2.4rem;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.cover p {
+  opacity: 0.8;
+  font-size: 1.1rem;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-top: 16px;
+}
+
+/* ========== TOC ========== */
+.toc {
+  background: var(--hijau-muda);
+  border-left: 5px solid var(--hijau);
+  padding: 24px 32px;
+  margin: 32px auto;
+  max-width: 860px;
+}
+
+.toc h2 {
+  color: var(--hijau);
+  margin-bottom: 12px;
+}
+
+.toc ol {
+  padding-left: 20px;
+}
+
+.toc li {
+  margin-bottom: 4px;
+}
+
+.toc a {
+  color: var(--biru);
+  text-decoration: none;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
+
+/* ========== WRAPPER ========== */
+.wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* ========== SECTION HEADER ========== */
+.section-header {
+  background: var(--hijau);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px 6px 0 0;
+  margin-top: 48px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.section-body {
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  padding: 24px;
+  background: white;
+}
+
+/* ========== TYPOGRAPHY ========== */
+h3 {
+  color: var(--hijau);
+  border-bottom: 2px solid var(--hijau-muda);
+  padding-bottom: 4px;
+  margin: 28px 0 12px;
+  font-size: 1.05rem;
+}
+
+h4 {
+  color: var(--biru);
+  margin: 16px 0 6px;
+  font-size: 0.95rem;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+ul,
+ol {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+li {
+  margin-bottom: 4px;
+}
+
+/* ========== CODE ========== */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  background: var(--abu);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--merah);
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: #263238;
+  color: #cfd8dc;
+  padding: 16px 20px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+/* ========== CALLOUTS ========== */
+.info {
+  background: #e3f2fd;
+  border-left: 4px solid var(--biru);
+  padding: 12px 16px;
+  border-radius: 0 4px 4px 0;
+  margin: 12px 0;
+}
+
+.warn {
+  background: var(--kuning);
+  border-left: 4px solid #f9a825;
+  padding: 12px 16px;
+  border-radius: 0 4px 4px 0;
+  margin: 12px 0;
+}
+
+.good {
+  background: var(--hijau-muda);
+  border-left: 4px solid var(--hijau);
+  padding: 12px 16px;
+  border-radius: 0 4px 4px 0;
+  margin: 12px 0;
+}
+
+/* ========== GRID & CARDS ========== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.card-head {
+  background: var(--biru);
+  color: white;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 10px 12px;
+  font-size: 0.85rem;
+}
+
+.card-body li {
+  margin-bottom: 2px;
+}
+
+/* ========== CASE STUDY ========== */
+.case-study {
+  background: #fef9ef;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.demo-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.demo-card__header {
+  background: var(--hijau);
+  color: white;
+  padding: 0.8rem;
+  font-weight: bold;
+}
+
+.demo-card__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.product {
+  background: var(--hijau-muda);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.product span {
+  font-weight: bold;
+  color: var(--hijau);
+}
+
+.demo-card__footer {
+  padding: 0.8rem;
+  background: #fafafa;
+  font-size: 0.8rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ========== GLOSARIUM ========== */
+.glos-item {
+  margin-bottom: 16px;
+}
+
+.glos-term {
+  font-weight: bold;
+  color: var(--hijau);
+  font-size: 1rem;
+}
+
+.glos-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: var(--hijau-muda);
+  color: var(--hijau);
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-left: 6px;
+}
+
+.glos-def {
+  margin-top: 2px;
+  color: #444;
+}
+
+/* ========== FLASH CARDS ========== */
+.flashcard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.flashcard {
+  background: #faf9f5;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.flashcard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.flashcard .front,
+.flashcard .back {
+  padding: 1rem;
+}
+
+.flashcard .front {
+  background: var(--hijau);
+  color: white;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.flashcard .back {
+  background: white;
+  font-size: 0.9rem;
+}
+
+/* ========== TABLE ========== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--hijau);
+  color: white;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tr:nth-child(even) td {
+  background: var(--abu);
+}
+
+td code {
+  font-size: 0.82rem;
+}
+
+/* ========== FOOTER ========== */
+.site-footer {
+  text-align: center;
+  padding: 32px;
+  background: var(--hijau);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .cover h1 {
+    font-size: 1.8rem;
+  }
+
+  .wrapper {
+    padding: 0 16px 40px;
+  }
+
+  .toc {
+    padding: 16px 20px;
+    margin: 20px;
+  }
+}

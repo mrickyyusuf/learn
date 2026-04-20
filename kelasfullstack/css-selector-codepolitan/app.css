@@ -1,0 +1,24 @@
+* {
+    background-color: blueviolet;
+}
+
+h1, h2, h3 {
+    color: white;
+    background-color: brown;
+    font-size: smaller;
+}
+
+span {
+    color: white;
+}
+
+/*# untuk manggil id*/
+#list3 {
+    color: gold;
+}
+
+/* class bisa sama untuk nama pemanggilan, pakai "." */
+
+.mark {
+     background-color: aqua;
+}

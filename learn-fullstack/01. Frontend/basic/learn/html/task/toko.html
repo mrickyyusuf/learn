@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Toko Sembako Maju Jaya | Sembako Murah Jakarta Selatan</title>
+    <meta
+      name="description"
+      content="Toko Sembako Maju Jaya menyediakan beras, minyak goreng, dan kebutuhan pokok berkualitas dengan harga terjangkau di Jakarta Selatan. Belanja hemat hari ini!"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <meta
+      property="og:title"
+      content="Toko Sembako Maju Jaya - Solusi Kebutuhan Pokok Anda"
+    />
+    <meta
+      property="og:description"
+      content="Sedia beras premium, minyak goreng, gula, dan kebutuhan harian lainnya dengan stok aman dan harga bersaing."
+    />
+    <meta property="og:image" content="https://picsum.photos/1200/630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://majujaya.com" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Toko Sembako Maju Jaya",
+        "description": "Toko yang menyediakan berbagai kebutuhan sembako dan bahan pokok berkualitas.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Melati No. 12",
+          "addressLocality": "Jakarta Selatan",
+          "addressRegion": "DKI Jakarta",
+          "addressCountry": "ID"
+        },
+        "telephone": "021-1234567",
+        "image": "https://picsum.photos/1200/630"
+      }
+    </script>
+
+    <link rel="stylesheet" href="styles/main.css" />
+    <script defer src="scripts/kasir.js"></script>
+  </head>
+  <body>
+    <a href="#konten-utama" class="skip-link">
+      Lewati navigasi, langsung ke konten utama
+    </a>
+
+    <header>
+      <h1>🏪 Toko Sembako Maju Jaya</h1>
+      <p>Jl. Melati No. 12, Jakarta Selatan | Telp: 021-1234567</p>
+    </header>
+
+    <nav aria-label="Navigasi halaman utama">
+      <a href="#produk">Katalog Produk</a>
+      <a href="#kasir">Sistem Kasir</a>
+      <a href="#stok">Laporan Stok</a>
+      <a href="#tentang">Kontak Kami</a>
+    </nav>
+
+    <main id="konten-utama" tabindex="-1">
+      <section id="produk" aria-labelledby="heading-daftar-produk">
+        <h2 id="heading-daftar-produk">Katalog Produk Sembako Unggulan</h2>
+
+        <article
+          class="kartu-produk stok-aman"
+          data-harga="78000"
+          data-stok="42"
+          data-satuan="kg"
+        >
+          <h3>Beras Premium 5kg</h3>
+          <p>Merek: <strong>Cap Jago</strong></p>
+          <p>Harga: <em>Rp 78.000</em></p>
+          <p>Stok: <span>42 karung</span></p>
+        </article>
+
+        <article
+          class="kartu-produk stok-aman"
+          data-harga="32500"
+          data-stok="28"
+          data-satuan="l"
+        >
+          <h3>Minyak Goreng 2L</h3>
+          <p>Merek: <strong>Bimoli</strong></p>
+          <p>Harga: <em>Rp 32.500</em></p>
+          <p>Stok: <span>28 botol</span></p>
+        </article>
+
+        <article
+          class="kartu-produk stok-kritis"
+          data-harga="15000"
+          data-stok="3"
+          data-satuan="pcs"
+        >
+          <h3>Telur Ayam Negeri</h3>
+          <p>Merek: <strong>Farm Fresh</strong></p>
+          <p>Harga: <em>Rp 15.000</em></p>
+          <p>Stok: <span>3 butir</span></p>
+        </article>
+      </section>
+
+      <section id="kasir" aria-labelledby="heading-form-transaksi">
+        <h2 id="heading-form-transaksi">Input Transaksi Kasir Baru</h2>
+        <form id="form-kasir">
+          <label for="nama-pembeli">Nama Pembeli:</label>
+          <input
+            type="text"
+            id="nama-pembeli"
+            name="nama-pembeli"
+            placeholder="Masukkan nama pembeli"
+            aria-required="true"
+          />
+          <br /><br />
+
+          <label for="produk-dibeli">Pilih Produk:</label>
+          <select id="produk-dibeli" name="produk-dibeli" aria-required="true">
+            <option value="">-- Pilih Produk --</option>
+            <option value="Beras Premium 5kg">Beras Premium 5kg</option>
+            <option value="Minyak Goreng 2L">Minyak Goreng 2L</option>
+            <option value="Telur Ayam Negeri">Telur Ayam Negeri</option>
+          </select>
+          <br /><br />
+
+          <label for="jumlah">Jumlah Barang:</label>
+          <input
+            type="number"
+            id="jumlah"
+            name="jumlah"
+            min="1"
+            value="1"
+            aria-required="true"
+          />
+          <br /><br />
+
+          <button type="submit">Proses Transaksi Sekarang</button>
+
+          <div id="pesan-validasi" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section id="stok" aria-labelledby="heading-laporan-stok">
+        <h2 id="heading-laporan-stok">Monitoring Stok Barang Real-time</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Nama Produk</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Beras Premium</td>
+              <td>Aman</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="supplier" aria-labelledby="heading-daftar-supplier">
+        <h2 id="heading-daftar-supplier">Daftar Supplier Resmi Kami</h2>
+        <ul>
+          <li>
+            Rika —
+            <a href="tel:+6281234567890"
+              >0812-3456-7890 (Hubungi via Telepon)</a
+            >
+          </li>
+          <li>
+            Joseph —
+            <a href="tel:+6289876543210"
+              >0898-7654-3210 (Hubungi via Telepon)</a
+            >
+          </li>
+          <li>
+            Ricky —
+            <a href="tel:+6285551234567"
+              >0855-5123-4567 (Hubungi via Telepon)</a
+            >
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer id="tentang">
+      <p>
+        &copy; 2024 Toko Sembako Maju Jaya. Dibuat dengan ❤️ menggunakan HTML.
+      </p>
+      <address>
+        <strong>Informasi Kontak:</strong><br />
+        Alamat: Jl. Melati No. 12, Jakarta Selatan<br />
+        Email: <a href="mailto:toko@majujaya.com">toko@majujaya.com</a>
+      </address>
+    </footer>
+  </body>
+</html>

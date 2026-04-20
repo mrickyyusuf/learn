@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    File XML ini BUKAN untuk browser.
+    Ia adalah cara menyimpan data terstruktur.
+    Nanti di modul backend, kita akan baca file seperti ini dengan Node.js.
+-->
+<toko nama="Maju Jaya">
+
+    <produk id="001">
+        <nama>Beras Premium 5kg</nama>
+        <merek>Cap Jago</merek>
+        <harga satuan="IDR">78000</harga>
+        <stok unit="karung">42</stok>
+        <kadaluarsa>2026-04-01</kadaluarsa>
+    </produk>
+
+    <produk id="002">
+        <nama>Minyak Goreng 2L</nama>
+        <merek>Bimoli</merek>
+        <harga satuan="IDR">32500</harga>
+        <stok unit="botol">28</stok>
+        <kadaluarsa>2026-04-02</kadaluarsa>
+    </produk>
+
+</toko>

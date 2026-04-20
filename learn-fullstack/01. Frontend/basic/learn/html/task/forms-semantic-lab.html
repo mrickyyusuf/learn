@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="id">
+  <!--
+  KOREKSI #1 — lang="en" → lang="id"
+  Sama seperti table-lab sebelumnya — seluruh konten berbahasa Indonesia.
+  Ini sudah menjadi pola yang perlu benar-benar diinternalisasi:
+  lang attribute mencerminkan BAHASA KONTEN, bukan bahasa coding.
+-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Lab latihan HTML Forms dan Semantic Markup oleh Muhammad Ricky Yusuf"
+    />
+    <title>Forms &amp; Semantic Lab | Ricky</title>
+    <style>
+      body {
+        font-family: Georgia, serif;
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 24px;
+        background-color: #f9f6f0;
+        color: #333;
+      }
+
+      /* Styling form yang bersih tanpa table layout */
+      .form-group {
+        margin-bottom: 16px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 8px 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: inherit;
+      }
+
+      .form-group input[type="file"] {
+        padding: 4px;
+      }
+
+      .form-group input[type="checkbox"],
+      .form-group input[type="radio"] {
+        width: auto; /* override width: 100% untuk checkbox/radio */
+      }
+
+      button[type="submit"] {
+        background-color: #2e7d32;
+        color: white;
+        padding: 10px 24px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-family: inherit;
+      }
+
+      /* Styling artikel */
+      article {
+        background: white;
+        padding: 24px;
+        border-radius: 8px;
+        margin: 16px 0;
+      }
+
+      aside {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 12px 16px;
+        margin: 16px 0;
+        border-radius: 0 4px 4px 0;
+      }
+
+      blockquote {
+        border-left: 3px solid #ccc;
+        margin-left: 0;
+        padding-left: 16px;
+        color: #555;
+        font-style: italic;
+      }
+
+      nav a {
+        margin-right: 8px;
+        color: #2e7d32;
+      }
+
+      .separator {
+        border: none;
+        border-top: 1px solid #ddd;
+        margin: 32px 0;
+      }
+
+      address {
+        font-style: normal;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================================
+         CHALLENGE 1 — FORM PENDAFTARAN PRODUK BARU
+         ============================================================ -->
+
+    <!--
+      ✅ action, method="post", enctype="multipart/form-data" sudah benar.
+      ✅ Semua input punya label yang terhubung via for/id.
+      ✅ Atribut validasi (required, minlength, min, pattern) sudah tepat.
+      ✅ title sebagai pesan validasi kustom sudah digunakan dengan baik.
+      ✅ step="1000" pada harga satuan adalah ide yang bagus — UX yang thoughtful.
+      ✅ <textarea> dengan maxlength sudah benar.
+
+      KOREKSI #2 — method="post" seharusnya method="POST" (kapital).
+      Secara teknis browser menerima keduanya, tapi konvensi standar
+      dan semua dokumentasi resmi menggunakan huruf kapital: GET, POST, PUT.
+      Konsistensi dengan konvensi penting untuk readability kode tim.
+
+      KOREKSI #3 — <textarea> punya whitespace di antara tag pembuka
+      dan penutupnya:
+        <textarea ...>
+        </textarea>
+      Whitespace ini akan muncul sebagai konten awal di textarea —
+      pengguna akan melihat kursor di baris kedua, bukan pertama.
+      Tag <textarea> harus ditulis: <textarea ...></textarea> (tidak ada
+      newline di antara keduanya) jika tidak ingin konten default apapun.
+
+      KOREKSI #4 — cols="40" pada textarea sebaiknya dihapus dan
+      diganti dengan CSS width: 100%. Kita sudah belajar bahwa
+      atribut presentasional seperti cols lebih baik diatur lewat CSS.
+      cols adalah warisan HTML4, mirip dengan border="1" pada table.
+
+      KOREKSI #5 — value="0" pada harga-satuan dan stok-awal.
+      Untuk harga-satuan yang min="1000", nilai default "0" akan
+      langsung invalid saat form di-render. Lebih baik tidak ada
+      value default (biarkan kosong) atau set value="1000" agar
+      sesuai dengan min-nya. Untuk stok-awal, value="0" memang valid
+      karena min="0", jadi ini OK.
+    -->
+    <section id="form-pendaftaran-produk-baru">
+      <h2>Form Pendaftaran Produk Baru</h2>
+
+      <form
+        action="/api/pendaftaran-produk-baru"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="form-group">
+          <label for="nama-produk"
+            >Nama Produk <span aria-hidden="true">*</span></label
+          >
+          <input
+            type="text"
+            id="nama-produk"
+            name="nama-produk"
+            required
+            minlength="3"
+            maxlength="100"
+            placeholder="Contoh: Beras Premium Cap Jago 5kg"
+            title="Nama produk minimal 3 karakter"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="kategori"
+            >Kategori <span aria-hidden="true">*</span></label
+          >
+          <select
+            name="kategori"
+            id="kategori"
+            required
+            title="Pilih kategori produk"
+          >
+            <option value="">-- Pilih Kategori --</option>
+            <option value="bahan-pokok">Bahan Pokok</option>
+            <option value="minyak-bumbu-dapur">Minyak &amp; Bumbu Dapur</option>
+            <option value="protein-olahan">Protein &amp; Olahan</option>
+            <option value="minuman-konsumsi-cepat">
+              Minuman &amp; Konsumsi Cepat
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="harga-satuan"
+            >Harga Satuan (Rp) <span aria-hidden="true">*</span></label
+          >
+          <!--
+            KOREKSI #5: hapus value="0" karena 0 < min="1000" → langsung invalid.
+            Biarkan kosong atau set value="1000" sebagai nilai awal yang valid.
+          -->
+          <input
+            type="number"
+            id="harga-satuan"
+            name="harga-satuan"
+            min="1000"
+            step="1000"
+            placeholder="Minimal Rp 1.000"
+            required
+            title="Harga satuan minimal Rp 1.000"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="stok-awal"
+            >Stok Awal <span aria-hidden="true">*</span></label
+          >
+          <!-- value="0" valid di sini karena min="0" ✅ -->
+          <input
+            type="number"
+            id="stok-awal"
+            name="stok-awal"
+            min="0"
+            value="0"
+            step="1"
+            required
+            title="Stok awal tidak boleh negatif"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="tanggal-kadaluarsa">Tanggal Kadaluarsa</label>
+          <!--
+            Tidak ada required — produk seperti garam atau minyak goreng
+            murni kadang tidak memiliki tanggal kadaluarsa yang tercetak.
+            Challenge memang tidak mewajibkan field ini required.
+          -->
+          <input
+            type="date"
+            id="tanggal-kadaluarsa"
+            name="tanggal-kadaluarsa"
+            title="Kosongkan jika produk tidak memiliki tanggal kadaluarsa"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="foto-produk"
+            >Foto Produk <span aria-hidden="true">*</span></label
+          >
+          <input
+            type="file"
+            id="foto-produk"
+            name="foto-produk"
+            accept=".jpg,.jpeg,.png,image/webp"
+            required
+            title="Upload foto produk (JPG, PNG, atau WebP)"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="deskripsi-produk"
+            >Deskripsi Produk <span aria-hidden="true">*</span></label
+          >
+          <!--
+            KOREKSI #3 & #4: tidak ada whitespace di dalam textarea,
+            dan cols dihapus — lebar diatur via CSS width: 100%.
+          -->
+          <textarea
+            name="deskripsi-produk"
+            id="deskripsi-produk"
+            placeholder="Deskripsikan produk secara singkat... (maks. 200 karakter)"
+            rows="5"
+            maxlength="200"
+            required
+            title="Deskripsi produk wajib diisi, maksimal 200 karakter"
+          ></textarea>
+        </div>
+
+        <button type="submit">Daftarkan Produk</button>
+      </form>
+    </section>
+
+    <hr class="separator" />
+
+    <!-- ============================================================
+         CHALLENGE 2 — ARTIKEL BLOG DENGAN SEMANTIC LENGKAP
+         ============================================================ -->
+
+    <!--
+      ✅ Penggunaan <header>, <nav>, <main>, <article>, <section>
+         secara keseluruhan sudah menunjukkan pemahaman yang baik.
+      ✅ <blockquote> dengan <cite> sudah ada.
+      ✅ <abbr> dengan title sudah digunakan dua kali.
+      ✅ <dfn> digunakan dua kali untuk dua istilah berbeda.
+      ✅ <del> dan <ins> dengan atribut datetime sudah benar.
+      ✅ <s> untuk harga lama sudah tepat semantiknya.
+      ✅ <address> sudah ada di footer.
+
+      KOREKSI #6 — Tiga masalah struktural yang perlu diperbaiki:
+
+      (a) <aside> diletakkan di DALAM <section id="blog-tips"> yang
+          berada di dalam <article>. Ini menyebabkan <aside> menjadi
+          "embedded" di dalam section konten utama.
+          <aside> yang bermakna secara semantik seharusnya berada
+          SEJAJAR dengan <article>, bukan di dalam section-nya.
+          Ia adalah konten TANGENSIAL terhadap article secara keseluruhan,
+          bukan tangensial terhadap satu section kecil.
+          
+      (b) <q> digunakan di dalam <blockquote>. Ini adalah duplikasi
+          semantik — <blockquote> sudah menyatakan "ini adalah kutipan."
+          Meletakkan <q> di dalamnya menambahkan tanda kutip visual
+          DI ATAS blockquote, yang secara visual terlihat aneh dan
+          semantiknya berlebihan. Konten blockquote cukup ditulis
+          sebagai <p> biasa.
+
+      (c) <address> berisi plain text email tanpa href="mailto:".
+          Kita sudah bahas ini di koreksi Challenge E sebelumnya —
+          email di dalam <address> harus selalu menggunakan link
+          mailto: agar bisa diklik langsung.
+
+      Satu hal yang sangat bagus: kamu menggunakan id="beranda" pada
+      <header> dan id="blog" pada <article> sehingga breadcrumb <nav>
+      bisa mengarah ke anchor yang tepat. Ini menunjukkan pemikiran
+      yang kohesif antara struktur dan navigasi.
+    -->
+
+    <!--
+      Catatan struktur yang diperbaiki:
+      <section id="artikel-..."> dihapus sebagai wrapper luar karena
+      halaman artikel sudah punya <header>, <nav>, <main>, <footer>
+      sebagai struktur semantik yang cukup. Membungkus semuanya dalam
+      <section> tambahan hanya menambahkan nesting yang tidak perlu.
+    -->
+
+    <header id="beranda">
+      <h1>Blog Toko Sembako Maju Jaya</h1>
+      <!--
+        h1 untuk nama blog/situs, bukan judul artikel.
+        Judul artikel ada di dalam <article> sebagai h2.
+      -->
+    </header>
+
+    <!--
+      KOREKSI #6a: <nav> breadcrumb diletakkan di luar <main>
+      karena breadcrumb adalah navigasi situs, bukan konten utama.
+      aria-label membedakan <nav> ini dari <nav> lain jika ada.
+    -->
+    <nav aria-label="Breadcrumb">
+      <a href="#beranda">Beranda</a> &rsaquo;
+      <a href="#daftar-artikel">Blog</a> &rsaquo;
+      <span>Panduan Memilih Beras Berkualitas</span>
+      <!--
+        Item terakhir breadcrumb (halaman aktif) tidak perlu jadi link —
+        pengguna sudah ada di halaman ini. <span> lebih tepat dari <a>.
+      -->
+    </nav>
+
+    <main>
+      <!--
+        KOREKSI #6a applied: <aside> dipindahkan ke luar <article>
+        tapi masih di dalam <main>, sejajar dengan article.
+        Ini menunjukkan bahwa aside adalah konten tangensial terhadap
+        keseluruhan halaman, bukan bagian dari narasi artikel.
+      -->
+      <aside aria-label="Tips cepat">
+        <h3>💡 Tips Cepat</h3>
+        <p>
+          Simpan beras di wadah kedap udara agar tidak lembab dan terhindar dari
+          kutu.
+        </p>
+        <p>
+          Produk terkait: <a href="#produk-beras">Beras Premium Cap Jago 5kg</a>
+        </p>
+      </aside>
+
+      <article id="blog">
+        <header>
+          <!--
+            <article> boleh punya <header> sendiri yang berisi
+            judul dan meta artikel — ini adalah penggunaan <header>
+            yang valid di luar context <body> langsung.
+          -->
+          <h2>Panduan Memilih Beras Berkualitas untuk Toko Sembako</h2>
+          <p>
+            Ditulis oleh <strong>Ricky</strong> &mdash; Dipublikasikan
+            <time datetime="2026-03-20">20 Maret 2026</time>
+          </p>
+          <!--
+            <time> adalah tag semantik untuk tanggal/waktu.
+            Atribut datetime berisi format mesin (ISO 8601),
+            konten di dalamnya adalah format manusia.
+            Ini akan kita dalami di materi aksesibilitas.
+          -->
+        </header>
+
+        <section id="blog-pendahuluan">
+          <h3>Pendahuluan</h3>
+          <p>
+            Dalam memilih beras untuk toko sembako, kualitas adalah faktor
+            utama. Konsumen mencari beras yang pulen, bersih, dan tahan lama.
+            Menurut para pedagang berpengalaman,
+            <q cite="https://example.com/panduan-beras"
+              >kualitas beras menentukan loyalitas pelanggan lebih dari sekadar
+              harga</q
+            >.
+          </p>
+          <!--
+            KOREKSI #6b applied: <q> dipindahkan ke dalam paragraf
+            sebagai kutipan inline — ini penggunaan yang tepat.
+            Bukan di dalam <blockquote>.
+          -->
+        </section>
+
+        <section id="blog-faktor">
+          <h3>Faktor Penentu Kualitas Beras</h3>
+          <p>
+            <dfn id="def-beras-berkualitas">Beras berkualitas</dfn> adalah beras
+            yang memenuhi standar kadar air, kebersihan, dan konsistensi butir
+            yang ditetapkan oleh
+            <abbr title="Badan Standardisasi Nasional">BSN</abbr>. Standar ini
+            selaras dengan panduan
+            <abbr title="Organisasi Pangan dan Pertanian Dunia">FAO</abbr>
+            untuk komoditas pangan pokok.
+          </p>
+          <ul>
+            <li>
+              Warna beras harus putih bersih, tidak bercampur butir pecah.
+            </li>
+            <li>Aroma segar, tidak apek atau berbau kimia.</li>
+            <li>Tekstur pulen dan tidak mudah buyar saat dimasak.</li>
+          </ul>
+
+          <!--
+            <blockquote> untuk kutipan panjang yang berdiri sendiri.
+            Kontennya adalah <p> biasa, BUKAN <q> — sudah dikoreksi.
+          -->
+          <figure>
+            <blockquote cite="https://bsn.go.id/standar-beras">
+              <p>
+                Standar mutu beras konsumsi mencakup kadar air maksimal 14%,
+                butir kepala minimal 85%, dan bebas dari kotoran organik maupun
+                anorganik yang membahayakan konsumen.
+              </p>
+            </blockquote>
+            <figcaption>
+              — <cite>Panduan Standar Pangan Nasional, BSN 2024</cite>
+            </figcaption>
+          </figure>
+        </section>
+
+        <section id="blog-catatan">
+          <h3>Koreksi Informasi &amp; Pembaruan Harga</h3>
+          <p>
+            <dfn id="def-beras-premium">Beras premium</dfn> adalah beras dengan
+            persentase butir kepala di atas 95% dan kadar air di bawah 13% —
+            standar tertinggi untuk konsumsi rumah tangga kelas menengah.
+          </p>
+          <p>
+            Koreksi data stok: Sebelumnya tercatat sebanyak
+            <del datetime="2026-03-19" cite="/log/koreksi-19mar">250 karung</del
+            >, setelah audit ulang ditemukan jumlah sesungguhnya adalah
+            <ins datetime="2026-03-20">312 karung</ins>.
+          </p>
+          <p>
+            Harga referensi per 5kg:
+            <s>Rp 82.000</s> &rarr; <strong>Rp 75.000</strong>
+            (penyesuaian harga distributor per Maret 2026).
+          </p>
+        </section>
+
+        <footer>
+          <!--
+            <footer> di dalam <article> berisi info penutup artikel —
+            ini valid dan berbeda dari <footer> halaman di luar <main>.
+          -->
+          <h3>Tentang Penulis</h3>
+          <p>Ricky, praktisi ritel sembako dengan pengalaman 5 tahun.</p>
+          <!--
+            KOREKSI #6c applied: email menggunakan mailto:
+          -->
+          <address>
+            Email: <a href="mailto:ricky@tokosembako.id">ricky@tokosembako.id</a
+            ><br />
+            Alamat redaksi: Jl. Gambir Raya No. 10, Jakarta Pusat
+          </address>
+        </footer>
+      </article>
+    </main>
+
+    <footer>
+      <hr class="separator" />
+      <p>
+        <small>&copy; 2026 Toko Sembako Maju Jaya. Semua hak dilindungi.</small>
+      </p>
+    </footer>
+  </body>
+</html>

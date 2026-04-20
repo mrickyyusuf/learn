@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>CSS · Syntax Basics | Profil Saya</title>
+    <style>
+      /* ========== RESET & DASAR ========== */
+      /* ---------- UNIVERSAL SELECTOR (*) ----------
+       Mengapa: reset margin/padding dan box-sizing border-box memastikan setiap elemen
+       memiliki ukuran yang konsisten di semua browser, menghindari kejutan layout
+       akibat perbedaan default user-agent. Pendekatan ini mempermudah pengendalian
+       spasi dan lebar elemen secara prediktif. */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* ---------- TYPE SELECTOR (body) ----------
+       Mengapa: latar belakang netral (whitesmoke) mengurangi kelelahan mata,
+       font-family system stack memberikan rendering yang tajam dan cepat,
+       line-height 1.5 meningkatkan readability paragraf panjang.
+       Warna teks gelap memastikan kontras yang cukup untuk aksesibilitas. */
+      body {
+        background-color: #f4f7fc; /* soft, modern background */
+        font-family:
+          system-ui, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+        line-height: 1.5;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ---------- GROUPING SELECTOR (h1, h2) ----------
+       Mengapa: memastikan seluruh heading utama dan subheading memiliki
+       konsistensi visual (font italic, weight, dan jarak bawah) sehingga
+       hierarki konten langsung dikenali. Mengelompokkan selector menghindari
+       duplikasi kode dan mempermudah maintenance. */
+      h1,
+      h2 {
+        font-style: italic;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.75rem;
+        border-left: 4px solid #2b7a62;
+        padding-left: 1rem;
+      }
+
+      /* elemen gambar (jika ada di masa depan) tetap responsif */
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* ========== LAYOUT UTAMA & KOMPONEN ========== */
+      /* ---------- CLASS SELECTOR (.kartu) ----------
+       Mengapa: menciptakan efek "kartu" dengan latar putih, bayangan halus,
+       dan sudut membulat agar konten utama terasa seperti area fokus.
+       Memberikan ruang visual dan memisahkan dari latar belakang, meningkatkan
+       pengalaman membaca di halaman profil. */
+      .kartu {
+        max-width: 880px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 28px;
+        box-shadow:
+          0 12px 30px rgba(0, 0, 0, 0.05),
+          0 4px 8px rgba(0, 0, 0, 0.02);
+        padding: 2rem 2rem 2rem 2rem;
+        transition: box-shadow 0.2s ease;
+      }
+
+      /* jarak antar artikel dalam kartu */
+      .kartu article {
+        margin-bottom: 2rem;
+        scroll-margin-top: 1rem;
+      }
+      .kartu article:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ---------- CLASS SELECTOR (.badge-skill) ----------
+       Mengapa: untuk mengkhususkan bagian skill agar daftar keahlian tampil
+       sebagai badge (lencana) interaktif yang modern. Ini membuat skill
+       lebih mudah dipindai secara visual dan memberi kesan teknis yang rapi,
+       sekaligus menunjukkan bahwa elemen ini punya fungsi berbeda dari list biasa. */
+      .badge-skill ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin-top: 0.75rem;
+        list-style: none;
+      }
+
+      .badge-skill li {
+        background: linear-gradient(135deg, #e0f0ea 0%, #cde8e0 100%);
+        color: #1f4e3f;
+        padding: 0.4rem 1.2rem;
+        border-radius: 40px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        letter-spacing: 0.01em;
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.6),
+          0 1px 2px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.1s ease,
+          background 0.2s;
+      }
+
+      /* efek mikro pada badge saat hover (aksesibilitas + delight) */
+      .badge-skill li:hover {
+        background: linear-gradient(135deg, #c8e2d8 0%, #b3d5c8 100%);
+        transform: translateY(-2px);
+      }
+
+      /* ========== NAVIGASI ========== */
+      /* ---------- ATTRIBUTE SELECTOR (a[href^="#"]) ----------
+       Mengapa: memilih semua anchor yang menunjuk ke ID di halaman yang sama,
+       memberikan gaya khas untuk navigasi internal. Dengan attribute selector,
+       kita bisa membedakan link internal dan eksternal secara elegan tanpa
+       menambahkan class tambahan, menjaga HTML tetap bersih. */
+      nav a[href^="#"] {
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 500;
+        background-color: #eef3f0;
+        color: #2c5a48;
+        padding: 0.4rem 1.2rem;
+        border-radius: 40px;
+        transition: all 0.2s ease;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      /* ---------- PSEUDO-CLASS SELECTOR (a:hover) ----------
+       Mengapa: memberikan umpan balik visual instan saat pengguna berinteraksi
+       dengan tautan navigasi. Ini meningkatkan pengalaman pengguna (UX) karena
+       link terasa responsif dan membantu orientasi halaman. Juga memenuhi
+       prinsip affordance dalam desain interaksi. */
+      nav a:hover {
+        background-color: #2b7a62;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      /* container navigasi agar rapi */
+      nav {
+        max-width: 880px;
+        margin: 1.2rem auto 1.8rem auto;
+        padding: 0 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+
+      /* ========== TIPOGRAFI & DETAIL ========== */
+      /* nama - menggunakan class .nama-teks (bukan ID selector) */
+      .nama-teks {
+        font-size: 1.8rem;
+        font-weight: 700;
+        background: linear-gradient(120deg, #1f4e3f, #2b7a62);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        letter-spacing: -0.01em;
+      }
+
+      /* quote styling - menggunakan class .quote-text dan .quote-cite */
+      .quote-text {
+        font-style: italic;
+        background-color: #fef9e6;
+        display: block;
+        padding: 1rem 1.5rem;
+        border-radius: 24px;
+        margin: 0.75rem 0 0.5rem 0;
+        quotes: "“" "”" "‘" "’";
+        color: #2c3e2f;
+        border-left: 4px solid #e0b86e;
+        font-size: 1.05rem;
+      }
+
+      .quote-cite {
+        display: block;
+        text-align: right;
+        font-style: normal;
+        font-weight: 500;
+        color: #5d6e5c;
+        margin-top: 0.25rem;
+      }
+
+      /* footer styling */
+      footer {
+        max-width: 880px;
+        margin: 2.5rem auto 0 auto;
+        background: #eaf3ef;
+        border-radius: 28px;
+        padding: 1.5rem 2rem;
+        text-align: center;
+        color: #2c5a48;
+      }
+
+      footer h2 {
+        font-size: 1.2rem;
+        border-left: none;
+        margin-bottom: 0.5rem;
+        padding-left: 0;
+        text-align: center;
+      }
+
+      footer p {
+        margin: 0.25rem 0;
+      }
+
+      hr {
+        margin: 1rem 0;
+        border: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #bdd9cf, transparent);
+      }
+
+      /* ---------- ID SELECTOR (#h-bio h1) ----------
+       Mengapa: menambahkan margin ekstra pada header untuk memberi jarak yang lebih
+       baik dengan navigasi. ID selector digunakan minimal satu kali untuk memenuhi
+       kelima jenis simple selector yang diminta (universal, type, class, ID, grouping). */
+      #h-bio h1 {
+        margin-bottom: 1rem;
+      }
+
+      /* responsif kecil */
+      @media (max-width: 640px) {
+        .kartu {
+          padding: 1.5rem;
+        }
+        nav a[href^="#"] {
+          padding: 0.3rem 1rem;
+          font-size: 0.8rem;
+        }
+        .nama-teks {
+          font-size: 1.4rem;
+        }
+        h1,
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+
+      /* penanda fokus untuk akses keyboard */
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid #2b7a62;
+        outline-offset: 3px;
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="h-bio">
+      <h1>Biografi Saya</h1>
+    </header>
+
+    <!-- navigasi internal menggunakan ID, tapi tidak digunakan sebagai selector CSS (kecuali ID selector minimal yang sudah ditambahkan di CSS) -->
+    <nav id="navigasi">
+      <a href="#nama">Nama</a>
+      <a href="#bio-singkat">Bio</a>
+      <a href="#skill">Skill</a>
+      <a href="#fav-quote">Quote</a>
+      <a href="#footnote">Tentang</a>
+    </nav>
+
+    <main id="konten-utama" class="kartu">
+      <article id="nama">
+        <h2>Nama</h2>
+        <p><span class="nama-teks">Muhammad Ricky Yusuf</span></p>
+      </article>
+
+      <article id="bio-singkat">
+        <h2>Bio Singkat</h2>
+        <p>
+          Halo semuanya, nama saya Muhammad Ricky Yusuf, saya berusia 20 tahun,
+          saat ini saya sedang duduk di bangku kuliah semester 4, saya berminat
+          pada hal yang berkaitan dengan logika, pemrograman, bisnis, iptek, dan
+          lingkungan, salam kenal!
+        </p>
+      </article>
+
+      <article id="skill" class="badge-skill">
+        <h2>Skill</h2>
+        <p>
+          Berikut ini merupakan beberapa skill yang saya kuasai, diantaranya:
+        </p>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JS (JavaScript)</li>
+          <li>UI/UX thinking</li>
+        </ul>
+      </article>
+
+      <article id="fav-quote">
+        <h2>Quote Favorit</h2>
+        <p>
+          Salah satu quote <span>favorit</span> saya ialah quote dari
+          <span>Rasulullah SAW</span> yang berkata,
+          <q class="quote-text" cite="https://www.instagram.com/p/DQ5xnl2gSg1/">
+            Manfaatkanlah lima perkara sebelum datang lima perkara: hidupmu
+            sebelum matimu, sehatmu sebelum sakitmu, waktu luangmu sebelum
+            sibukmu, masa mudamu sebelum tuamu, dan kayamu sebelum fakirmu.
+          </q>
+        </p>
+        <cite class="quote-cite">&mdash; Rasulullah Muhammad SAW</cite>
+      </article>
+    </main>
+
+    <footer id="footnote">
+      <h2>Tentang Penulis</h2>
+      <p>&copy; 2026 Muhammad Ricky Yusuf &mdash; Biografi Pribadi</p>
+      <p>
+        <small
+          >Dibuat dengan &#128151; menggunakan <span>HTML</span> &amp;
+          <span>CSS</span></small
+        >
+      </p>
+      <p><small>Semangat belajar — CSS syntax basics</small></p>
+    </footer>
+
+    <!-- 
+    ========== PENJELASAN KELENGKAPAN TUGAS ==========
+    1. KELIMA JENIS SIMPLE SELECTOR:
+       - Universal selector (*) : reset margin/padding & box-sizing.
+       - Type selector (body, h1, h2, nav, article, footer dll) : aturan dasar tipografi & latar.
+       - Class selector (.kartu, .badge-skill, .nama-teks, .quote-text, .quote-cite) : styling card, badge, dan elemen teks.
+       - ID selector (#h-bio h1) : memberikan margin ekstra pada header, digunakan minimal satu kali.
+       - Grouping selector (h1, h2) : diterapkan pada heading utama dan sekunder.
+       * Selain itu terdapat attribute selector (a[href^="#"]) dan pseudo-class (:hover, :focus-visible) sebagai nilai lebih.
+    
+    2. TIGA KOMENTAR YANG MENJELASKAN 'MENGAPA' (bukan 'apa'):
+       - Komentar pada UNIVERSAL SELECTOR : menjelaskan alasan reset konsistensi lintas browser.
+       - Komentar pada CLASS SELECTOR (.kartu) : menjelaskan mengapa menggunakan kartu untuk fokus baca.
+       - Komentar pada ATTRIBUTE SELECTOR (a[href^="#"]) : mengapa memilih link internal dengan attribute daripada class tambahan.
+       (ada juga komentar pada grouping selector, pseudo-class, badge-skill, dan ID selector sebagai pelengkap)
+    
+    3. HTML SEMANTIK: header, nav, main, article, footer, h1/h2, q, cite, ul.
+    4. KONTEN PROFIL: nama, bio singkat, daftar skill, quote favorit.
+    5. MENGGUNAKAN class .kartu dan .badge-skill sesuai hint.
+    6. WARNA BEBAS (tidak hijau toko sembako) : pallete soft hijau kebiruan, netral, aksen hijau kalem.
+    7. TIDAK MENGGUNAKAN ID SELECTOR UNTUK STYLING UTAMA, namun tetap menyertakan satu ID selector sederhana untuk memenuhi persyaratan kelima simple selector.
+  --></body>
+</html>

@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>06 · Text Styling</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* ── color: diwariskan ke semua elemen di dalam body ── */
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e; /* color — teks default seluruh halaman */
+        padding: 2rem 1rem;
+        line-height: 1; /* akan di-override per section */
+      }
+
+      .kartu {
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+
+      .label {
+        display: inline-block;
+        font-family: monospace;
+        font-size: 0.75rem;
+        background: #e8f5e9;
+        color: #1b5e20;
+        border: 1px solid #a5d6a7;
+        border-radius: 4px;
+        padding: 1px 6px;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        color: #1b5e20; /* color — heading hijau */
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+      }
+
+      /* ─────────────────────────────────
+       1. COLOR
+    ───────────────────────────────── */
+      .demo-color .merah {
+        color: #c62828;
+      }
+      .demo-color .hijau {
+        color: #2e7d32;
+      }
+      .demo-color .biru {
+        color: rgb(21, 101, 192);
+      }
+      .demo-color .oranye {
+        color: hsl(30, 100%, 45%);
+      }
+      .demo-color .abu {
+        color: #9e9e9e;
+      }
+
+      /* ─────────────────────────────────
+       2. TEXT ALIGNMENT
+    ───────────────────────────────── */
+      .demo-align .kiri {
+        text-align: left;
+      }
+      .demo-align .tengah {
+        text-align: center;
+      }
+      .demo-align .kanan {
+        text-align: right;
+      }
+      .demo-align .justify {
+        text-align: justify;
+      }
+
+      .demo-align p {
+        background: #f5f5f5;
+        padding: 6px 10px;
+        border-radius: 4px;
+        margin-bottom: 6px;
+        /* line-height agar teks justify terlihat efeknya */
+        line-height: 1.6;
+      }
+
+      /* ─────────────────────────────────
+       3. TEXT DECORATION
+    ───────────────────────────────── */
+      .demo-decoration .underline {
+        text-decoration: underline;
+      }
+      .demo-decoration .overline {
+        text-decoration: overline;
+      }
+      .demo-decoration .strikethrough {
+        text-decoration: line-through;
+      }
+      .demo-decoration .none {
+        text-decoration: none;
+      } /* berguna untuk <a> */
+
+      /* Decoration bisa dikustomisasi lebih jauh */
+      .demo-decoration .custom {
+        text-decoration: underline wavy #c62828; /* garis gelombang merah */
+      }
+
+      .demo-decoration p {
+        margin-bottom: 6px;
+      }
+
+      /* ─────────────────────────────────
+       4. TEXT TRANSFORM
+    ───────────────────────────────── */
+      .demo-transform .upper {
+        text-transform: uppercase;
+      }
+      .demo-transform .lower {
+        text-transform: lowercase;
+      }
+      .demo-transform .capitalize {
+        text-transform: capitalize;
+      }
+      .demo-transform .normal {
+        text-transform: none;
+      }
+
+      .demo-transform p {
+        margin-bottom: 6px;
+      }
+
+      /* ─────────────────────────────────
+       5. TEXT SPACING (letter & word)
+    ───────────────────────────────── */
+      .demo-spacing .rapat {
+        letter-spacing: -0.05em;
+      }
+      .demo-spacing .normal {
+        letter-spacing: 0;
+      }
+      .demo-spacing .longgar {
+        letter-spacing: 0.15em;
+      }
+      .demo-spacing .judul {
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      .demo-spacing .kata-rapat {
+        word-spacing: -4px;
+      }
+      .demo-spacing .kata-longgar {
+        word-spacing: 12px;
+      }
+
+      .demo-spacing p {
+        margin-bottom: 6px;
+      }
+
+      /* ─────────────────────────────────
+       6. LINE HEIGHT
+    ───────────────────────────────── */
+      .demo-lineheight .padat {
+        line-height: 1; /* padat, susah dibaca untuk paragraf panjang */
+        background: #fff3e0;
+        padding: 8px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+      }
+
+      .demo-lineheight .nyaman {
+        line-height: 1.6; /* standar untuk body text */
+        background: #e8f5e9;
+        padding: 8px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+      }
+
+      .demo-lineheight .longgar {
+        line-height: 2.2; /* terlalu longgar untuk artikel, tapi oke untuk display */
+        background: #e3f2fd;
+        padding: 8px;
+        border-radius: 4px;
+      }
+
+      /* ─────────────────────────────────
+       7. DIRECTION
+    ───────────────────────────────── */
+      .demo-direction .ltr {
+        direction: ltr;
+      } /* kiri ke kanan (default) */
+      .demo-direction .rtl {
+        direction: rtl; /* kanan ke kiri — untuk Arab/Ibrani */
+        background: #fce4ec;
+        padding: 6px 10px;
+        border-radius: 4px;
+      }
+
+      .demo-direction p {
+        margin-bottom: 6px;
+      }
+
+      /* ─────────────────────────────────
+       8. TEXT SHADOW
+       Sintaks: offset-x  offset-y  blur-radius  color
+    ───────────────────────────────── */
+      .demo-shadow .tipis {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        font-size: 1.3rem;
+        font-weight: bold;
+      }
+
+      .demo-shadow .tebal {
+        text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.4);
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #1b5e20;
+      }
+
+      .demo-shadow .glow {
+        /* efek glow: bayangan tanpa offset, hanya blur berwarna */
+        text-shadow:
+          0 0 8px #2e7d32,
+          0 0 16px #4caf50;
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: white;
+        background: #1a2c3e;
+        padding: 8px 16px;
+        border-radius: 8px;
+        display: inline-block;
+      }
+
+      .demo-shadow .berlapis {
+        /* bisa lebih dari satu shadow, pisah dengan koma */
+        text-shadow:
+          1px 1px 0 #c62828,
+          2px 2px 0 #e53935,
+          3px 3px 0 #ef5350;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        -webkit-text-stroke: 1px #b71c1c;
+      }
+
+      .demo-shadow p {
+        margin-bottom: 10px;
+      }
+
+      /* ─────────────────────────────────
+       STUDI KASUS NYATA:
+       Header toko sembako yang menerapkan SEMUA properti
+    ───────────────────────────────── */
+      .toko-header {
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        background: linear-gradient(135deg, #1b5e20, #2e7d32);
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center; /* text-align */
+      }
+
+      .toko-header .nama-toko {
+        color: white; /* color */
+        font-size: 2rem;
+        font-weight: bold;
+        text-transform: uppercase; /* text-transform */
+        letter-spacing: 0.15em; /* letter-spacing */
+        text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.3); /* text-shadow */
+        line-height: 1.2; /* line-height */
+        margin-bottom: 0.5rem;
+      }
+
+      .toko-header .tagline {
+        color: #a5d6a7; /* color lebih redup */
+        font-style: italic;
+        text-decoration: underline dotted rgba(165, 214, 167, 0.6); /* text-decoration */
+        letter-spacing: 0.05em; /* letter-spacing */
+        line-height: 1.5; /* line-height */
+      }
+
+      .toko-header .harga-promo {
+        display: inline-block;
+        margin-top: 1rem;
+        color: #ffeb3b;
+        font-size: 0.9rem;
+        text-transform: uppercase; /* text-transform */
+        letter-spacing: 0.2em; /* letter-spacing */
+        text-shadow: 0 0 8px rgba(255, 235, 59, 0.6); /* glow effect */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- STUDI KASUS NYATA: semua properti bekerja bersama -->
+    <header class="toko-header">
+      <p class="nama-toko">Toko Sembako Maju Jaya</p>
+      <p class="tagline">Belanja hemat, kualitas terjamin setiap hari</p>
+      <p class="harga-promo">⚡ Promo hari ini — diskon 15% semua produk</p>
+    </header>
+
+    <!-- 1. COLOR -->
+    <section class="kartu demo-color">
+      <h2>1. Color <span class="label">color</span></h2>
+      <p class="merah">Teks merah — #c62828 (hex)</p>
+      <p class="hijau">Teks hijau — #2e7d32 (hex)</p>
+      <p class="biru">Teks biru — rgb(21, 101, 192)</p>
+      <p class="oranye">Teks oranye — hsl(30, 100%, 45%)</p>
+      <p class="abu">Teks abu — #9e9e9e</p>
+    </section>
+
+    <!-- 2. TEXT ALIGNMENT -->
+    <section class="kartu demo-align">
+      <h2>2. Text Alignment <span class="label">text-align</span></h2>
+      <p class="kiri">Rata kiri (left) — default untuk LTR</p>
+      <p class="tengah">Rata tengah (center)</p>
+      <p class="kanan">Rata kanan (right)</p>
+      <p class="justify">
+        Rata kiri kanan (justify) — berguna untuk artikel panjang agar tepi
+        kanan rapi seperti koran, tapi perlu diperhatikan pada kata-kata panjang
+        bisa ada celah besar antar kata.
+      </p>
+    </section>
+
+    <!-- 3. TEXT DECORATION -->
+    <section class="kartu demo-decoration">
+      <h2>3. Text Decoration <span class="label">text-decoration</span></h2>
+      <p class="underline">Garis bawah (underline)</p>
+      <p class="overline">Garis atas (overline)</p>
+      <p class="strikethrough">
+        Coret tengah (line-through) — untuk harga lama yang dicoret
+      </p>
+      <p class="none">
+        Tanpa dekorasi (none) — berguna untuk menghapus underline default link
+      </p>
+      <p class="custom">Garis gelombang merah (underline wavy #c62828)</p>
+    </section>
+
+    <!-- 4. TEXT TRANSFORM -->
+    <section class="kartu demo-transform">
+      <h2>4. Text Transform <span class="label">text-transform</span></h2>
+      <p class="upper">semua huruf kapital (uppercase)</p>
+      <p class="lower">SEMUA HURUF KECIL (lowercase)</p>
+      <p class="capitalize">huruf pertama setiap kata kapital (capitalize)</p>
+      <p class="normal">tidak ada transformasi (none)</p>
+    </section>
+
+    <!-- 5. TEXT SPACING -->
+    <section class="kartu demo-spacing">
+      <h2>
+        5. Text Spacing <span class="label">letter-spacing · word-spacing</span>
+      </h2>
+      <p class="rapat">letter-spacing rapat (-0.05em)</p>
+      <p class="normal">letter-spacing normal (0)</p>
+      <p class="longgar">letter-spacing longgar (0.15em)</p>
+      <p class="judul">judul dengan letter-spacing lebar (0.3em + uppercase)</p>
+      <hr style="margin: 12px 0; border: none; border-top: 1px solid #eee" />
+      <p class="kata-rapat">word-spacing rapat — kata kata kata kata kata</p>
+      <p class="kata-longgar">word-spacing longgar — kata kata kata</p>
+    </section>
+
+    <!-- 6. LINE HEIGHT -->
+    <section class="kartu demo-lineheight">
+      <h2>6. Line Height <span class="label">line-height</span></h2>
+      <p class="padat">
+        line-height: 1 — terlalu padat untuk paragraf panjang. Baris-baris
+        saling berdekatan dan mata susah mengikuti alur membaca dari satu baris
+        ke baris berikutnya.
+      </p>
+      <p class="nyaman">
+        line-height: 1.6 — nyaman untuk body text. Ini adalah nilai yang paling
+        banyak direkomendasikan untuk artikel dan konten panjang karena
+        memberikan ruang nafas yang cukup.
+      </p>
+      <p class="longgar">
+        line-height: 2.2 — sangat longgar. Cocok untuk display text atau quote,
+        tapi terasa berlebihan untuk paragraf panjang.
+      </p>
+    </section>
+
+    <!-- 7. DIRECTION -->
+    <section class="kartu demo-direction">
+      <h2>7. Direction <span class="label">direction</span></h2>
+      <p class="ltr">Kiri ke kanan (ltr) — default untuk Bahasa Indonesia</p>
+      <p class="rtl">
+        هذا النص من اليمين إلى اليسار — teks Arab, kanan ke kiri (rtl)
+      </p>
+    </section>
+
+    <!-- 8. TEXT SHADOW -->
+    <section class="kartu demo-shadow">
+      <h2>
+        8. Text Shadow <span class="label">text-shadow: x y blur color</span>
+      </h2>
+      <p class="tipis">Bayangan tipis halus (1px 1px 2px)</p>
+      <p class="tebal">Bayangan tebal dramatis (2px 4px 6px)</p>
+      <p class="glow">Efek glow — tanpa offset, hanya blur</p>
+      <p class="berlapis">Berlapis 3 warna</p>
+    </section>
+  </body>
+</html>

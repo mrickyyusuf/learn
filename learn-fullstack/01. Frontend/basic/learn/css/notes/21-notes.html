@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21 · Methodologies</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.7;
+      }
+      .kartu {
+        max-width: 760px;
+        margin: 0 auto 1.5rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      h1 {
+        text-align: center;
+        color: #1b5e20;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        margin-bottom: 2rem;
+      }
+      h2 {
+        color: #1b5e20;
+        font-size: 1rem;
+        font-family: monospace;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      h3 {
+        color: #1565c0;
+        font-size: 0.95rem;
+        margin: 1rem 0 0.5rem;
+      }
+      p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
+      pre {
+        background: #263238;
+        color: #cfd8dc;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+      .tip {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      .warn {
+        background: #fff9c4;
+        border-left: 4px solid #f9a825;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      code {
+        font-family: monospace;
+        background: #f5f5f5;
+        color: #c62828;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.87rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0.75rem 0;
+        font-size: 0.87rem;
+      }
+      th {
+        background: #2e7d32;
+        color: white;
+        padding: 8px 10px;
+        text-align: left;
+      }
+      td {
+        padding: 7px 10px;
+        border-bottom: 1px solid #e0e0e0;
+        vertical-align: top;
+      }
+      tr:nth-child(even) td {
+        background: #f5f5f5;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>21 · CSS Methodologies</h1>
+
+    <section class="kartu">
+      <h2>Mengapa Metodologi Diperlukan?</h2>
+      <p>
+        CSS yang ditulis tanpa struktur sistematis akan menjadi "spaghetti CSS"
+        — tidak ada yang tahu apa yang aman dihapus, setiap penambahan rule
+        takut merusak yang lain, dan selector <code>!important</code> mulai
+        bermunculan di mana-mana. Metodologi adalah
+        <strong>konvensi penamaan dan organisasi</strong> yang mencegah
+        kekacauan ini terjadi ketika tim dan codebase bertumbuh.
+      </p>
+    </section>
+
+    <section class="kartu">
+      <h2>BEM — Block, Element, Modifier</h2>
+      <p>
+        BEM adalah sistem penamaan class yang memisahkan komponen UI menjadi
+        tiga bagian: Block (komponen independen), Element (bagian dari block),
+        dan Modifier (variasi dari block atau element). Sintaksnya:
+        <code>.block__element--modifier</code>.
+      </p>
+
+      <h3>Block: Komponen Independen</h3>
+      <pre>
+/* Block: bisa berdiri sendiri, bermakna tanpa konteks */
+.kartu-produk { }
+.navbar { }
+.form-kasir { }</pre
+      >
+
+      <h3>Element: Bagian dari Block (double underscore)</h3>
+      <pre>
+/* Element: bagian dari block, tidak bermakna di luar block-nya */
+.kartu-produk__gambar { }
+.kartu-produk__judul  { }
+.kartu-produk__harga  { }
+.kartu-produk__tombol { }
+
+/* HTML */
+&lt;article class="kartu-produk"&gt;
+  &lt;img class="kartu-produk__gambar" ...&gt;
+  &lt;h3 class="kartu-produk__judul"&gt;Beras Premium&lt;/h3&gt;
+  &lt;p class="kartu-produk__harga"&gt;Rp 78.000&lt;/p&gt;
+  &lt;button class="kartu-produk__tombol"&gt;Tambah&lt;/button&gt;
+&lt;/article&gt;</pre
+      >
+
+      <h3>Modifier: Variasi (double dash)</h3>
+      <pre>
+/* Modifier: variasi state atau tampilan dari block atau element */
+.kartu-produk--stok-kritis { border-color: red; }
+.kartu-produk--diskon      { }
+.kartu-produk__harga--promo { color: red; }
+.kartu-produk__tombol--disabled { opacity: 0.5; }
+
+/* HTML: tambahkan modifier BERSAMA class dasar, bukan mengganti */
+&lt;article class="kartu-produk kartu-produk--stok-kritis"&gt;
+  &lt;p class="kartu-produk__harga kartu-produk__harga--promo"&gt;Rp 65.000&lt;/p&gt;
+&lt;/article&gt;</pre
+      >
+
+      <div class="tip">
+        💡 Keunggulan BEM: specificity SELALU (0,1,0) karena hanya class
+        selector, tidak ada nesting, tidak ada konflik. Mudah di-maintain karena
+        nama class sudah menjelaskan di mana ia berada dan apa hubungannya.
+      </div>
+    </section>
+
+    <section class="kartu">
+      <h2>Sass / SCSS — CSS dengan Superpowers</h2>
+      <p>
+        Sass adalah preprocessor CSS — kamu menulis SCSS (Sass dengan sintaks
+        mirip CSS), dan Sass mengkompilasinya menjadi CSS biasa. SCSS
+        menambahkan fitur seperti variabel (sebelum CSS variables ada), nesting,
+        mixin, dan partial yang membuat CSS jauh lebih DRY.
+      </p>
+      <pre>
+// SCSS — file berekstensi .scss
+// Variabel Sass (berbeda dari CSS variables — dikompilasi menjadi nilai statis)
+$warna-brand: #2e7d32;
+$spacing: 16px;
+
+// Nesting — mencerminkan struktur HTML
+.kartu-produk {
+  padding: $spacing;
+  border-radius: 8px;
+
+  // Nested: dikompilasi menjadi .kartu-produk:hover
+  &:hover { transform: translateY(-2px); }
+
+  // Nested: dikompilasi menjadi .kartu-produk__judul
+  &__judul { font-size: 1.1rem; color: $warna-brand; }
+
+  // Modifier: dikompilasi menjadi .kartu-produk--diskon
+  &--diskon { border-left: 4px solid $warna-brand; }
+}
+
+// Mixin — blok CSS yang bisa dipakai ulang
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero { @include flex-center; height: 100vh; }
+
+// Partial — file SCSS yang dimulai dengan _ tidak dikompilasi sendiri
+// _variables.scss, _mixins.scss, _components.scss
+// Diimport di main.scss:
+@use 'variables';
+@use 'mixins';
+@use 'components/kartu-produk';</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>PostCSS — CSS melalui Plugin</h2>
+      <p>
+        PostCSS bukan bahasa baru — ia adalah tool yang memproses CSS
+        menggunakan plugin JavaScript. Berbeda dari Sass yang punya fitur
+        built-in, PostCSS sangat modular: kamu pilih hanya plugin yang kamu
+        butuhkan. Plugin paling populer adalah
+        <strong>Autoprefixer</strong> (otomatis tambahkan vendor prefix seperti
+        <code>-webkit-</code>), <strong>cssnano</strong> (minifikasi CSS), dan
+        <strong>postcss-preset-env</strong> (gunakan fitur CSS modern yang
+        dikompilasi untuk browser lama).
+      </p>
+      <pre>
+/* Kamu menulis CSS modern yang bersih */
+.kartu { transition: transform 0.2s ease; }
+
+/* Autoprefixer otomatis menambahkan prefix jika diperlukan */
+.kartu {
+  -webkit-transition: transform 0.2s ease;
+  transition: transform 0.2s ease;
+}
+
+/* Di project Vite/webpack, PostCSS dijalankan otomatis sebagai bagian build */</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>CSS Modules — Scoped CSS</h2>
+      <p>
+        CSS Modules adalah teknik di mana setiap file CSS di-scope ke komponen
+        yang menggunakannya — class names di-transform menjadi hash yang unik
+        sehingga tidak ada konflik antar komponen. Sangat populer di ekosistem
+        React.
+      </p>
+      <pre>
+/* KartuProduk.module.css */
+.kartu { padding: 16px; border-radius: 8px; }
+.harga { color: #2e7d32; font-weight: bold; }
+
+/* KartuProduk.jsx */
+import styles from './KartuProduk.module.css';
+
+function KartuProduk() {
+  return (
+    &lt;article className={styles.kartu}&gt;
+      &lt;p className={styles.harga}&gt;Rp 78.000&lt;/p&gt;
+    &lt;/article&gt;
+  );
+}
+
+/* Di browser, class name menjadi sesuatu seperti: */
+/* .KartuProduk_kartu__xK2Lp { padding: 16px; } */
+/* Sehingga tidak bisa konflik dengan .kartu dari komponen lain */</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>CSS-in-JS — styled-components, Emotion</h2>
+      <p>
+        CSS-in-JS adalah pendekatan menulis CSS di dalam JavaScript.
+        Styled-components adalah yang paling populer. Keunggulannya adalah
+        colocating style dengan komponen, props-based styling yang powerful, dan
+        automatic critical CSS extraction.
+      </p>
+      <pre>
+// styled-components (React)
+import styled from 'styled-components';
+
+const KartuProduk = styled.article`
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid ${props => props.kritis ? 'red' : 'green'};
+  background: ${props => props.kritis ? '#fce4ec' : 'white'};
+  transition: transform 0.2s ease;
+
+  &:hover { transform: translateY(-2px); }
+`;
+
+// Penggunaan — props langsung menentukan style
+&lt;KartuProduk kritis={stok < 5}&gt;
+  ...
+&lt;/KartuProduk&gt;</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>Perbandingan: Kapan Pakai Apa?</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Metodologi</th>
+            <th>Best For</th>
+            <th>Ekosistem</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BEM</td>
+            <td>HTML/CSS murni, tim yang butuh konvensi naming</td>
+            <td>Semua</td>
+          </tr>
+          <tr>
+            <td>SCSS/Sass</td>
+            <td>Project medium-large, team konvensional</td>
+            <td>Semua</td>
+          </tr>
+          <tr>
+            <td>PostCSS</td>
+            <td>Build pipeline, autoprefixing, minification</td>
+            <td>Semua</td>
+          </tr>
+          <tr>
+            <td>CSS Modules</td>
+            <td>React/Vue, hindari naming conflict</td>
+            <td>React, Vue</td>
+          </tr>
+          <tr>
+            <td>CSS-in-JS</td>
+            <td>Dynamic styling, design systems di React</td>
+            <td>React</td>
+          </tr>
+          <tr>
+            <td>Tailwind CSS</td>
+            <td>Rapid prototyping, utility-first, design system</td>
+            <td>Semua</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="tip">
+        💡 Untuk proyek retail kamu: mulai dengan BEM + SCSS untuk struktur yang
+        solid. Saat masuk React nanti, gunakan CSS Modules atau Tailwind. Untuk
+        design system yang scalable seperti Shopee, pertimbangkan kombinasi CSS
+        Variables + Tailwind + CSS Modules.
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,381 @@
+<!doctype html>
+<!--
+  KOREKSI #1 — lang="en" seharusnya lang="id"
+  Konten seluruh file adalah Bahasa Indonesia.
+  lang attribute harus mencerminkan bahasa konten yang sebenarnya,
+  bukan bahasa yang kamu pakai saat coding.
+-->
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Lab latihan HTML Table oleh Muhammad Ricky Yusuf"
+    />
+    <title>Table Lab | Ricky</title>
+    <style>
+      body {
+        font-family: Georgia, serif;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      /*
+        KOREKSI #2 — font-family: Arial di dalam rule table.
+        Dua masalah:
+        (a) Arial adalah font generik yang tidak direkomendasikan
+            (sudah kita bahas di modul frontend design).
+        (b) font-family lebih baik didefinisikan di body agar
+            berlaku global, bukan per-elemen. Tabel akan mewarisi
+            font dari body secara otomatis.
+        Dipindahkan ke body di atas, dihapus dari rule table.
+      */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 8px;
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        text-align: left; /* left lebih mudah dibaca untuk teks panjang */
+        border: 1px solid #ccc;
+      }
+
+      thead th {
+        background-color: #2e7d32;
+        color: white;
+      }
+
+      tfoot th,
+      tfoot td {
+        background-color: #f5f5f5;
+        font-style: italic;
+      }
+
+      /*
+        KOREKSI #5 — background-color: lime terlalu mencolok dan
+        tidak profesional untuk konteks tabel data bisnis.
+        Lime (#00ff00) adalah warna debug, bukan UI.
+        Gunakan warna yang lebih halus yang tetap memberikan
+        highlight yang jelas tapi tetap dalam palet yang konsisten.
+      */
+      .highlight {
+        background-color: #e8f5e9; /* hijau sangat muda, konsisten dengan tema toko */
+        font-weight: bold;
+      }
+
+      .highlight td {
+        border-left: 3px solid #2e7d32;
+      }
+
+      .separator {
+        margin: 32px 0;
+        border: none;
+        border-top: 1px solid #ddd;
+      }
+
+      .table-note {
+        font-size: 0.875rem;
+        color: #666;
+        margin-top: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================================
+         CHALLENGE 1 — TABEL STOK DASAR YANG AKSESIBEL
+         ============================================================ -->
+
+    <!--
+      ✅ <caption> sudah ada dan deskriptif.
+      ✅ <thead>, <tbody>, <tfoot> sudah digunakan dengan benar.
+      ✅ scope="col" pada semua <th> di thead sudah tepat.
+      ✅ scope="row" pada <th> di tfoot sudah tepat.
+
+      KOREKSI #3 — colspan pada <tfoot> kurang tepat.
+      Kamu menulis: <th scope="row" colspan="6">Total Produk Terdaftar</th>
+      yang berarti label "Total" mencakup 6 kolom pertama, dan nilai "6"
+      ada di kolom ke-7 (Tanggal Kadaluarsa).
+
+      Masalahnya: "6" (jumlah produk) tidak bermakna di kolom
+      "Tanggal Kadaluarsa" — ia seharusnya berada di bawah kolom
+      yang relevan, yaitu kolom "No" atau kolom terpisah.
+
+      Solusi yang lebih baik: label mencakup semua kolom kecuali
+      satu, lalu nilai total ada di kolom terakhir yang bermakna.
+      Atau, gunakan colspan penuh untuk seluruh baris agar lebih
+      jelas bahwa ini adalah ringkasan, bukan data di kolom tertentu.
+
+      KOREKSI #4 — Typo "Makanan Isntan" → "Makanan Instan"
+    -->
+    <table>
+      <caption>
+        Laporan Stok Barang — Toko Sembako Maju Jaya
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Nama Produk</th>
+          <th scope="col">Kategori</th>
+          <th scope="col">Harga Satuan</th>
+          <th scope="col">Stok</th>
+          <th scope="col">Status</th>
+          <th scope="col">Tanggal Kadaluarsa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Beras Premium 5kg</td>
+          <td>Bahan Pokok</td>
+          <td>Rp 75.000</td>
+          <td>20</td>
+          <td>Aman</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Minyak Goreng 1L</td>
+          <td>Bahan Pokok</td>
+          <td>Rp 18.000</td>
+          <td>15</td>
+          <td>Aman</td>
+          <td>Des 2026</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Gula Pasir 1kg</td>
+          <td>Bahan Pokok</td>
+          <td>Rp 16.000</td>
+          <td>8</td>
+          <td>Perlu Restok</td>
+          <td>Sep 2026</td>
+        </tr>
+        <tr>
+          <!-- KOREKSI #4: "Makanan Isntan" → "Makanan Instan" -->
+          <td>4</td>
+          <td>Mie Instan (Isi 5)</td>
+          <td>Makanan Instan</td>
+          <td>Rp 14.000</td>
+          <td>30</td>
+          <td>Aman</td>
+          <td>Jul 2026</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Susu Bubuk 400g</td>
+          <td>Minuman</td>
+          <td>Rp 42.000</td>
+          <td>5</td>
+          <td>Hampir Habis</td>
+          <td>Mei 2026</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Kopi Sachet (Isi 10)</td>
+          <td>Minuman</td>
+          <td>Rp 12.000</td>
+          <td>25</td>
+          <td>Aman</td>
+          <td>Nov 2026</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <!--
+            KOREKSI #3 applied:
+            Label "Total Produk Terdaftar" mencakup 6 kolom pertama
+            (No s/d Status), lalu nilai "6" berada tepat di bawah
+            kolom ke-7 yang kita repurpose sebagai kolom nilai total.
+            
+            Tapi sebenarnya lebih semantik jika seluruh baris ringkasan
+            menggunakan colspan penuh dan teks yang informatif:
+          -->
+          <th scope="row" colspan="4">Total Produk Terdaftar</th>
+          <td colspan="3">6 produk (3 kategori)</td>
+        </tr>
+      </tfoot>
+    </table>
+    <p class="table-note">
+      * Tanggal kadaluarsa "—" berarti produk tidak memiliki batas kedaluwarsa
+      yang tercetak.
+    </p>
+
+    <hr class="separator" />
+
+    <!-- ============================================================
+         CHALLENGE 2 — COLSPAN & ROWSPAN LAPORAN PENJUALAN
+         ============================================================ -->
+
+    <!--
+      ✅ rowspan pada kolom Kategori sudah diimplementasikan dengan
+         benar — ini bagian yang paling teknis dan kamu berhasil.
+      ✅ colspan="4" pada header utama sudah tepat.
+      ✅ Setiap baris yang menggunakan rowspan sudah dikurangi
+         jumlah <td>-nya dengan benar (hanya 3 <td>, bukan 4).
+
+      KOREKSI yang perlu diperhatikan:
+      (a) scope="row" pada <td> di kolom Kategori tidak tepat.
+          scope hanya valid pada <th>, bukan <td>.
+          Jika ingin sel kategori berfungsi sebagai header baris
+          untuk aksesibilitas yang lebih baik, ubah <td> menjadi <th>.
+
+      (b) tfoot berisi teks Lorem ipsum — ini placeholder yang belum
+          diisi konten bermakna. Untuk latihan, selalu isi dengan
+          konten yang relevan.
+
+      (c) scope="col" pada tfoot tidak tepat — tfoot berisi ringkasan,
+          bukan header kolom baru. Gunakan scope="row" atau hapus scope.
+
+      Catatan positif: pengelompokan 3 kategori (Bahan Pokok,
+      Makanan Instan, Minuman) adalah pilihan yang logis dan
+      konsisten dengan struktur katalog di latihan sebelumnya.
+    -->
+    <table>
+      <caption>
+        Laporan Penjualan Harian — Senin s/d Rabu
+      </caption>
+      <thead>
+        <tr>
+          <!--
+            colspan="4" mencakup semua kolom (Kategori, Produk, Qty,
+            Pendapatan) — ini sudah tepat ✅
+          -->
+          <th scope="colgroup" colspan="4">Laporan Penjualan Selama 3 Hari</th>
+        </tr>
+        <tr>
+          <th scope="col">Kategori</th>
+          <th scope="col">Produk</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Pendapatan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <!--
+            KOREKSI (a): <td scope="row"> → <th scope="rowgroup">
+            "rowgroup" karena satu <th> ini mewakili seluruh grup
+            baris dalam kategorinya (2 baris), bukan hanya satu baris.
+          -->
+          <th scope="rowgroup" rowspan="2">Bahan Pokok</th>
+          <td>Beras Premium 5kg</td>
+          <td>4</td>
+          <td>Rp 300.000</td>
+        </tr>
+        <tr>
+          <td>Minyak Goreng 1L</td>
+          <td>6</td>
+          <td>Rp 108.000</td>
+        </tr>
+
+        <tr>
+          <th scope="rowgroup" rowspan="2">Makanan Instan</th>
+          <td>Mie Instan (Isi 5)</td>
+          <td>10</td>
+          <td>Rp 140.000</td>
+        </tr>
+        <tr>
+          <td>Gula Pasir 1kg</td>
+          <td>8</td>
+          <td>Rp 128.000</td>
+        </tr>
+
+        <tr>
+          <th scope="rowgroup" rowspan="2">Minuman</th>
+          <td>Susu Bubuk 400g</td>
+          <td>3</td>
+          <td>Rp 126.000</td>
+        </tr>
+        <tr>
+          <td>Kopi Sachet (Isi 10)</td>
+          <td>12</td>
+          <td>Rp 144.000</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <!--
+            KOREKSI (b) & (c): isi dengan konten bermakna,
+            dan gunakan scope="row" bukan scope="col" di tfoot.
+          -->
+          <th scope="row" colspan="2">Total Keseluruhan</th>
+          <td>43 unit</td>
+          <td>Rp 1.046.000</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <hr class="separator" />
+
+    <!-- ============================================================
+         CHALLENGE 3 — TABEL PERBANDINGAN HOSTING (tanpa border="1")
+         ============================================================ -->
+
+    <!--
+      ✅ Tidak ada border="1" di HTML — semua border lewat CSS. Bagus.
+      ✅ class="highlight" pada baris Cloud sudah tepat.
+      ✅ <caption> sudah ada.
+
+      KOREKSI #2 applied: font-family dihapus dari rule table di CSS.
+      KOREKSI #5 applied: lime → #e8f5e9 yang lebih profesional.
+
+      Satu catatan: <th> di thead tidak punya scope="col".
+      Selalu tambahkan scope pada semua <th> agar aksesibel.
+    -->
+    <table>
+      <caption>
+        Perbandingan Jenis Web Hosting — Pilihan untuk Project Toko Sembako
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Jenis Hosting</th>
+          <th scope="col">Harga Estimasi</th>
+          <th scope="col">Kontrol Server</th>
+          <th scope="col">Performa</th>
+          <th scope="col">Cocok Untuk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Shared Hosting</td>
+          <td>Rp 50.000/bln</td>
+          <td>Minim</td>
+          <td>Standar, berbagi resource</td>
+          <td>Personal website &amp; blog statis</td>
+        </tr>
+        <tr>
+          <td>VPS</td>
+          <td>Rp 200.000/bln</td>
+          <td>Tinggi — akses root penuh</td>
+          <td>Lebih baik, resource terdedikasi</td>
+          <td>Website bisnis kecil-menengah</td>
+        </tr>
+        <!--
+          Baris Cloud di-highlight karena paling sesuai untuk
+          project toko sembako yang nantinya perlu skalabilitas
+          saat traffic meningkat (flash sale, promo, dll).
+        -->
+        <tr class="highlight">
+          <td>Cloud (AWS/GCP)</td>
+          <td>Rp 300.000+/bln ⭐ Rekomendasi</td>
+          <td>Fleksibel — bayar sesuai pakai</td>
+          <td>Skalabel otomatis sesuai traffic</td>
+          <td>E-commerce &amp; aplikasi dengan traffic fluktuatif</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th scope="row" colspan="5">
+            Harga estimasi per Maret 2026. Cloud hosting direkomendasikan untuk
+            project toko sembako karena mendukung skalabilitas saat promo atau
+            flash sale.
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+</html>

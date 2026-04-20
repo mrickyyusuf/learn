@@ -1,0 +1,28 @@
+1. kenapa harus bisa terminal
+
+
+2. kenapa harus menguasai terminal
+
+
+3. install bash di windows
+
+
+4. ls & pwd
+
+
+5. cd
+
+
+6. absolute path & relative path
+
+
+7. mkdir
+
+
+8. flags / parameter di cli
+
+
+9. touch
+
+
+10. rm

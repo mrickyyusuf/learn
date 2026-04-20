@@ -1,0 +1,28 @@
+div {
+    width: 300px;
+    border: 10px solid pink;
+    padding: 15px;
+    margin: 30px;
+}
+
+div {
+    border-style: dotted groove inset double;
+    border-width: 12px 13px 14px 15px;
+    border-color: magenta pink maroon purple;
+    /* untuk urutan yang dijalankan melingkar, atas kanan bawah kiri */
+}
+
+div {
+    /* padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px; */
+    padding: 10px 20px 10px 20px;
+    /* sama kaya border, atas kanan bawah kiri */
+   /* mau border padding margin urutannya vertical ke horizontal*/
+}
+
+div {
+    margin: 0;
+}
+

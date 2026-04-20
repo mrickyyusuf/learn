@@ -1,0 +1,254 @@
+<!doctype html>
+<!--
+  KOREKSI #1 — lang="en" harus lang="id".
+  Ini sudah berulang beberapa kali. Internalkan sebagai refleks:
+  lang attribute = bahasa KONTEN, bukan bahasa saat coding.
+  Semua teks di file ini Bahasa Indonesia → lang="id".
+-->
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Basic — Lab Challenge</title>
+    <style>
+      /*
+      ════════════════════════════════════════════════════
+      CHALLENGE A — SPECIFICITY CALCULATOR
+      ════════════════════════════════════════════════════
+
+      ANALISIS SPECIFICITY (format: ID, Class/Attr/PseudoClass, Tag):
+
+      p.harga                                    → (0, 1, 1) = 11
+        Penjelasan: 1 class (.harga) + 1 tag (p)
+
+      .kartu-produk .harga                       → (0, 2, 0) = 20
+        Penjelasan: 2 class (.kartu-produk, .harga)
+
+      .produk-unggulan .kartu-produk.diskon p    → (0, 3, 1) = 31
+        Penjelasan: 3 class + 1 tag
+
+      #katalog .harga                            → (1, 1, 0) = 110
+        Penjelasan: 1 ID + 1 class
+
+      ✅ PREDIKSI: MERAH — karena #katalog .harga menang dengan skor tertinggi.
+      ✅ DIVERIFIKASI: Screenshot memconfirmasi warna merah.
+
+      CATATAN PENTING yang tidak ada di jawaban kamu:
+      Sistem skor specificity bukan desimal biasa. (1,0,0) selalu mengalahkan
+      (0,999,999) — tidak ada "carry over" antar kolom. Satu ID mengalahkan
+      berapapun jumlah class. Ini seperti jabatan: Direktur (1 ID) selalu
+      mengalahkan 1000 staf magang (0 ID), tidak peduli jumlahnya.
+      */
+
+      p.harga {
+        /* (0,1,1) — KALAH, di-coret di Styles panel */
+        color: blue;
+      }
+      .kartu-produk .harga {
+        /* (0,2,0) — KALAH, di-coret */
+        color: green;
+      }
+      .produk-unggulan .kartu-produk.diskon p {
+        /* (0,3,1) — KALAH, di-coret */
+        color: orange;
+      }
+      #katalog .harga {
+        /* (1,1,0) — MENANG */
+        color: red;
+      }
+
+      /*
+      ════════════════════════════════════════════════════
+      CHALLENGE B — SELECTOR PRECISION
+      ════════════════════════════════════════════════════
+
+      ✅ B.1 sampai B.4: Secara sintaks sudah benar.
+
+      ❌ B.5 — TIDAK BERFUNGSI dengan HTML yang ada, dan ini adalah
+      insight paling penting dari challenge ini.
+
+      Kamu menulis: input:invalid + label { color: red; }
+
+      Selector + (adjacent sibling) berarti: "elemen yang LANGSUNG
+      MENGIKUTI (next sibling) elemen target dalam DOM."
+
+      Struktur HTML kamu adalah:
+        <label>Nama</label>
+        <input type="text" ...>
+        <br>               ← PENGHALANG!
+        <label>Email</label>
+        <input type="email" ...>
+
+      Sibling langsung dari <input type="text"> adalah <br>, bukan <label>.
+      Maka input:invalid + label tidak akan pernah match.
+
+      INI BUKAN SALAH KODE CSS-NYA — kode CSS sudah benar secara sintaks.
+      Ini adalah pelajaran tentang hubungan antara struktur HTML dan kemampuan
+      CSS dalam menarget elemen: CSS tidak bisa "melompati" elemen.
+
+      SOLUSI: Ubah struktur HTML agar label mengikuti input langsung,
+      atau gunakan pendekatan lain seperti :has() (CSS modern) atau
+      class-toggling via JavaScript. Kita pakai pendekatan HTML yang benar.
+      */
+
+      /* B.1: Semua input — border abu-abu (specificity 0,0,1) */
+      input {
+        border: 2px solid #9e9e9e;
+        outline: none; /* hilangkan outline browser default */
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-family: inherit; /* inherit dari body, bukan browser default */
+        font-size: 1rem;
+        display: block; /* setiap input di baris sendiri */
+        margin: 4px 0 12px;
+      }
+
+      /* B.2: Input email — border biru (specificity 0,1,1) */
+      input[type="email"] {
+        border: 2px solid #1565c0;
+      }
+
+      /* B.3: Input dengan aria-required="true" — border kiri merah (0,1,1) */
+      input[aria-required="true"] {
+        border-left: 4px solid #c62828;
+      }
+
+      /*
+        B.4: Input yang invalid — border merah penuh (0,1,1)
+        CATATAN PENTING: :invalid berlaku bahkan saat halaman baru dimuat
+        (sebelum pengguna menyentuh apapun), jika field required tapi kosong.
+        Di dunia produksi biasanya dikombinasikan dengan :user-invalid (CSS baru)
+        atau class .touched yang ditambahkan JavaScript setelah user berinteraksi.
+        Untuk tujuan latihan ini, :invalid sudah sesuai.
+      */
+      input:invalid {
+        border: 2px solid #c62828;
+        background-color: #fff5f5;
+      }
+
+      /*
+        B.5 — VERSI YANG DIPERBAIKI:
+        Dengan HTML yang sudah direstrukturisasi di bawah,
+        selector ini sekarang berfungsi.
+        Specificity: (0,1,1) — input:invalid (pseudo-class + tag) + label (tag)
+        
+        Perhatikan: selector ini memiliki specificity yang hanya (0,0,1) untuk label.
+        Yang penting di sini adalah input:invalid yang menentukan KONDISI,
+        bukan specificity dari label itu sendiri.
+      */
+      input:invalid + label {
+        color: #c62828;
+        font-weight: bold;
+      }
+
+      /* Label default */
+      label {
+        font-weight: bold;
+        font-size: 0.9rem;
+        color: #333;
+        display: block; /* label di baris sendiri */
+        margin-top: 8px;
+      }
+
+      form {
+        max-width: 300px;
+        padding: 16px;
+        font-family: Georgia, serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- CHALLENGE A -->
+    <main id="katalog">
+      <section class="produk-unggulan">
+        <article class="kartu-produk diskon">
+          <p class="harga">Rp 78.000</p>
+        </article>
+      </section>
+    </main>
+
+    <!--
+      CHALLENGE B — HTML YANG DIRESTRUKTURISASI:
+
+      KOREKSI #2: Urutan elemen dalam form dibalik:
+      INPUT dulu, baru LABEL sesudahnya.
+
+      Mengapa? Karena selector input:invalid + label membutuhkan label
+      sebagai ADJACENT SIBLING yang mengikuti input. Dengan urutan
+      input → label (tanpa perantara apapun), selector + bekerja.
+
+      Ini bukan hanya trick CSS — ini adalah pola yang valid secara
+      aksesibilitas juga, karena label tetap terhubung ke input via
+      atribut for/id, bukan via posisi DOM.
+
+      Untuk menampilkan label di ATAS input secara visual,
+      CSS bisa menggunakan flex direction atau float — kita akan
+      pelajari ini di modul Layout nanti.
+    -->
+    <form>
+      <!--
+        Pola: input dulu → label sesudahnya
+        Label tampak "di bawah" input di DOM, tapi bisa diposisikan
+        di atas via CSS order/flex nanti.
+        
+        Untuk sementara, ini menunjukkan KONSEP selector +:
+        input:invalid + label → label langsung setelah input yang invalid.
+      -->
+      <input type="text" id="nama" aria-required="true" minlength="3" />
+      <label for="nama">Nama *</label>
+
+      <input type="email" id="email" required />
+      <label for="email">Email *</label>
+
+      <input type="text" id="kode" />
+      <label for="kode">Kode Voucher</label>
+
+      <p style="font-size: 0.8rem; color: #666; margin-top: 12px">
+        * Coba isi nama dengan 1 karakter, atau isi email dengan format salah,
+        lalu lihat bagaimana label di bawahnya berubah merah.
+      </p>
+    </form>
+
+    <!--
+      CHALLENGE C — CATATAN HASIL INVESTIGASI DEVTOOLS
+
+      C(a) Rule yang di-coret (kalah dalam cascade):
+      Dari screenshot toko.html, pada elemen .kartu-produk.stok-kritis:
+      - .kartu-produk { border-left: 4px solid var(--warna-utama) } → KALAH
+        Dikalahkan oleh .stok-kritis { border-left: 4px solid red }
+        Alasan: kedua rule punya specificity yang SAMA (0,1,0).
+        Yang menang adalah yang posisinya TERAKHIR dalam file CSS
+        (.stok-kritis ditulis setelah .kartu-produk di main.css).
+        ✅ Jawaban kamu sudah benar.
+
+      C(b) Properti yang diwarisi dari ancestor:
+      Dari panel "Inherited from body":
+      - font-family: Georgia, serif (diwariskan — properti teks)
+      - color: var(--warna-teks) (diwariskan — properti teks)
+      - line-height: 1.6 (diwariskan — properti teks)
+      Dari :root: CSS variables (--warna-utama, --warna-background, dll.)
+      Dari * (universal): box-sizing: border-box
+      ✅ Jawaban kamu sudah benar.
+
+      C(c) Saat class sudah-dipilih ditambahkan via DevTools:
+      Tiga rule berkonflik untuk border-left:
+      - .kartu-produk (0,1,0) — KALAH
+      - .stok-kritis (0,1,0) — KALAH
+      - .stok-dipilih (0,1,0) — MENANG
+
+      Semua punya specificity sama. Yang menang adalah yang paling akhir.
+      Rule dari DevTools inspector stylesheet mendapat posisi tertinggi
+      dalam source order (ditampilkan PALING ATAS di Styles panel),
+      sehingga ia menang.
+
+      KOREKSI NUANSA untuk C(c):
+      Jawabanmu bilang "walau skor sama tapi rule .sudah-dipilih yang berada
+      di paling akhir" — ini BENAR secara prinsip tapi perlu diperjelas:
+      "paling akhir" di sini bukan karena posisi di file CSS kamu, tapi
+      karena DevTools inspector stylesheet SELALU dianggap paling akhir
+      dalam source order (ia ditambahkan runtime, setelah semua stylesheet
+      file diparse). Ini adalah perilaku khusus DevTools, bukan perilaku
+      CSS biasa.
+    -->
+  </body>
+</html>

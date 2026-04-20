@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Lab latihan HTML Embedding Media oleh Muhammad Ricky Yusuf"
+    />
+
+    <!--
+      ✅ Challenge 4: CSP sudah benar dan penjelasannya tepat.
+      
+      KOREKSI #1 — Satu penambahan yang perlu: picsum.photos
+      harus secara eksplisit diizinkan di img-src.
+      Kamu menulis img-src 'self' https: yang memang mengizinkan
+      SEMUA sumber HTTPS termasuk picsum — tapi praktik terbaik
+      (principle of least privilege) adalah menyebut domain yang
+      memang kamu gunakan secara eksplisit, bukan membuka semua HTTPS.
+      Alasannya: kalau ada XSS attack yang menyisipkan <img src="https://evil.com/tracker.png">,
+      rule img-src 'self' https: tidak akan memblokirnya.
+      Rule yang lebih ketat: img-src 'self' https://picsum.photos
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               img-src 'self' https://picsum.photos;
+               script-src 'self' https://www.youtube.com;
+               style-src 'self' 'unsafe-inline';
+               frame-src https://www.youtube.com;
+               media-src https://www.w3schools.com;"
+    />
+    <!--
+      Penjelasan setiap directive:
+      default-src 'self'                    → semua resource default hanya dari domain sendiri
+      img-src 'self' https://picsum.photos  → gambar dari domain sendiri dan picsum saja (lebih ketat)
+      script-src 'self' https://youtube.com → script dari domain sendiri + YouTube player
+      style-src 'self' 'unsafe-inline'      → CSS dari domain sendiri + inline style diizinkan
+      frame-src https://www.youtube.com     → iframe hanya dari YouTube
+      media-src https://www.w3schools.com   → audio/video hanya dari w3schools
+                                              (YouTube tidak perlu di sini karena
+                                               YouTube video dimuat via iframe, bukan <video>)
+    -->
+
+    <title>Media Lab | Ricky</title>
+    <style>
+      body {
+        font-family: Georgia, serif;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px;
+        background-color: #f9f6f0;
+      }
+
+      figure {
+        margin: 0 0 24px 0;
+        display: inline-block; /* agar figure tidak mengambil lebar penuh */
+        vertical-align: top;
+      }
+
+      figcaption {
+        font-size: 0.875rem;
+        color: #555;
+        margin-top: 6px;
+        max-width: 400px;
+      }
+
+      .galeri {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      section {
+        background: white;
+        padding: 20px;
+        margin: 24px 0;
+        border-radius: 8px;
+        border-left: 4px solid #2e7d32;
+      }
+
+      .separator {
+        border: none;
+        border-top: 1px solid #ddd;
+        margin: 32px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================================
+         CHALLENGE 1 — GALERI PRODUK DENGAN <figure>
+         ============================================================ -->
+
+    <!--
+      ✅ Inisiatif mengganti tema gambar dengan foto random yang
+         bermakna (bukan produk sembako tapi dengan alt yang deskriptif)
+         menunjukkan pemahaman bahwa alt harus mendeskripsikan ISI GAMBAR
+         yang sebenarnya, bukan label produk yang tidak ada hubungannya.
+         Itu keputusan yang tepat secara semantik.
+
+      ✅ fetchpriority="high" pada gambar pertama sudah benar.
+      ✅ loading="lazy" + fetchpriority="low" pada gambar 2-4 sudah benar.
+      ✅ width dan height tanpa satuan sudah benar.
+      ✅ alt text deskriptif dan spesifik — ini kualitas alt text yang baik.
+
+      KOREKSI #2 — <figure> sebaiknya ada di dalam wrapper <section>
+      atau <div> dengan heading yang menjelaskan konteksnya.
+      Saat ini 4 <figure> langsung di dalam <body> tanpa konteks
+      apapun — halaman tidak punya judul, tidak ada section.
+      Secara semantik, konten yang terkait harus dikelompokkan.
+
+      Juga: <figure> untuk galeri lebih tepat dibungkus dalam satu
+      <section> atau bahkan menggunakan <gallery> — tapi karena
+      <gallery> bukan tag HTML standar, <section> adalah pilihan terbaik.
+    -->
+    <section id="galeri-foto">
+      <h2>Galeri Foto</h2>
+      <p>
+        Koleksi foto acak dari Picsum Photos — tidak berubah saat halaman
+        direfresh.
+      </p>
+
+      <div class="galeri">
+        <!-- Gambar 1: fetchpriority="high" karena langsung terlihat saat halaman dibuka -->
+        <figure>
+          <img
+            src="https://picsum.photos/seed/1/400/400"
+            alt="Pondasi besi jembatan berwarna coklat difoto dari bawah"
+            width="400"
+            height="400"
+            fetchpriority="high"
+          />
+          <figcaption>
+            Foto 1: Pondasi jembatan coklat dengan tangki air putih di kiri
+            bawah dan empat terowongan kecil, difoto dari bawah.
+          </figcaption>
+        </figure>
+
+        <!-- Gambar 2-4: lazy loaded karena mungkin di luar viewport awal -->
+        <figure>
+          <img
+            src="https://picsum.photos/seed/2/400/400"
+            alt="Perangkat kerja termasuk monitor, tablet, dan notebook di atas meja hitam"
+            width="400"
+            height="400"
+            loading="lazy"
+            fetchpriority="low"
+          />
+          <figcaption>
+            Foto 2: Perangkat kerja seperti monitor, tablet, notebook, dan alat
+            gambar di atas meja hitam.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://picsum.photos/seed/3/400/400"
+            alt="Air terjun di daerah pegunungan dengan bebatuan berlumut difoto dari bawah"
+            width="400"
+            height="400"
+            loading="lazy"
+            fetchpriority="low"
+          />
+          <figcaption>
+            Foto 3: Air terjun di pegunungan dengan bebatuan berlumut.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://picsum.photos/seed/4/400/400"
+            alt="Kumpulan buah strawberry merah di dalam rak, difoto dari atas"
+            width="400"
+            height="400"
+            loading="lazy"
+            fetchpriority="low"
+          />
+          <figcaption>
+            Foto 4: Kumpulan buah strawberry di dalam rak, difoto dari atas.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <hr class="separator" />
+
+    <!-- ============================================================
+         CHALLENGE 2 — AUDIO DAN VIDEO DENGAN FALLBACK
+         ============================================================ -->
+
+    <!--
+      ✅ Struktur <source> dengan dua format sudah benar.
+      ✅ <video> punya atribut poster dari picsum — tepat.
+      ✅ Teks fallback ada di dalam tag.
+      ✅ Atribut controls ada di keduanya.
+
+      KOREKSI #3 — Teks fallback kurang informatif.
+      "Browser kamu tidak support Html5" adalah pesan yang tidak
+      membantu pengguna karena:
+      (a) HTML5 sudah didukung semua browser modern sejak 2014 —
+          pesan ini sekarang menyesatkan.
+      (b) Pengguna tidak diberi alternatif tindakan.
+      
+      Fallback yang baik harus: menjelaskan apa yang tidak bisa ditampilkan
+      dan memberi tautan langsung untuk mengakses kontennya.
+
+      Selain itu, <video> tidak punya width dan height — ini menyebabkan
+      CLS (Cumulative Layout Shift) yang kita bahas di materi.
+      Selalu cantumkan dimensi pada elemen media.
+    -->
+    <section id="media-promosi-toko">
+      <h2>Media Promosi Toko</h2>
+
+      <h3>Audio: Suara Kuda (Demo)</h3>
+      <audio controls>
+        <source
+          src="https://www.w3schools.com/html/horse.webm"
+          type="audio/webm"
+        />
+        <source
+          src="https://www.w3schools.com/html/horse.mp3"
+          type="audio/mpeg"
+        />
+        <!--
+          KOREKSI #3 applied: fallback yang lebih informatif dan
+          memberi alternatif tindakan kepada pengguna.
+        -->
+        <p>
+          Browser kamu tidak mendukung pemutar audio HTML.
+          <a
+            href="https://www.w3schools.com/html/horse.mp3"
+            download="horse.mp3"
+          >
+            Unduh file audio (MP3)
+          </a>
+          untuk mendengarkannya.
+        </p>
+      </audio>
+
+      <h3>Video: Film Pendek Big Buck Bunny (Demo)</h3>
+      <!--
+        KOREKSI #3 applied: tambahkan width dan height untuk mencegah CLS.
+        Rasio 16:9 → width="640" height="360"
+      -->
+      <video
+        controls
+        width="640"
+        height="360"
+        poster="https://picsum.photos/seed/5/640/360"
+      >
+        <source
+          src="https://www.w3schools.com/html/mov_bbb.webm"
+          type="video/webm"
+        />
+        <source
+          src="https://www.w3schools.com/html/mov_bbb.mp4"
+          type="video/mp4"
+        />
+        <p>
+          Browser kamu tidak mendukung pemutar video HTML.
+          <a
+            href="https://www.w3schools.com/html/mov_bbb.mp4"
+            download="mov_bbb.mp4"
+          >
+            Unduh file video (MP4)
+          </a>
+          untuk menontonnya.
+        </p>
+      </video>
+    </section>
+
+    <hr class="separator" />
+
+    <!-- ============================================================
+         CHALLENGE 3 — IFRAME YOUTUBE DENGAN AKSESIBILITAS
+         ============================================================ -->
+
+    <!--
+      ✅ title deskriptif — bagus untuk aksesibilitas.
+      ✅ loading="lazy" sudah ada.
+      ✅ allowfullscreen sudah ada.
+      ✅ sandbox dengan nilai eksplisit (bukan kosong) — ini pilihan
+         yang tepat karena YouTube player butuh JavaScript dan same-origin.
+      ✅ Penjelasan sandbox sangat lengkap dan akurat.
+      ✅ Rasio 480x270 adalah 16:9 — proporsional. ✅
+
+      Satu catatan: YouTube sekarang merekomendasikan menggunakan
+      domain "youtube-nocookie.com" sebagai pengganti "youtube.com"
+      untuk embed yang lebih privacy-friendly. Ini mengurangi tracking
+      cookie YouTube pada pengguna yang belum login.
+      Format: https://www.youtube-nocookie.com/embed/[video-id]
+    -->
+    <section id="video-tutorial">
+      <h2>Video Tutorial HTML</h2>
+
+      <!--
+        Menggunakan youtube-nocookie.com untuk privasi pengguna yang lebih baik.
+        Pengguna tidak akan di-track oleh YouTube kecuali mereka memang
+        memilih untuk menonton (interaction-based tracking).
+      -->
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/ok-plXXHlWw"
+        width="640"
+        height="360"
+        style="border: none"
+        loading="lazy"
+        allowfullscreen
+        title="HTML in 100 Seconds — Video tutorial HTML oleh Fireship"
+        sandbox="allow-scripts allow-same-origin allow-presentation"
+      >
+      </iframe>
+
+      <!--
+        Catatan tentang nilai sandbox yang digunakan:
+        allow-scripts      → YouTube player butuh JavaScript untuk berjalan
+        allow-same-origin  → diperlukan agar iframe bisa mengakses API YouTube-nya sendiri
+        allow-presentation → mengizinkan Fullscreen API untuk tombol fullscreen
+
+        Tanpa allow-scripts, video tidak akan bisa diputar sama sekali.
+        Tanpa allow-same-origin, iframe dianggap cross-origin bahkan ke YouTube sendiri.
+        Tanpa allow-presentation, tombol fullscreen tidak berfungsi meski allowfullscreen ada.
+
+        Perbedaan sandbox="" vs tanpa sandbox:
+        Tanpa sandbox: iframe bisa menjalankan JS, membuka popup, mengakses cookies,
+        mengubah lokasi halaman induk — risiko keamanan jika konten iframe tidak terpercaya.
+        Dengan sandbox="": semua kemampuan di atas diblokir total, termasuk JS.
+        Dengan sandbox="allow-scripts ...": hanya izin yang disebutkan yang aktif.
+      -->
+    </section>
+  </body>
+</html>

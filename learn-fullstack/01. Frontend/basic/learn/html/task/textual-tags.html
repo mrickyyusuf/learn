@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Lab latihan HTML textual tags oleh Muhammad Ricky Yusuf"
+    />
+    <title>Lab Textual Tags | Ricky</title>
+  </head>
+  <body>
+    <!-- ============================================================
+         CHALLENGE A — HEADING HIERARCHY
+         ✅ Struktur h1→h2→h3→h4 sudah benar dan hierarkis.
+         ✅ id="html" pada h2 sudah benar untuk anchor link.
+         ✅ Jawaban embedded (h2 dan h3 untuk blog) sudah tepat.
+
+         KOREKSI A1: "&" di dalam HTML harus ditulis &amp;
+         Penulisan "DOCTYPE & Meta" langsung di konten adalah valid
+         di browser modern, tapi untuk kode yang benar-benar valid
+         secara standar, gunakan &amp; di antara teks.
+         Referensi: validator.w3.org akan memperingatkan ini.
+         ============================================================ -->
+    <h1>Laporan Belajar Mingguan</h1>
+    <h2 id="html">Minggu 1 — HTML Fundamentals</h2>
+    <h3>Basic Tags</h3>
+    <!-- KOREKSI A1: & → &amp; di dalam konten teks -->
+    <h4>DOCTYPE &amp; Meta</h4>
+
+    <!-- ============================================================
+         CHALLENGE B — PARAGRAF + STRONG + EM
+         ✅ Paragraf 1: <strong> untuk "HTML & CSS" sudah masuk akal
+            secara konten — ini memang topik utama yang dipelajari.
+         ✅ Paragraf 2: <em> untuk "overwhelming" sudah membawa
+            penekanan stres yang natural.
+
+         KOREKSI B1: Paragraf 3 seharusnya menggunakan <b> dan <i>,
+         bukan <b> dan <em>. Challenge meminta <i> untuk efek visual
+         tanpa makna semantik (nama istilah teknis asing), sedangkan
+         kamu memakai <em> yang justru punya makna semantik.
+         Contoh tepat: nama teknis seperti "Document Object Model"
+         atau kata bahasa asing seperti "flow content" lebih pas
+         menggunakan <i> karena itu konvensi untuk istilah teknis.
+
+         KOREKSI B2: "& CSS" di dalam <strong> perlu di-escape.
+         ============================================================ -->
+    <p>
+      Pada minggu ini saya belajar <strong>HTML &amp; CSS</strong>. Materi yang
+      dibahas cukup padat, mulai dari struktur dasar dokumen hingga cara browser
+      membaca dan merender setiap elemen yang ditulis.
+    </p>
+    <p>
+      Rasanya <em>overwhelming</em>, tapi itu hal yang wajar dalam proses
+      belajar. Justru rasa tidak nyaman itu menandakan bahwa otak sedang bekerja
+      keras membentuk pola baru.
+    </p>
+    <!-- KOREKSI B1: <em> diganti <i> karena ini istilah teknis asing,
+         bukan penekanan stres. <b> untuk efek bold tanpa makna penting. -->
+    <p>
+      Banyak terminologi teknis yang ditemui, seperti <i>bold</i> yang mengacu
+      pada ketebalan teks, dan <i>emphasis</i> yang merujuk pada penekanan makna
+      dalam kalimat. Keduanya punya padanan tag HTML masing-masing dengan
+      perbedaan semantik yang <b>perlu dipahami sejak awal</b>.
+    </p>
+
+    <!-- ============================================================
+         CHALLENGE C — PRE + CODE
+         ✅ Penggunaan <pre><code> sudah tepat.
+         ✅ <code> inline di dalam <p> sudah benar.
+
+         KOREKSI C1: Ada baris kosong ekstra di awal blok <pre>.
+         <pre> mempreservasi SEMUA whitespace termasuk baris kosong
+         di awal. Perhatikan posisi tag pembuka <pre> — konten
+         harus langsung mengikuti <pre> tanpa newline ekstra,
+         atau indentasi pertama akan ikut dirender.
+
+         KOREKSI C2: Indentasi di dalam <pre><code> seharusnya
+         mengikuti indentasi KODE, bukan indentasi HTML.
+         Jika kamu indent <pre> setinggi 6 spasi karena dia
+         ada di dalam <body>, maka semua baris kode di dalamnya
+         akan terlihat ter-indent 6 spasi di browser.
+         Solusi: tulis konten <pre> rata kiri, atau gunakan
+         teknik "unindent" yang akan kita pelajari di CSS.
+         ============================================================ -->
+    <!-- KOREKSI C1 & C2: hilangkan baris kosong ekstra dan perbaiki indentasi -->
+    <pre><code>function salamPembuka(nama) {
+    if (nama) {
+        return "Halo, " + nama + "!";
+    }
+    return "Halo, tamu!";
+}</code></pre>
+    <p>
+      Fungsi di atas menerima parameter bernama <code>nama</code> — jika
+      parameter diisi, fungsi mengembalikan sapaan personal; jika kosong, fungsi
+      kembali ke sapaan default.
+    </p>
+
+    <!-- ============================================================
+         CHALLENGE D — MARK, SUB, SUP
+         ✅ TERBAIK di submission ini. Penggunaan <sub> untuk formula
+            kimia (NaCl, C12H22O11) sangat tepat dan kontekstual.
+         ✅ <sup> untuk notasi ion (Na⁺, Cl⁻) dan referensi (1) benar.
+         ✅ <small> untuk catatan kaki sudah semantik.
+
+         KOREKSI D1: <mark> digunakan terlalu banyak dan kurang tepat.
+         <mark> seharusnya menandai teks yang RELEVAN DENGAN KONTEKS
+         PENCARIAN atau PERHATIAN PENGGUNA SAAT INI — bukan sekadar
+         nama produk atau topik. Ini seperti fungsi "Ctrl+F highlight"
+         di PDF. Pilih satu temuan paling krusial yang memang layak
+         di-highlight, bukan setiap item list.
+
+         KOREKSI D2: "5kg²" — menggunakan <sup>2</sup> setelah "5kg"
+         tidak masuk akal secara ilmiah. Eksponen 2 biasanya untuk
+         satuan luas (m²) atau notasi matematik. Untuk catatan kaki,
+         gunakan <sup>(1)</sup> atau <sup>[1]</sup>.
+
+         KOREKSI D3: Na<sup>+</sup> + Cl<sup>-</sup> sudah benar,
+         tapi secara kimia NaCl tidak terurai sebagai ion bebas dalam
+         bentuk padatan — hanya dalam larutan. Detail kecil tapi
+         menunjukkan akurasi konten penting.
+         ============================================================ -->
+    <hr />
+
+    <h2>Nutrisi Bahan Sembako</h2>
+    <p>
+      Dalam kajian sederhana terhadap bahan sembako, ditemukan beberapa temuan
+      yang relevan bagi konsumen:
+    </p>
+    <!-- Jawaban Tugas 1: div berperan hanya sebagai pembungkus jadi di browser tidak tampil apa-apa, classnya lah yang nantinya dipanggil di style untuk di styling -->
+    <div class="item-review">
+      <ul>
+        <li>
+          Beras putih mengandung energi sekitar 360 kalori per 100g, dengan
+          dominasi karbohidrat kompleks yang berperan sebagai sumber energi
+          utama.
+        </li>
+        <li>
+          Kedelai kaya akan protein nabati dan isoflavon, senyawa yang berperan
+          sebagai fitoestrogen alami.
+        </li>
+        <li>
+          Garam dapur memiliki komposisi utama natrium klorida (NaCl). Kandungan
+          ini penting untuk keseimbangan elektrolit tubuh, namun konsumsi
+          berlebih dapat meningkatkan risiko hipertensi.
+        </li>
+        <li>
+          Minyak goreng kelapa sawit mengandung trigliserida dengan formula umum
+          C<sub>55</sub>H<sub>98</sub>O<sub>6</sub>, yang merupakan sumber
+          energi padat.
+        </li>
+        <li>
+          <!-- KOREKSI D1: <mark> hanya untuk temuan yang paling krusial -->
+          Gula pasir adalah sukrosa dengan rumus kimia
+          C<sub>12</sub>H<sub>22</sub>O<sub>11</sub>.
+          <mark>
+            Konsumsinya perlu dibatasi untuk mencegah risiko diabetes </mark
+          ><sup>(1)</sup> — ini adalah temuan yang paling perlu diperhatikan
+          konsumen sehari-hari.
+        </li>
+      </ul>
+    </div>
+
+    <hr />
+
+    <h2>Catatan Kaki</h2>
+    <p>
+      <small>
+        <sup>(1)</sup> Konsumsi gula berlebih dapat meningkatkan kadar glukosa
+        darah dan berkontribusi terhadap resistensi insulin. WHO
+        merekomendasikan asupan gula tambahan tidak lebih dari 10% total energi
+        harian.
+      </small>
+    </p>
+    <hr />
+
+    <!-- ============================================================
+         CHALLENGE E — BR, HR, ADDRESS
+         ✅ Penggunaan <address> sudah tepat dan semantik.
+         ✅ <br> untuk baris baru dalam alamat sudah benar.
+         ✅ Jawaban "kapan tidak pakai <br>" sudah tepat dan
+            contohnya konkret.
+
+         KOREKSI E1: Link email seharusnya menggunakan href="mailto:"
+         bukan link ke Gmail web. Perbedaannya sangat signifikan:
+         - href="mailto:x@gmail.com" → membuka aplikasi email lokal
+           (Outlook, Thunderbird, Mail app) — ini yang dimaksud
+           "link email" dalam HTML
+         - href="https://mail.google.com/..." → link ke website Gmail
+           — ini link biasa ke situs web, bukan link email
+
+         KOREKSI E2: Link telepon seharusnya menggunakan href="tel:"
+         bukan link ke WhatsApp Web. Perbedaannya:
+         - href="tel:+628123..." → membuka dialer telepon di HP
+         - href="https://wa.me/..." → link ke WhatsApp Web
+         Keduanya valid sebagai hyperlink, tapi challenge meminta
+         "link telepon" yang secara HTML berarti href="tel:".
+
+         KOREKSI E3: "Toko Sembako Beesmart" seharusnya ada di dalam
+         <address>, atau dibungkus elemen yang tepat. Saat ini ia
+         berada di luar <address> sebagai <p> terpisah.
+         ============================================================ -->
+    <address>
+      <!-- KOREKSI E3: nama toko masuk ke dalam <address> -->
+      <strong>Toko Sembako Beesmart</strong><br />
+      Jl. Example No. 123, Kota<br />
+      <!-- KOREKSI E2: href="tel:" untuk link telepon -->
+      Telp:
+      <a href="tel:+6281234567890" title="Hubungi via telepon">0812-3456-7890</a
+      ><br />
+      <!-- KOREKSI E1: href="mailto:" untuk link email -->
+      Email:
+      <a href="mailto:example123@gmail.com" title="Kirim email ke toko"
+        >example123@gmail.com</a
+      >
+    </address>
+    <hr />
+    <p>
+      Toko Sembako Beesmart adalah toko kebutuhan pokok yang melayani masyarakat
+      sekitar dengan harga terjangkau dan produk berkualitas. Kami berkomitmen
+      menyediakan bahan pokok segar dan terpercaya setiap harinya.
+    </p>
+    <hr />
+
+    <!-- ============================================================
+         CHALLENGE F — LINKS (level lanjut)
+         ✅ Atribut title pada setiap link sudah ada — bagus!
+         ✅ CSS inline untuk link "tombol" sudah dicoba — ini eksplorasi
+            yang bagus sebelum belajar CSS formal.
+         ✅ Penggunaan download attribute sudah benar.
+
+         KOREKSI F1: Link telepon menggunakan href WhatsApp, seharusnya
+         href="tel:" (sama dengan koreksi E2 di atas).
+
+         KOREKSI F2: Link email menggunakan href Gmail web, seharusnya
+         href="mailto:" (sama dengan koreksi E1 di atas).
+
+         KOREKSI F3: Teks link "0812345678910" dan "example123@email.com"
+         kurang deskriptif untuk konteks "daftar sumber belajar".
+         Teks link harus menjelaskan TUJUAN link, bukan hanya nilai
+         teknisnya. Lebih baik: "Hubungi instruktur via WhatsApp" atau
+         "Email untuk pertanyaan belajar".
+
+         KOREKSI F4: atribut download="https://..." tidak perlu berisi
+         URL — cukup download="nama-file.jpg" untuk memberi nama file
+         yang diunduh, atau download saja (tanpa nilai) untuk membiarkan
+         browser memilih nama file dari URL.
+         ============================================================ -->
+    <h2>Daftar Sumber Belajar</h2>
+    <p>Berikut sumber-sumber yang saya gunakan selama belajar HTML:</p>
+    <ul>
+      <!-- ✅ Link 1: eksternal dengan rel yang aman -->
+      <li>
+        <a
+          href="https://roadmap.sh/html"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Buka roadmap belajar HTML di roadmap.sh"
+          >Roadmap belajar HTML — roadmap.sh</a
+        >
+      </li>
+
+      <!-- ✅ Link 2: anchor ke section di halaman ini -->
+      <li>
+        <a href="#html" title="Kembali ke bagian Minggu 1 HTML Fundamentals">
+          Kembali ke catatan Minggu 1 — HTML Fundamentals
+        </a>
+      </li>
+
+      <!-- KOREKSI F2: mailto: untuk link email -->
+      <li>
+        <a
+          href="mailto:example123@gmail.com"
+          title="Kirim email untuk bertanya tentang materi"
+          >Tanya materi via email — example123@gmail.com</a
+        >
+      </li>
+
+      <!-- KOREKSI F1: tel: untuk link telepon -->
+      <li>
+        <a
+          href="tel:+6281234567890"
+          title="Hubungi instruktur langsung via telepon"
+          >Hubungi instruktur via telepon — 0812-3456-7890</a
+        >
+      </li>
+
+      <!-- KOREKSI F4: nilai atribut download cukup nama file, bukan URL -->
+      <li>
+        <a
+          href="https://picsum.photos/400/300"
+          download="contoh-gambar-belajar.jpg"
+          title="Unduh gambar contoh untuk latihan HTML"
+          style="
+            text-decoration: none;
+            border: 2px solid #2e7d32;
+            border-radius: 50px;
+            padding: 4px 14px;
+            color: white;
+            background-color: #2e7d32;
+          "
+          >⬇ Unduh gambar contoh latihan</a
+        >
+      </li>
+    </ul>
+    <hr />
+
+    <!-- ============================================================
+         CHALLENGE G — INTEGRASI SEMUA TAG
+         ✅ Konten review terasa genuine dan mengalir natural.
+         ✅ <strong> untuk "pulen" — tepat, ini klaim utama review.
+         ✅ <em> untuk "segar" — acceptable sebagai penekanan.
+         ✅ <small> untuk disclaimer akhir — sangat tepat semantiknya.
+         ✅ <hr> untuk pemisah antar section review — tepat.
+
+         KOREKSI G1: <mark> digunakan untuk membungkus seluruh <h3>
+         seperti <h3><mark>Kualitas dan Tekstur</mark></h3>.
+         Ini tidak tepat semantik. <mark> adalah untuk potongan teks
+         yang relevan dalam paragraf — bukan untuk judul section.
+         Judul section sudah cukup dengan <h3> saja.
+
+         KOREKSI G2: "5kg<sub>2</sub>" — <sub>2</sub> tidak bermakna
+         di sini. Subscript 2 setelah "5kg" bukan notasi yang dikenal.
+         Jika ingin catatan kaki, gunakan <sup>(1)</sup>. Jika ingin
+         satuan kuadrat, gunakan pada satuan luas seperti m<sup>2</sup>.
+
+         KOREKSI G3: <pre><code> berisi pseudocode Python yang
+         di-indent dengan spasi HTML (terlihat sangat menjorok ke kanan
+         di browser). Sama dengan koreksi C2 — konten <pre> harus
+         rata kiri atau kamu akan melihat indentasi ekstra.
+
+         KOREKSI G4: Link ke "tokosembako.com/beras-cap-jago..." —
+         ini URL fiktif tapi digunakan tanpa target="_blank". Jika
+         link ke situs eksternal, tambahkan target="_blank" dan
+         rel="noopener noreferrer". Juga tidak ada atribut title.
+         ============================================================ -->
+
+    <h2>Review Produk: Beras Premium Cap Jago 5kg</h2>
+
+    <p>
+      Kualitas beras ini memang terasa berbeda. Bulirnya putih bersih, minim
+      patahan, dan saat dimasak menghasilkan nasi yang
+      <strong class="kata-kunci">pulen</strong> serta
+      <span class="kata-kunci">harum</span>. Bahkan setelah dingin, nasi tetap
+      lembut — cocok untuk keluarga yang mengutamakan rasa dan kualitas setiap
+      hari.
+    </p>
+    <!-- Jawaban Tugas 2: teks tidak berubah karena span hanya bersifat sebagai pembungkus sama seperti div, yang harus ditambahkan agar terlihat efek adalah dengan menambahkan class, lalu styling di style/di css -->
+
+    <!-- KOREKSI G1: <mark> dihapus dari heading, tidak semantik di situ -->
+    <h3>Kualitas dan Tekstur</h3>
+    <p>
+      Beras ini memberikan pengalaman makan yang lebih nikmat. Bulirnya terlihat
+      <em>segar</em> dan nasi yang dihasilkan punya tekstur yang konsisten.
+      Keunggulan utama yang paling terasa adalah
+      <mark>teksturnya yang pulen bahkan setelah nasi dingin</mark> — ini yang
+      membedakannya dari beras biasa di kelas harga yang sama.
+    </p>
+
+    <h3>Kemasan dan Informasi</h3>
+    <p>
+      <!-- KOREKSI G2: <sub>2</sub> dihapus karena tidak bermakna secara ilmiah.
+           Diganti dengan <sup>(1)</sup> untuk catatan kaki yang lebih tepat. -->
+      Kemasan plastik tebal dengan label jelas. Tanggal produksi dan kadaluarsa
+      tercetak rapi. Berat bersih tercatat 5kg<sup>(1)</sup>, dan setiap kemasan
+      dilengkapi segel kualitas premium yang memudahkan identifikasi produk
+      asli.
+    </p>
+
+    <h3>Catatan Teknis Memasak</h3>
+    <p>Saya mencatat rasio optimal air dan beras dalam format sederhana:</p>
+    <!-- KOREKSI G3: konten <pre> rata kiri agar tidak over-indented di browser -->
+    <pre><code>beras = "Cap Jago Premium"
+berat_kg = 5
+rasio_air = 1.5  # 1 cup beras : 1.5 cup air
+hasil = "nasi pulen, harum, tidak cepat keras"
+print(f"{beras}: {hasil}")</code></pre>
+    <p>
+      Rasio default yang saya pakai adalah <code>1 : 1.5</code> (beras : air),
+      tapi bisa disesuaikan dengan preferensi tingkat kekerasannya.
+    </p>
+
+    <h3>Harga dan Nilai</h3>
+    <p>
+      Harga memang sedikit lebih tinggi dibanding beras biasa, tapi kualitasnya
+      sepadan. Untuk detail harga dan distribusi resmi, bisa dilihat di
+      <!-- KOREKSI G4: tambah target, rel, dan title -->
+      <a
+        href="https://www.tokosembako.com/beras-cap-jago-premium-5kg"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Lihat detail harga dan ketersediaan Beras Cap Jago di Toko Sembako"
+        >halaman produk Beras Cap Jago di Toko Sembako</a
+      >.
+    </p>
+
+    <hr />
+
+    <h3>Kesimpulan</h3>
+    <p>
+      Beras Premium Cap Jago 5kg layak dicoba bagi yang mencari beras pulen
+      dengan kualitas konsisten. Nilai tambahnya ada pada kebersihan bulir dan
+      rasa nasi yang lebih enak dibanding beras standar di kelasnya.
+    </p>
+
+    <p>
+      <small>
+        <sup>(1)</sup> Berat tercantum pada kemasan; selalu periksa segel dan
+        tanggal kadaluarsa sebelum membeli. Ulasan ini berdasarkan pengalaman
+        pribadi dan bukan klaim resmi dari produsen Cap Jago.
+      </small>
+    </p>
+
+    <footer>
+      <hr />
+      <p>
+        <small
+          >&copy; 2026 Muhammad Ricky Yusuf &mdash; Lab HTML Textual Tags</small
+        >
+      </p>
+    </footer>
+  </body>
+</html>

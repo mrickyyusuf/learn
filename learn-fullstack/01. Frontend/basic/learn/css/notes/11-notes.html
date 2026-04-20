@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11 · Z-Index, Specificity, Tables, Lists, Images</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.7;
+      }
+      .kartu {
+        max-width: 760px;
+        margin: 0 auto 1.5rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      h1 {
+        text-align: center;
+        color: #1b5e20;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        margin-bottom: 2rem;
+      }
+      h2 {
+        color: #1b5e20;
+        font-size: 1rem;
+        font-family: monospace;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
+      pre {
+        background: #263238;
+        color: #cfd8dc;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+      .tip {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      .warn {
+        background: #fff9c4;
+        border-left: 4px solid #f9a825;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      code {
+        font-family: monospace;
+        background: #f5f5f5;
+        color: #c62828;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.87rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0.75rem 0;
+        font-size: 0.87rem;
+      }
+      th {
+        background: #2e7d32;
+        color: white;
+        padding: 8px 10px;
+        text-align: left;
+      }
+      td {
+        padding: 7px 10px;
+        border-bottom: 1px solid #e0e0e0;
+        vertical-align: top;
+      }
+
+      /* Z-index demo */
+      .z-demo {
+        position: relative;
+        height: 100px;
+        margin: 0.75rem 0;
+      }
+      .z-box {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: white;
+      }
+      .z1 {
+        background: #c62828;
+        left: 0;
+        top: 0;
+        z-index: 1;
+      }
+      .z2 {
+        background: #1565c0;
+        left: 40px;
+        top: 10px;
+        z-index: 2;
+      }
+      .z3 {
+        background: #2e7d32;
+        left: 80px;
+        top: 20px;
+        z-index: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>11 · Z-Index, Specificity, Tables, Lists, Images</h1>
+
+    <section class="kartu">
+      <h2>Z-Index & Stacking Context</h2>
+      <p>
+        Z-index mengontrol urutan tumpukan elemen di sumbu Z (kedalaman). Elemen
+        dengan z-index lebih tinggi tampil di depan. Tapi ada syarat: z-index
+        <strong>hanya bekerja pada positioned elements</strong> (position selain
+        static) dan pada elemen flex/grid.
+      </p>
+      <div class="z-demo">
+        <div class="z-box z1">z-index: 1</div>
+        <div class="z-box z2">z-index: 2</div>
+        <div class="z-box z3">z-index: 3</div>
+      </div>
+      <pre>
+/* Z-index hanya bekerja pada positioned elements */
+.modal    { position: fixed; z-index: 1000; }
+.overlay  { position: fixed; z-index: 999; }
+.dropdown { position: absolute; z-index: 100; }
+.navbar   { position: sticky; z-index: 50; }
+
+/* Stacking context baru dibuat oleh:
+   - position: relative/absolute/fixed/sticky + z-index selain auto
+   - opacity < 1
+   - transform, filter, will-change
+   Elemen dalam stacking context yang sama dibandingkan bersama. */</pre
+      >
+      <div class="warn">
+        ⚠️ Jika z-index tidak bekerja seperti yang diharapkan, kemungkinan ada
+        <strong>stacking context</strong> yang membatasi. Periksa apakah
+        ancestor punya opacity < 1 atau transform yang membuat stacking context
+        terpisah.
+      </div>
+    </section>
+
+    <section class="kartu">
+      <h2>CSS Specificity — Ringkasan</h2>
+      <pre>
+/* Skor: (ID, Class/Attr/PseudoClass, Tag) */
+p                   /* (0,0,1) */
+.harga              /* (0,1,0) */  
+#kasir              /* (1,0,0) */  ← satu ID mengalahkan 1000 class
+.kartu .harga       /* (0,2,0) */
+#kasir .kartu p     /* (1,1,1) */
+
+/* Aturan: kolom kiri SELALU menang atas kolom kanan, apapun jumlahnya.
+   Tidak ada carry-over. Ini bukan desimal biasa. */
+
+/* Praktik terbaik: hindari ID selector dan !important di CSS produksi.
+   Pertahankan specificity serendah mungkin agar mudah di-override. */</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>CSS Tables</h2>
+      <pre>
+table {
+  width: 100%;
+  border-collapse: collapse;  /* gabungkan border antar sel */
+  /* border-separate (default): tiap sel punya border sendiri */
+}
+
+th, td {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: top; /* konten mulai dari atas sel */
+}
+
+thead th {
+  background: #2e7d32;
+  color: white;
+  position: sticky; /* sticky header untuk tabel panjang */
+  top: 0;
+}
+
+tbody tr:nth-child(even) td { background: #f5f5f5; } /* zebra striping */
+tbody tr:hover td { background: #e8f5e9; }           /* row highlight */
+
+/* Responsive table: bungkus dalam overflow-x: auto */
+.table-wrapper { overflow-x: auto; }</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>CSS Lists</h2>
+      <pre>
+/* Hapus style bawaan (sering dilakukan di reset) */
+ul, ol { list-style: none; padding: 0; }
+
+/* Custom bullet dengan list-style */
+ul { list-style-type: disc; }    /* • */
+ul { list-style-type: square; }  /* ■ */
+ol { list-style-type: decimal; } /* 1, 2, 3 */
+ol { list-style-type: upper-roman; } /* I, II, III */
+
+/* Custom bullet dengan ::before pseudo-element */
+ul.custom li::before {
+  content: "→";
+  color: #2e7d32;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+/* Navigasi: tampilan horizontal */
+nav ul { display: flex; gap: 1rem; list-style: none; }
+
+/* list-style-position: outside (default) vs inside */
+li { list-style-position: inside; } /* bullet ikut indentasi teks */</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>CSS Images & Filters</h2>
+      <pre>
+/* Gambar responsif — dasar */
+img {
+  max-width: 100%;    /* tidak overflow parent */
+  height: auto;       /* pertahankan aspect ratio */
+  display: block;     /* hapus whitespace di bawah gambar */
+}
+
+/* object-fit: cara gambar mengisi container */
+.thumbnail {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;   /* potong gambar agar pas, pertahankan ratio */
+  /* object-fit: contain — gambar penuh dalam container, mungkin ada sisi kosong */
+  /* object-fit: fill — stretch, tidak pertahankan ratio */
+}
+
+object-position: center top; /* posisi fokus saat object-fit: cover */
+
+/* CSS Filters — efek visual */
+img { filter: grayscale(100%); }         /* hitam putih */
+img { filter: blur(4px); }               /* blur */
+img { filter: brightness(0.7); }         /* lebih gelap */
+img { filter: brightness(1.3); }         /* lebih terang */
+img { filter: contrast(1.5); }           /* kontras tinggi */
+img { filter: sepia(80%); }              /* efek foto tua */
+
+/* Gabungan filter */
+img { filter: brightness(0.9) contrast(1.1) saturate(1.2); }
+
+/* backdrop-filter: filter pada latar belakang (efek frosted glass) */
+.glass {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Safari */
+}</pre
+      >
+    </section>
+  </body>
+</html>

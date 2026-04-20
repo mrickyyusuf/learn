@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>07 · Colors, Opacity, Background</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Georgia, serif;
+        color: #1a2c3e;
+        line-height: 1.6;
+      }
+
+      /* ─────────────────────────────────
+       BACKGROUND-ATTACHMENT: FIXED
+       Gambar latar tidak ikut scroll — efek paralaks sederhana.
+       Coba scroll halaman ini untuk melihat efeknya.
+    ──────────────────────────────────── */
+      body {
+        background-image: url("https://picsum.photos/seed/sembako/1920/1080");
+        background-attachment: fixed; /* diam saat scroll */
+        background-size: cover;
+        background-position: center center; /* posisi gambar di tengah */
+      }
+
+      /* Overlay gelap agar teks tetap terbaca di atas background image */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0; /* shorthand untuk top/right/bottom/left: 0 */
+        background: rgba(0, 0, 0, 0.55); /* RGBA — hitam 55% transparan */
+        z-index: 0;
+      }
+
+      main {
+        position: relative;
+        z-index: 1; /* di atas overlay */
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      h1 {
+        color: white;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .kartu {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1rem;
+        color: #1b5e20;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        font-family: monospace;
+      }
+
+      .baris {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+      }
+
+      .kotak-warna {
+        width: 48px;
+        height: 48px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        flex-shrink: 0;
+      }
+
+      .kode {
+        font-family: monospace;
+        font-size: 0.85rem;
+        color: #555;
+      }
+
+      /* ─────────────────────────────────
+       1. NAMED COLORS
+    ──────────────────────────────────── */
+      .warna-tomato {
+        background-color: tomato;
+      }
+      .warna-steelblue {
+        background-color: steelblue;
+      }
+      .warna-goldenrod {
+        background-color: goldenrod;
+      }
+      .warna-seagreen {
+        background-color: seagreen;
+      }
+
+      /* ─────────────────────────────────
+       2. HEX
+    ──────────────────────────────────── */
+      .warna-hex-merah {
+        background-color: #c62828;
+      }
+      .warna-hex-hijau {
+        background-color: #2e7d32;
+      }
+      .warna-hex-putih {
+        background-color: #fff;
+      }
+      .warna-hex-short {
+        background-color: #39f;
+      } /* shorthand = #3399ff */
+
+      /* ─────────────────────────────────
+       3. RGB
+    ──────────────────────────────────── */
+      .warna-rgb {
+        background-color: rgb(198, 40, 40);
+      }
+
+      /* ─────────────────────────────────
+       4. RGBA — sama dengan RGB tapi + alpha (transparansi)
+    ──────────────────────────────────── */
+      .demo-rgba {
+        background: #c62828; /* background merah solid sebagai dasar */
+        padding: 12px;
+        border-radius: 8px;
+      }
+
+      .kotak-rgba-1 {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+      .kotak-rgba-2 {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+      .kotak-rgba-3 {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      .kotak-rgba-1,
+      .kotak-rgba-2,
+      .kotak-rgba-3 {
+        height: 40px;
+        border-radius: 6px;
+        margin-bottom: 6px;
+      }
+
+      /* ─────────────────────────────────
+       5. HSL — Hue Saturation Lightness
+       Keunggulan: mudah buat variasi warna hanya dengan ganti Lightness
+    ──────────────────────────────────── */
+      .hsl-1 {
+        background-color: hsl(120, 60%, 25%);
+      } /* hijau gelap */
+      .hsl-2 {
+        background-color: hsl(120, 60%, 40%);
+      } /* hijau sedang */
+      .hsl-3 {
+        background-color: hsl(120, 60%, 55%);
+      } /* hijau terang */
+      .hsl-4 {
+        background-color: hsl(120, 60%, 75%);
+      } /* hijau muda */
+      .hsl-5 {
+        background-color: hsl(120, 60%, 90%);
+      } /* hijau sangat muda */
+
+      /* ─────────────────────────────────
+       6. HSLA — HSL + Alpha
+    ──────────────────────────────────── */
+      .kotak-hsla {
+        background: linear-gradient(to right, #1b5e20, #4caf50);
+        padding: 12px;
+        border-radius: 8px;
+      }
+      .hsla-overlay {
+        background-color: hsla(0, 0%, 100%, 0.7); /* putih 70% */
+        padding: 8px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      /* ─────────────────────────────────
+       7. OPACITY — seluruh elemen pudar, termasuk teks
+    ──────────────────────────────────── */
+      .demo-opacity {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .kartu-opacity {
+        background: #2e7d32;
+        color: white;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        text-align: center;
+        flex: 1;
+        min-width: 100px;
+      }
+
+      .op-100 {
+        opacity: 1;
+      }
+      .op-70 {
+        opacity: 0.7;
+      }
+      .op-40 {
+        opacity: 0.4;
+      }
+      .op-15 {
+        opacity: 0.15;
+      }
+
+      /* ─────────────────────────────────
+       8. BACKGROUND-COLOR
+       (lihat .kartu di atas — background: white)
+    ──────────────────────────────────── */
+
+      /* ─────────────────────────────────
+       9. BACKGROUND-IMAGE — gambar nyata
+    ──────────────────────────────────── */
+      .demo-bg-image {
+        height: 200px;
+        background-image: url("https://picsum.photos/seed/beras/760/200");
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        display: flex;
+        align-items: flex-end;
+        padding: 12px;
+      }
+
+      .demo-bg-image .caption {
+        color: white;
+        font-size: 0.85rem;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 4px 10px;
+        border-radius: 6px;
+      }
+
+      /* ─────────────────────────────────
+       10. BACKGROUND-GRADIENT
+       linear-gradient: arah, warna-awal, warna-akhir
+       radial-gradient: bentuk, warna-tengah, warna-tepi
+    ──────────────────────────────────── */
+      .grad-1 {
+        background-image: linear-gradient(to right, #1b5e20, #4caf50);
+        height: 60px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+      }
+
+      .grad-2 {
+        background-image: linear-gradient(135deg, #c62828, #ff8f00);
+        height: 60px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+      }
+
+      .grad-3 {
+        /* Multi-stop gradient */
+        background-image: linear-gradient(
+          to right,
+          #1b5e20 0%,
+          #fff9c4 50%,
+          #c62828 100%
+        );
+        height: 60px;
+        border-radius: 8px;
+        margin-bottom: 8px;
+      }
+
+      .grad-4 {
+        background-image: radial-gradient(circle at center, #fff9c4, #f57f17);
+        height: 60px;
+        border-radius: 8px;
+      }
+
+      /* ─────────────────────────────────
+       11. BACKGROUND-POSITION
+    ──────────────────────────────────── */
+      .demo-bg-position {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .pos-box {
+        height: 100px;
+        background-image: url("https://picsum.photos/seed/produk/300/300");
+        background-repeat: no-repeat;
+        background-size: 60px 60px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        display: flex;
+        align-items: flex-end;
+        padding: 4px;
+      }
+
+      .pos-top-left {
+        background-position: top left;
+      }
+      .pos-center {
+        background-position: center;
+      }
+      .pos-bottom-right {
+        background-position: bottom right;
+      }
+
+      .pos-label {
+        font-size: 0.65rem;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Colors · Opacity · Background</h1>
+
+      <!-- 1. Named Colors -->
+      <section class="kartu">
+        <h2>1. Named Colors</h2>
+        <div class="baris">
+          <div class="kotak-warna warna-tomato"></div>
+          <span class="kode">tomato</span>
+        </div>
+        <div class="baris">
+          <div class="kotak-warna warna-steelblue"></div>
+          <span class="kode">steelblue</span>
+        </div>
+        <div class="baris">
+          <div class="kotak-warna warna-goldenrod"></div>
+          <span class="kode">goldenrod</span>
+        </div>
+        <div class="baris">
+          <div class="kotak-warna warna-seagreen"></div>
+          <span class="kode">seagreen</span>
+        </div>
+      </section>
+
+      <!-- 2. HEX -->
+      <section class="kartu">
+        <h2>2. HEX — #RRGGBB atau #RGB</h2>
+        <div class="baris">
+          <div class="kotak-warna warna-hex-merah"></div>
+          <span class="kode">#c62828</span>
+        </div>
+        <div class="baris">
+          <div class="kotak-warna warna-hex-hijau"></div>
+          <span class="kode">#2e7d32</span>
+        </div>
+        <div class="baris">
+          <div
+            class="kotak-warna warna-hex-putih"
+            style="border: 1px solid #ccc"
+          ></div>
+          <span class="kode">#fff (shorthand #ffffff)</span>
+        </div>
+        <div class="baris">
+          <div class="kotak-warna warna-hex-short"></div>
+          <span class="kode">#39f (shorthand #3399ff)</span>
+        </div>
+      </section>
+
+      <!-- 3. RGB -->
+      <section class="kartu">
+        <h2>3. RGB — rgb(R, G, B) masing-masing 0–255</h2>
+        <div class="baris">
+          <div class="kotak-warna warna-rgb"></div>
+          <span class="kode">rgb(198, 40, 40)</span>
+        </div>
+      </section>
+
+      <!-- 4. RGBA -->
+      <section class="kartu">
+        <h2>4. RGBA — rgb + alpha (0 transparan, 1 solid)</h2>
+        <p style="font-size: 0.85rem; color: #555; margin-bottom: 8px">
+          Ketiga kotak berikut punya warna yang sama (putih), hanya alpha-nya
+          berbeda. Background merah di belakang terlihat semakin jelas saat
+          alpha mengecil.
+        </p>
+        <div class="demo-rgba">
+          <div class="kotak-rgba-1">
+            <p style="font-size: 0.75rem; padding: 4px; text-align: center">
+              rgba(255,255,255, 0.9)
+            </p>
+          </div>
+          <div class="kotak-rgba-2">
+            <p style="font-size: 0.75rem; padding: 4px; text-align: center">
+              rgba(255,255,255, 0.5)
+            </p>
+          </div>
+          <div class="kotak-rgba-3">
+            <p style="font-size: 0.75rem; padding: 4px; text-align: center">
+              rgba(255,255,255, 0.2)
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. HSL -->
+      <section class="kartu">
+        <h2>5. HSL — hsl(Hue 0–360, Saturation%, Lightness%)</h2>
+        <p style="font-size: 0.85rem; color: #555; margin-bottom: 8px">
+          Hue tetap 120° (hijau). Hanya Lightness yang berubah → variasi warna
+          mudah dibuat.
+        </p>
+        <div class="baris">
+          <div class="kotak-warna hsl-1"></div>
+          <span class="kode">hsl(120, 60%, 25%) — gelap</span>
+        </div>
+        <div class="baris">
+          <div class="kotak-warna hsl-2"></div>
+          <span class="kode">hsl(120, 60%, 40%)</span>
+        </div>
+        <div class="baris">
+          <div class="kotak-warna hsl-3"></div>
+          <span class="kode">hsl(120, 60%, 55%)</span>
+        </div>
+        <div class="baris">
+          <div class="kotak-warna hsl-4"></div>
+          <span class="kode">hsl(120, 60%, 75%)</span>
+        </div>
+        <div class="baris">
+          <div class="kotak-warna hsl-5"></div>
+          <span class="kode">hsl(120, 60%, 90%) — terang</span>
+        </div>
+      </section>
+
+      <!-- 6. HSLA -->
+      <section class="kartu">
+        <h2>6. HSLA — hsl + alpha</h2>
+        <div class="kotak-hsla">
+          <div class="hsla-overlay">
+            hsla(0, 0%, 100%, 0.7) — putih 70% di atas gradient hijau
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Opacity -->
+      <section class="kartu">
+        <h2>7. opacity — SELURUH elemen pudar, termasuk teks</h2>
+        <p style="font-size: 0.85rem; color: #555; margin-bottom: 12px">
+          Berbeda dengan rgba yang hanya mempengaruhi satu properti — opacity
+          menggelapkan segalanya. Ini berguna untuk kartu produk "stok habis"
+          agar terlihat tidak aktif.
+        </p>
+        <div class="demo-opacity">
+          <div class="kartu-opacity op-100">opacity: 1</div>
+          <div class="kartu-opacity op-70">opacity: 0.7</div>
+          <div class="kartu-opacity op-40">opacity: 0.4</div>
+          <div class="kartu-opacity op-15">opacity: 0.15</div>
+        </div>
+      </section>
+
+      <!-- 8. Background Image -->
+      <section class="kartu">
+        <h2>8. background-image — gambar nyata</h2>
+        <div class="demo-bg-image">
+          <span class="caption"
+            >background-size: cover · background-position: center</span
+          >
+        </div>
+      </section>
+
+      <!-- 9. Background Gradient -->
+      <section class="kartu">
+        <h2>9. background-image: linear-gradient & radial-gradient</h2>
+        <div class="grad-1"></div>
+        <div class="grad-2"></div>
+        <div class="grad-3"></div>
+        <div class="grad-4"></div>
+      </section>
+
+      <!-- 10. Background Position -->
+      <section class="kartu">
+        <h2>10. background-position — posisi gambar dalam container</h2>
+        <div class="demo-bg-position">
+          <div class="pos-box pos-top-left">
+            <span class="pos-label">top left</span>
+          </div>
+          <div class="pos-box pos-center">
+            <span class="pos-label">center</span>
+          </div>
+          <div class="pos-box pos-bottom-right">
+            <span class="pos-label">bottom right</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

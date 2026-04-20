@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12 · Pseudo Classes</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.7;
+      }
+      .kartu {
+        max-width: 760px;
+        margin: 0 auto 1.5rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      h1 {
+        text-align: center;
+        color: #1b5e20;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        margin-bottom: 2rem;
+      }
+      h2 {
+        color: #1b5e20;
+        font-size: 1rem;
+        font-family: monospace;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
+      pre {
+        background: #263238;
+        color: #cfd8dc;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+      .tip {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      code {
+        font-family: monospace;
+        background: #f5f5f5;
+        color: #c62828;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.87rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>12 · Pseudo Classes</h1>
+
+    <section class="kartu">
+      <h2>Apa itu Pseudo Class?</h2>
+      <p>
+        Pseudo class adalah selector yang menarget elemen berdasarkan
+        <strong>state atau posisi</strong> yang tidak bisa direpresentasikan
+        oleh atribut HTML biasa. Ia menambahkan kondisi pada selector: "elemen
+        ini, <em>ketika</em> dalam kondisi tertentu." Ditulis dengan awalan
+        titik dua tunggal <code>:</code>.
+      </p>
+    </section>
+
+    <section class="kartu">
+      <h2>User Action Pseudo Classes</h2>
+      <pre>
+/* :hover — mouse di atas elemen */
+.btn:hover { background: #1b5e20; transform: translateY(-2px); }
+
+/* :focus — elemen mendapat fokus (keyboard Tab atau klik) */
+input:focus { outline: 2px solid #1565c0; outline-offset: 2px; }
+
+/* :focus-visible — hanya muncul saat navigasi KEYBOARD, tidak saat klik mouse */
+/* Ini lebih tepat untuk focus ring visual daripada :focus */
+:focus-visible { outline: 3px solid #1565c0; outline-offset: 3px; }
+
+/* :active — saat elemen sedang ditekan/diklik */
+.btn:active { transform: scale(0.97); }
+
+/* :visited — link yang sudah pernah dikunjungi */
+a:visited { color: #7b1fa2; }</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>Structural Pseudo Classes</h2>
+      <pre>
+/* :first-child, :last-child — anak pertama/terakhir dari parent-nya */
+li:first-child { border-top: none; }
+li:last-child  { border-bottom: none; }
+
+/* :nth-child(n) — anak ke-n dari parent */
+tr:nth-child(even) td { background: #f5f5f5; } /* baris genap */
+tr:nth-child(odd)  td { background: white; }   /* baris ganjil */
+li:nth-child(3)    { font-weight: bold; }       /* tepat anak ke-3 */
+li:nth-child(3n)   { color: green; }            /* setiap kelipatan 3: 3,6,9,... */
+li:nth-child(3n+1) { color: red; }              /* 1, 4, 7, 10, ... */
+
+/* :only-child — jika merupakan satu-satunya anak */
+li:only-child { font-style: italic; }
+
+/* :not() — negasi: elemen yang TIDAK cocok selector di dalam */
+li:not(:last-child) { border-bottom: 1px solid #eee; }
+input:not([type="submit"]) { border: 1px solid #ddd; }
+.kartu:not(.stok-habis):hover { transform: translateY(-2px); }</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>Form State Pseudo Classes</h2>
+      <pre>
+/* State validasi */
+input:valid   { border-color: #2e7d32; }
+input:invalid { border-color: #c62828; }
+
+/* :required dan :optional */
+input:required { border-left: 3px solid #c62828; }
+input:optional { border-left: 3px solid #9e9e9e; }
+
+/* :disabled dan :enabled */
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+input:enabled:hover { border-color: #1565c0; }
+
+/* :checked — untuk checkbox dan radio */
+input[type="checkbox"]:checked + label { color: #2e7d32; font-weight: bold; }
+
+/* :focus-within — parent yang berisi child yang sedang fokus */
+/* Sangat berguna untuk form group styling */
+.form-group:focus-within label { color: #1565c0; }
+.form-group:focus-within input { border-color: #1565c0; }
+
+/* :user-invalid — seperti :invalid tapi HANYA setelah user berinteraksi */
+/* Lebih ramah UX karena tidak merah saat halaman pertama dimuat */
+input:user-invalid { border-color: #c62828; }</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>:has() — CSS Parent Selector (Modern)</h2>
+      <pre>
+/* :has() — memilih elemen yang MEMILIKI child yang cocok */
+/* Ini adalah "parent selector" yang lama ditunggu-tunggu */
+
+/* Kartu yang memiliki img di dalamnya */
+.kartu:has(img) { padding: 0; overflow: hidden; }
+
+/* Form yang memiliki input invalid */
+form:has(input:invalid) .submit-btn { opacity: 0.5; cursor: not-allowed; }
+
+/* Artikel yang memiliki setidaknya satu h2 */
+article:has(h2) { border-top: 3px solid #2e7d32; }
+
+/* Dukungan browser: Chrome 105+, Firefox 121+, Safari 15.4+ */</pre
+      >
+      <div class="tip">
+        💡 <code>:has()</code> adalah salah satu fitur CSS paling powerful dalam
+        beberapa tahun terakhir. Ia memungkinkan styling berdasarkan konten anak
+        tanpa JavaScript. Di aplikasi retail, ini berguna untuk: styling
+        container produk tergantung apakah ada badge diskon di dalamnya,
+        mengubah tampilan form berdasarkan state validasi, dll.
+      </div>
+    </section>
+  </body>
+</html>
