@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Introduction</title>
+
+    <!--
+    EKSPERIMEN 1: Hapus atau comment baris link di bawah dan
+    perhatikan bagaimana halaman berubah tanpa CSS sama sekali.
+    Ini membuktikan bahwa HTML yang kamu tulis sudah semantik
+    dan bisa dipahami tanpa tampilan visual.
+    -->
+    <link rel="stylesheet" href="../styles/main.css" />
+
+    <style>
+      /*
+    EKSPERIMEN 2: Tambahkan rule di sini dan amati hasilnya.
+    Coba ubah semua teks menjadi biru, lalu override hanya
+    untuk <h1> menjadi hijau — ini adalah "cascading" dalam aksi.
+      */
+
+      /* Rule 1: berlaku untuk semua paragraf */
+      p {
+        color: #555;
+        line-height: 1.8;
+      }
+
+      /* Rule 2: override hanya untuk p di dalam section#kasir */
+      /* Ini adalah "lebih spesifik" mengalahkan "lebih umum" */
+      #kasir p {
+        color: #2e7d32;
+        font-weight: bold;
+      }
+      /*      
+      Eksperimen 1: apakah konten masih bisa dibaca dan dipahami? kalau dari segi keterbacaan tentu masih terbaca tapi kalau soal dapat dipahami menurut saya kurang bisa terpahami dengan jelas karena tidak memiliki styling, karena web toko yang butuh ui untuk mendeskripsikan webnya, berbeda dengan artikel makalah misal yang tak perlu style, kita sudah tahu konteksnya.
+      Urutan navigasi apakah masih logis? menurut saya masih karena masih bisa terbaca secara text dan urutan membacanya dari kiri ke kanan, serta kalau diuji secara content ke bawah juga masih sesuai urutannya
+      Apakah heading masih jelas hierarkinya? menurut saya juga masih, karena urutannya masih h1 ke bawah, dikatakan tidak jelas ketika sudah mulai acak, misal h2 h1 h6 h4
+      eksperimen 2: saya mengubahnya di devtools, kalau pertanyaannya berapa banyak elemen yang berubah warna secara bersamaan dari satu baris perubahan dan dikembalikan ke asli jawabannya banyak bahkan semuanya sekaligus, sekejap mata, berbeda dengan kita ubah style 1 per 1, tidak terbanyak kalau elementnya ada ratusan hingga ribuan
+      eksperimen 3: Berapa lapisan aturan yang berlaku pada satu `<h2>`? 2 lapisan, user agent stylesheet (style bawaan browser) & author stylesheet (style dari kita)
+      <h2 id="heading-form-transaksi">Input Transaksi Kasir Baru</h2>
+      h2 {
+        display: block;
+        font-size: 1.5em;
+        margin-block-start: 0.83em;
+        margin-block-end: 0.83em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+        unicode-bidi: isolate;
+      }
+      Dari mana saja sumbernya (browser default, external stylesheet, internal)? dari browser default & external stylesheet
+      */
+    </style>
+  </head>
+  <body>
+    <p>
+      Paragraf ini akan berwarna abu-abu (#555) karena rule pertama berlaku.
+    </p>
+
+    <section id="kasir">
+      <p>
+        Paragraf ini akan berwarna hijau dan tebal karena rule kedua lebih
+        spesifik — ia menang atas rule pertama. Inilah "Cascading" dalam CSS.
+      </p>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01 · CSS Introduction</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.7;
+      }
+      .kartu {
+        max-width: 760px;
+        margin: 0 auto 1.5rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      h1 {
+        text-align: center;
+        color: #1b5e20;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        margin-bottom: 2rem;
+      }
+      h2 {
+        color: #1b5e20;
+        font-size: 1rem;
+        font-family: monospace;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
+      pre {
+        background: #263238;
+        color: #cfd8dc;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+      .tip {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      code {
+        font-family: monospace;
+        background: #f5f5f5;
+        color: #c62828;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.87rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>01 · CSS Introduction</h1>
+
+    <section class="kartu">
+      <h2>Apa itu CSS?</h2>
+      <p>
+        CSS (Cascading Style Sheets) adalah bahasa yang mendeskripsikan
+        <strong>presentasi visual</strong> dari dokumen HTML. CSS memisahkan
+        konten (HTML) dari tampilan (CSS), sehingga satu file CSS bisa
+        mengontrol ribuan halaman sekaligus. Tanpa CSS, browser menampilkan HTML
+        dengan style bawaan yang sangat minimal.
+      </p>
+      <p>
+        Kata <em>Cascading</em> berarti aturan "mengalir" dari sumber umum ke
+        spesifik — browser default → user stylesheet → author external → author
+        internal → author inline. Yang lebih spesifik selalu menang.
+      </p>
+    </section>
+
+    <section class="kartu">
+      <h2>Mengapa CSS Dipisahkan dari HTML?</h2>
+      <p>
+        Bayangkan sebuah toko retail dengan 500 halaman produk. Jika warna brand
+        berubah dari hijau ke biru, dengan CSS terpusat kamu hanya mengubah satu
+        variabel di satu file — semua 500 halaman ikut berubah. Tanpa CSS
+        terpisah, kamu harus mengubah 500 file satu per satu.
+      </p>
+      <p>
+        Ini adalah prinsip <strong>Separation of Concerns</strong>: setiap
+        lapisan hanya bertanggung jawab pada satu hal. HTML = struktur dan
+        makna. CSS = tampilan dan presentasi. JavaScript = perilaku dan
+        interaktivitas.
+      </p>
+    </section>
+
+    <section class="kartu">
+      <h2>Rendering Pipeline: Dari File ke Piksel</h2>
+      <p>
+        Browser membaca HTML → membangun <strong>DOM Tree</strong> → membaca CSS
+        → membangun <strong>CSSOM Tree</strong> → menggabungkan keduanya menjadi
+        <strong>Render Tree</strong> → menghitung posisi elemen
+        (<strong>Layout/Reflow</strong>) → menggambar piksel
+        (<strong>Paint</strong>) → menggabungkan layer
+        (<strong>Composite</strong>).
+      </p>
+      <p>
+        Penting: mengubah properti seperti <code>transform</code> hanya memicu
+        Composite (sangat cepat). Mengubah <code>width</code> memicu Layout
+        ulang (mahal). Inilah mengapa animasi dengan <code>transform</code> jauh
+        lebih smooth dari animasi dengan <code>left</code>/<code>top</code>.
+      </p>
+    </section>
+
+    <section class="kartu">
+      <h2>Anatomi CSS Rule</h2>
+      <pre>
+selector {        /* siapa yang dikenai aturan */
+  property: value; /* declaration: satu pasang instruksi */
+  property: value;
+}
+
+/* Contoh nyata */
+.kartu-produk {
+  background-color: white;   /* property: value */
+  border-radius: 8px;
+  padding: 16px;
+}</pre
+      >
+      <div class="tip">
+        💡 CSS bersifat <strong>deklaratif</strong> — kamu menyatakan keadaan
+        yang diinginkan, browser yang memutuskan cara mencapainya. Berbeda dari
+        JavaScript yang imperatif (kamu tunjukkan langkah-langkahnya).
+      </div>
+    </section>
+
+    <section class="kartu">
+      <h2>Tiga Cara Menulis CSS</h2>
+      <pre>
+/* 1. INLINE — langsung di elemen, specificity tertinggi */
+/* Hanya untuk nilai runtime dinamis (misal: width progress bar dari JS) */
+&lt;div style="width: 73%"&gt;&lt;/div&gt;
+
+/* 2. INTERNAL — di &lt;style&gt; dalam &lt;head&gt; */
+/* Untuk halaman standalone atau critical CSS */
+&lt;style&gt; .kartu { background: white; } &lt;/style&gt;
+
+/* 3. EXTERNAL — file .css terpisah, standar industri */
+/* Browser cache file ini — halaman kedua dst lebih cepat */
+&lt;link rel="stylesheet" href="styles/main.css"&gt;</pre
+      >
+    </section>
+  </body>
+</html>

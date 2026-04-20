@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>15 · Flexbox & Grid</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.7;
+      }
+      .kartu {
+        max-width: 760px;
+        margin: 0 auto 1.5rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      h1 {
+        text-align: center;
+        color: #1b5e20;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        margin-bottom: 2rem;
+      }
+      h2 {
+        color: #1b5e20;
+        font-size: 1rem;
+        font-family: monospace;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      h3 {
+        color: #1565c0;
+        font-size: 0.95rem;
+        margin: 1rem 0 0.5rem;
+      }
+      p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
+      pre {
+        background: #263238;
+        color: #cfd8dc;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+      .tip {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      code {
+        font-family: monospace;
+        background: #f5f5f5;
+        color: #c62828;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.87rem;
+      }
+
+      /* FLEXBOX DEMO */
+      .flex-demo {
+        background: #e8f5e9;
+        border-radius: 8px;
+        padding: 0.75rem;
+        margin: 0.75rem 0;
+      }
+      .flex-demo .box {
+        background: #2e7d32;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+      .flex-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+        gap: 8px;
+      }
+      .flex-space {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .flex-grow .box-grow {
+        flex: 1;
+      }
+
+      /* GRID DEMO */
+      .grid-demo {
+        background: #e3f2fd;
+        border-radius: 8px;
+        padding: 0.75rem;
+        margin: 0.75rem 0;
+      }
+      .grid-demo .box {
+        background: #1565c0;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+      .grid-3col {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      .grid-auto {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 8px;
+      }
+      .grid-span .box-span {
+        grid-column: span 2;
+        background: #0d47a1;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 0.75rem 0;
+      }
+      .product-card {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .product-card h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+      }
+      .product-card .price {
+        color: #2e7d32;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>15 · Flexbox & Grid</h1>
+
+    <section class="kartu">
+      <h2>Flexbox vs Grid: Kapan Pakai Mana?</h2>
+      <p>
+        Flexbox dirancang untuk layout <strong>satu dimensi</strong> — baris
+        ATAU kolom. Grid dirancang untuk layout <strong>dua dimensi</strong> —
+        baris DAN kolom sekaligus. Aturan praktis: gunakan Flexbox untuk
+        komponen kecil (navigasi, tombol group, satu baris kartu), gunakan Grid
+        untuk layout halaman atau area yang butuh kontrol atas baris DAN kolom.
+      </p>
+      <p>
+        Kenyataannya keduanya sering dipakai bersama: Grid untuk struktur besar
+        halaman, Flexbox untuk susunan elemen di dalam setiap cell Grid.
+      </p>
+    </section>
+
+    <section class="kartu">
+      <h2>Flexbox — 1D Layout</h2>
+      <h3>Properti Container (Parent)</h3>
+      <pre>
+/* Aktifkan flex container */
+.container {
+  display: flex;
+
+  /* Arah — default: row (kiri ke kanan) */
+  flex-direction: row;         /* → → → */
+  flex-direction: column;      /* ↓ ↓ ↓ */
+  flex-direction: row-reverse; /* ← ← ← */
+
+  /* Sumbu utama (main axis) — justify-content */
+  justify-content: flex-start;    /* kiri (default) */
+  justify-content: flex-end;      /* kanan */
+  justify-content: center;        /* tengah */
+  justify-content: space-between; /* tersebar, ujung-ujung menempel */
+  justify-content: space-around;  /* tersebar, ada ruang di ujung */
+  justify-content: space-evenly;  /* semua jarak sama */
+
+  /* Sumbu silang (cross axis) — align-items */
+  align-items: stretch;    /* memenuhi tinggi container (default) */
+  align-items: flex-start; /* atas */
+  align-items: center;     /* tengah secara vertikal */
+  align-items: flex-end;   /* bawah */
+
+  /* Wrap: izinkan item pindah ke baris baru jika tidak cukup */
+  flex-wrap: nowrap;  /* default: semua satu baris */
+  flex-wrap: wrap;    /* item bisa pindah ke baris berikutnya */
+
+  gap: 16px;          /* jarak antar item */
+  gap: 16px 8px;      /* row-gap column-gap */
+}</pre
+      >
+
+      <h3>Properti Item (Child)</h3>
+      <pre>
+.item {
+  /* flex: grow shrink basis — shorthand */
+  flex: 1;         /* bisa mengembang dan menyusut secara merata */
+  flex: 0 0 200px; /* lebar tetap 200px, tidak tumbuh, tidak menyusut */
+  flex: 1 0 auto;  /* tumbuh sebanyak perlu, tidak menyusut, basis auto */
+
+  /* Kontrol individual */
+  flex-grow: 1;    /* seberapa banyak ia tumbuh relatif terhadap sibling */
+  flex-shrink: 0;  /* 0 = tidak menyusut saat container mengecil */
+  flex-basis: 200px; /* ukuran awal sebelum grow/shrink diterapkan */
+
+  align-self: center; /* override align-items hanya untuk item ini */
+  order: -1;          /* ubah urutan visual tanpa mengubah HTML */
+}</pre
+      >
+
+      <div class="flex-demo">
+        <p style="font-size: 0.75rem; margin-bottom: 0.5rem; color: #1b5e20">
+          justify-content: space-between
+        </p>
+        <div class="flex-space">
+          <div class="box">Item 1</div>
+          <div class="box">Item 2</div>
+          <div class="box">Item 3</div>
+        </div>
+      </div>
+
+      <div class="flex-demo">
+        <p style="font-size: 0.75rem; margin-bottom: 0.5rem; color: #1b5e20">
+          justify-content: center + align-items: center
+        </p>
+        <div class="flex-center">
+          <div class="box">A</div>
+          <div class="box">B</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kartu">
+      <h2>CSS Grid — 2D Layout</h2>
+      <h3>Properti Container</h3>
+      <pre>
+.container {
+  display: grid;
+
+  /* Definisi kolom */
+  grid-template-columns: 200px 1fr 1fr;     /* kolom 1: 200px, kolom 2-3: sama */
+  grid-template-columns: repeat(3, 1fr);    /* 3 kolom sama lebar */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* responsif otomatis */
+
+  /* Definisi baris */
+  grid-template-rows: auto 1fr auto;        /* header, konten fleksibel, footer */
+
+  /* Gap */
+  gap: 16px;
+  column-gap: 24px;
+  row-gap: 16px;
+
+  /* Named areas — layout halaman yang sangat readable */
+  grid-template-areas:
+    "header header header"
+    "sidebar main main"
+    "footer footer footer";
+}</pre
+      >
+
+      <h3>Properti Item</h3>
+      <pre>
+.item {
+  /* Span — item mencakup beberapa kolom atau baris */
+  grid-column: span 2;           /* mencakup 2 kolom */
+  grid-column: 1 / 3;            /* dari kolom 1 ke kolom 3 (exclusive) */
+  grid-row: span 2;              /* mencakup 2 baris */
+
+  /* Ditempatkan di named area */
+  grid-area: header;
+  grid-area: sidebar;
+}</pre
+      >
+
+      <div class="grid-demo">
+        <p style="font-size: 0.75rem; margin-bottom: 0.5rem; color: #1565c0">
+          repeat(3, 1fr) dengan span
+        </p>
+        <div class="grid-3col grid-span">
+          <div class="box box-span">Span 2 kolom</div>
+          <div class="box">Normal</div>
+          <div class="box">Normal</div>
+          <div class="box">Normal</div>
+        </div>
+      </div>
+
+      <div class="grid-demo" style="margin-top: 0.75rem">
+        <p style="font-size: 0.75rem; margin-bottom: 0.5rem; color: #1565c0">
+          auto-fill minmax — responsif otomatis
+        </p>
+        <div class="grid-auto">
+          <div class="box">A</div>
+          <div class="box">B</div>
+          <div class="box">C</div>
+          <div class="box">D</div>
+          <div class="box">E</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kartu">
+      <h2>Studi Kasus: Grid Produk Toko Sembako</h2>
+      <p>
+        Ini adalah pola yang akan kamu gunakan ribuan kali untuk aplikasi retail
+        — grid kartu produk yang responsif tanpa media query:
+      </p>
+      <div class="product-grid">
+        <article class="product-card">
+          <h4>Beras Premium 5kg</h4>
+          <p class="price">Rp 78.000</p>
+        </article>
+        <article class="product-card">
+          <h4>Gula Pasir 1kg</h4>
+          <p class="price">Rp 14.000</p>
+        </article>
+        <article class="product-card">
+          <h4>Minyak Goreng 2L</h4>
+          <p class="price">Rp 32.500</p>
+        </article>
+        <article class="product-card">
+          <h4>Tepung Terigu 1kg</h4>
+          <p class="price">Rp 12.000</p>
+        </article>
+      </div>
+      <pre>
+/* Grid produk yang responsif tanpa satu media query pun */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+/* auto-fill: buat sebanyak mungkin kolom yang muat
+   minmax(200px, 1fr): setiap kolom minimal 200px, maksimal 1fr
+   Hasilnya: di desktop muncul 4 kolom, di tablet 2, di mobile 1 */</pre
+      >
+      <div class="tip">
+        💡 Pola <code>repeat(auto-fill, minmax(min, 1fr))</code> adalah salah
+        satu trik CSS paling powerful — grid responsif sempurna tanpa media
+        query. Shopee, Tokopedia, dan hampir semua e-commerce menggunakan
+        variasi pola ini untuk grid produk mereka.
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>09 · Display</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.7;
+      }
+      .kartu {
+        max-width: 760px;
+        margin: 0 auto 1.5rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      h1 {
+        text-align: center;
+        color: #1b5e20;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        margin-bottom: 2rem;
+      }
+      h2 {
+        color: #1b5e20;
+        font-size: 1rem;
+        font-family: monospace;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
+      pre {
+        background: #263238;
+        color: #cfd8dc;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+      .tip {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      .warn {
+        background: #fff9c4;
+        border-left: 4px solid #f9a825;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      code {
+        font-family: monospace;
+        background: #f5f5f5;
+        color: #c62828;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.87rem;
+      }
+
+      /* DEMO VISUAL */
+      .demo-area {
+        background: #f9f9f9;
+        border: 1px dashed #ccc;
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 0.75rem 0;
+      }
+      .demo-block > div {
+        background: #a5d6a7;
+        border: 1px solid #2e7d32;
+        padding: 6px 10px;
+        margin-bottom: 4px;
+        font-size: 0.8rem;
+      }
+      .demo-inline > span {
+        background: #bbdefb;
+        border: 1px solid #1565c0;
+        padding: 4px 8px;
+        font-size: 0.8rem;
+      }
+      .demo-inline-block > span {
+        display: inline-block;
+        background: #fff9c4;
+        border: 1px solid #f9a825;
+        padding: 8px 12px;
+        width: 120px;
+        text-align: center;
+        font-size: 0.8rem;
+        vertical-align: top;
+      }
+      .demo-none .hilang {
+        display: none;
+      }
+      .demo-visibility .tak-terlihat {
+        visibility: hidden;
+      }
+      .demo-none > div,
+      .demo-visibility > div {
+        background: #f3e5f5;
+        border: 1px solid #9c27b0;
+        padding: 6px 10px;
+        margin-bottom: 4px;
+        font-size: 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>09 · Display Property</h1>
+
+    <section class="kartu">
+      <h2>Konsep: Setiap Elemen adalah Kotak</h2>
+      <p>
+        Properti <code>display</code> menentukan
+        <strong
+          >bagaimana sebuah elemen berpartisipasi dalam flow layout</strong
+        >
+        — apakah ia mengambil seluruh baris, mengalir dalam teks, atau
+        sepenuhnya dikeluarkan dari layout. Ini adalah salah satu properti
+        paling fundamental yang mempengaruhi segalanya.
+      </p>
+    </section>
+
+    <section class="kartu">
+      <h2>display: block</h2>
+      <p>
+        Elemen block mengambil seluruh lebar yang tersedia dan selalu mulai di
+        baris baru. Contoh bawaan: <code>div</code>, <code>p</code>,
+        <code>h1</code>–<code>h6</code>, <code>section</code>,
+        <code>article</code>. Kamu bisa mengatur <code>width</code>,
+        <code>height</code>, dan semua properti box model.
+      </p>
+      <div class="demo-area demo-block">
+        <div>Block elemen 1 — mengambil lebar penuh</div>
+        <div>Block elemen 2 — baris baru otomatis</div>
+      </div>
+      <pre>
+/* Semua ini adalah block secara default */
+div, p, h1, h2, section, article, ul, ol, li, form { display: block; }
+
+/* Ubah inline menjadi block */
+span { display: block; }</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>display: inline</h2>
+      <p>
+        Elemen inline mengalir dalam teks seperti kata-kata — tidak memulai
+        baris baru, hanya mengambil ruang sebesar kontennya.
+        <strong>width dan height tidak berpengaruh</strong>. Margin/padding
+        kiri-kanan bekerja, tapi atas-bawah tidak mempengaruhi layout
+        sekitarnya. Contoh bawaan: <code>span</code>, <code>a</code>,
+        <code>strong</code>, <code>em</code>, <code>code</code>.
+      </p>
+      <div class="demo-area demo-inline">
+        <span>Inline 1</span>
+        <span>Inline 2</span>
+        <span>Inline 3 — mengalir dalam satu baris</span>
+      </div>
+      <pre>
+/* Inline tidak bisa diatur width/height */
+span { width: 200px; } /* ← tidak ada efeknya */
+
+/* Ubah block menjadi inline */
+div { display: inline; }</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>display: inline-block</h2>
+      <p>
+        Gabungan terbaik dari keduanya: mengalir dalam teks seperti inline, tapi
+        <strong>bisa diatur width, height, dan semua box model</strong> seperti
+        block. Sangat berguna untuk badge, tombol, tag label — elemen yang perlu
+        dimensi tapi juga harus mengalir dalam teks.
+      </p>
+      <div class="demo-area demo-inline-block">
+        <span>Badge HTML</span>
+        <span>Badge CSS</span>
+        <span>Badge JS</span>
+      </div>
+      <pre>
+.badge {
+  display: inline-block;
+  width: 80px;         /* bisa karena inline-block */
+  padding: 4px 12px;
+  background: #e8f5e9;
+  border-radius: 20px;
+  text-align: center;
+}</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>display: none vs visibility: hidden</h2>
+      <p>
+        Ini adalah perbedaan yang sering membingungkan.
+        <code>display: none</code> menghilangkan elemen dari layout sepenuhnya —
+        elemen tidak ada, ruangnya diambil elemen lain.
+        <code>visibility: hidden</code> menyembunyikan elemen secara visual tapi
+        <strong>ruangnya tetap ada</strong> — layout tidak bergeser.
+      </p>
+      <div class="demo-area demo-none">
+        <div>Kotak 1 (terlihat)</div>
+        <div class="hilang">
+          Kotak 2 (display: none — tidak ada sama sekali)
+        </div>
+        <div>Kotak 3 — naik mengisi ruang kotak 2</div>
+      </div>
+      <div class="demo-area demo-visibility">
+        <div>Kotak 1 (terlihat)</div>
+        <div class="tak-terlihat">
+          Kotak 2 (visibility: hidden — invisible tapi ruangnya ada)
+        </div>
+        <div>Kotak 3 — tetap di posisi semula</div>
+      </div>
+      <pre>
+/* display: none — hapus dari layout */
+.modal { display: none; }
+.modal.aktif { display: block; }
+
+/* visibility: hidden — sembunyikan tapi pertahankan ruang */
+.placeholder { visibility: hidden; }
+
+/* opacity: 0 — invisible tapi masih bisa diklik! */
+.ghost { opacity: 0; }</pre
+      >
+      <div class="warn">
+        ⚠️ <code>display: none</code> juga menyembunyikan elemen dari screen
+        reader (tidak aksesibel). Untuk aksesibilitas, gunakan teknik
+        visually-hidden:
+        <code
+          >position: absolute; clip: rect(0 0 0 0); width: 1px; height: 1px;
+          overflow: hidden;</code
+        >
+      </div>
+    </section>
+  </body>
+</html>

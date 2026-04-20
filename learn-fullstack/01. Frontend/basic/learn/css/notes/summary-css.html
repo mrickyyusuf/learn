@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Complete Reference — Muhammad Ricky Yusuf</title>
+    <link rel="stylesheet" href="summary-css.css" />
+  </head>
+  <body>
+    <header class="cover">
+      <h1>CSS Complete Reference</h1>
+      <p>Cheatsheet · Glosarium · Flash Cards · Tips & Trik</p>
+      <p>Seluruh materi CSS dari Introduction hingga Methodologies</p>
+      <span class="badge">Muhammad Ricky Yusuf · 2026</span>
+    </header>
+
+    <nav class="toc" aria-label="Daftar Isi">
+      <h2>Daftar Isi</h2>
+      <ol>
+        <li><a href="#roadmap">Roadmap CSS yang Diselesaikan</a></li>
+        <li><a href="#cheatsheet">Cheatsheet — Quick Reference</a></li>
+        <li><a href="#cascade">Cascade, Specificity & Inheritance</a></li>
+        <li><a href="#layout">Layout Systems</a></li>
+        <li><a href="#animasi">Animasi & Transforms</a></li>
+        <li><a href="#responsif">Responsiveness</a></li>
+        <li><a href="#variabel">Variables & Functions</a></li>
+        <li><a href="#studi-kasus">Studi Kasus: Toko Sembako</a></li>
+        <li><a href="#glosarium">Glosarium</a></li>
+        <li><a href="#flashcards">Flash Cards</a></li>
+        <li><a href="#tips">Tips & Anti-Pattern</a></li>
+        <li><a href="#metodologi">Metodologi</a></li>
+      </ol>
+    </nav>
+
+    <div class="wrapper">
+      <!-- ROADMAP -->
+      <section id="roadmap">
+        <div class="section-header">1 · Roadmap CSS yang Diselesaikan</div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Topik</th>
+                <th>Konsep Kunci</th>
+                <th>File</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01</td>
+                <td>Introduction</td>
+                <td>Apa itu CSS, rendering pipeline, tiga cara menulis CSS</td>
+                <td>01-notes.html</td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>Frontend Dev</td>
+                <td>
+                  HTML=struktur, CSS=tampilan, JS=perilaku, state-driven CSS
+                </td>
+                <td>02-notes.html</td>
+              </tr>
+              <tr>
+                <td>03</td>
+                <td>CSS Basics</td>
+                <td>Selectors, cascade, specificity, inheritance</td>
+                <td>03-notes.html</td>
+              </tr>
+              <tr>
+                <td>04–08</td>
+                <td>Syntax Basics</td>
+                <td>Colors, text, box model, background, units</td>
+                <td>04–08-notes.html</td>
+              </tr>
+              <tr>
+                <td>09</td>
+                <td>Display</td>
+                <td>block, inline, inline-block, none, visibility</td>
+                <td>09-notes.html</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Position</td>
+                <td>static, relative, absolute, fixed, sticky</td>
+                <td>10-notes.html</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>Z-Index, Tables, Lists, Images</td>
+                <td>Stacking context, object-fit, filter</td>
+                <td>11-notes.html</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>Pseudo Classes</td>
+                <td>:hover, :focus, :nth-child, :not, :has, form states</td>
+                <td>12-notes.html</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>Pseudo Elements</td>
+                <td>::before, ::after, ::placeholder, ::selection</td>
+                <td>13-notes.html</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>Flow Layout</td>
+                <td>Normal flow, margin collapse, float, multi-column</td>
+                <td>14-notes.html</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td>Flexbox & Grid</td>
+                <td>1D vs 2D, justify/align, template-areas, auto-fill</td>
+                <td>15-notes.html</td>
+              </tr>
+              <tr>
+                <td>16</td>
+                <td>Animations</td>
+                <td>Transitions, transforms, keyframes, GPU performance</td>
+                <td>16-notes.html</td>
+              </tr>
+              <tr>
+                <td>17</td>
+                <td>Responsiveness</td>
+                <td>Mobile-first, media queries, container queries, clamp()</td>
+                <td>17-notes.html</td>
+              </tr>
+              <tr>
+                <td>18</td>
+                <td>CSS Variables</td>
+                <td>Design tokens, scope lokal, dark mode, JS manipulation</td>
+                <td>18-notes.html</td>
+              </tr>
+              <tr>
+                <td>19</td>
+                <td>CSS Functions</td>
+                <td>calc, min, max, clamp, gradient, filter, color-mix</td>
+                <td>19-notes.html</td>
+              </tr>
+              <tr>
+                <td>20</td>
+                <td>Best Practices</td>
+                <td>Performance, accessibility, CSS organization</td>
+                <td>20-notes.html</td>
+              </tr>
+              <tr>
+                <td>21</td>
+                <td>Methodologies</td>
+                <td>BEM, Sass, PostCSS, CSS Modules, CSS-in-JS</td>
+                <td>21-notes.html</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- CHEATSHEET -->
+      <section id="cheatsheet">
+        <div class="section-header">2 · Cheatsheet — Quick Reference</div>
+        <div class="section-body">
+          <h3>Selectors Cheatsheet</h3>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">Simple Selectors</div>
+              <div class="card-body">
+                <ul>
+                  <li><code>*</code> — universal (semua elemen)</li>
+                  <li><code>p</code> — element/tag selector</li>
+                  <li><code>.nama</code> — class selector</li>
+                  <li><code>#id</code> — ID (hindari di CSS!)</li>
+                  <li><code>h1, h2, h3</code> — grouping</li>
+                  <li><code>[attr="val"]</code> — attribute</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Combinators</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>A B</code> — descendant (B di mana saja di dalam A)
+                  </li>
+                  <li><code>A > B</code> — child langsung A</li>
+                  <li><code>A + B</code> — sibling langsung setelah A</li>
+                  <li><code>A ~ B</code> — semua sibling setelah A</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Pseudo Classes</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>:hover</code> <code>:focus</code> <code>:active</code>
+                  </li>
+                  <li><code>:focus-visible</code> — keyboard only</li>
+                  <li><code>:first-child</code> <code>:last-child</code></li>
+                  <li>
+                    <code>:nth-child(n)</code> <code>:nth-child(2n)</code>
+                  </li>
+                  <li><code>:not(.cls)</code> — negasi</li>
+                  <li><code>:has(child)</code> — parent selector</li>
+                  <li>
+                    <code>:valid</code> <code>:invalid</code>
+                    <code>:checked</code>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Pseudo Elements</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>::before</code> — konten sebelum (wajib content:)
+                  </li>
+                  <li><code>::after</code> — konten setelah</li>
+                  <li><code>::first-line</code> — baris pertama</li>
+                  <li><code>::first-letter</code> — huruf pertama</li>
+                  <li><code>::placeholder</code> — placeholder input</li>
+                  <li><code>::selection</code> — teks yang diseleksi</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h3>Box Model</h3>
+          <div class="case-study">
+            <div class="demo-card">
+              <div class="demo-card__header">
+                box-sizing: border-box (SELALU gunakan ini)
+              </div>
+              <div class="demo-card__grid">
+                <div class="product">
+                  <span>content</span> lebar konten asli
+                </div>
+                <div class="product">
+                  <span>padding</span> jarak konten ke border, termasuk dalam
+                  width
+                </div>
+                <div class="product">
+                  <span>border</span> garis tepi, termasuk dalam width
+                </div>
+                <div class="product">
+                  <span>margin</span> jarak ke elemen lain, di luar width
+                </div>
+              </div>
+              <div class="demo-card__footer">
+                ⚠️ outline tidak termasuk dalam box model — tidak mempengaruhi
+                layout
+              </div>
+            </div>
+          </div>
+
+          <h3>Flexbox Quick Reference</h3>
+          <pre
+            style="
+              background: #263238;
+              color: #cfd8dc;
+              padding: 1rem 1.25rem;
+              border-radius: 8px;
+              font-size: 0.82rem;
+              overflow-x: auto;
+              margin: 0.75rem 0;
+              line-height: 1.6;
+            "
+          >
+/* CONTAINER */
+display: flex;
+flex-direction: row | column | row-reverse | column-reverse;
+justify-content: flex-start | center | flex-end | space-between | space-around | space-evenly;
+align-items: stretch | flex-start | center | flex-end | baseline;
+flex-wrap: nowrap | wrap;
+gap: 16px;
+
+/* ITEM */
+flex: 1;               /* grow shrink basis shorthand */
+flex: 0 0 200px;       /* lebar tetap */
+align-self: center;    /* override align-items per item */
+order: -1;             /* ubah urutan visual */</pre
+          >
+
+          <h3>Grid Quick Reference</h3>
+          <pre
+            style="
+              background: #263238;
+              color: #cfd8dc;
+              padding: 1rem 1.25rem;
+              border-radius: 8px;
+              font-size: 0.82rem;
+              overflow-x: auto;
+              margin: 0.75rem 0;
+              line-height: 1.6;
+            "
+          >
+/* CONTAINER */
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* responsif */
+gap: 16px;
+grid-template-areas:
+  "header header"
+  "sidebar main";
+
+/* ITEM */
+grid-column: span 2;   /* mencakup 2 kolom */
+grid-row: span 2;      /* mencakup 2 baris */
+grid-area: header;     /* named area */</pre
+          >
+
+          <h3>Animation Quick Reference</h3>
+          <pre
+            style="
+              background: #263238;
+              color: #cfd8dc;
+              padding: 1rem 1.25rem;
+              border-radius: 8px;
+              font-size: 0.82rem;
+              overflow-x: auto;
+              margin: 0.75rem 0;
+              line-height: 1.6;
+            "
+          >
+/* TRANSITION */
+transition: transform 0.2s ease, opacity 0.2s ease;
+/* ✅ Gunakan HANYA transform dan opacity untuk animasi GPU */
+
+/* TRANSFORM */
+transform: translateY(-4px) scale(1.05);
+transform: translate(-50%, -50%); /* centering trick */
+
+/* KEYFRAME */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.elemen { animation: fadeIn 0.5s ease forwards; }</pre
+          >
+        </div>
+      </section>
+
+      <!-- CASCADE & SPECIFICITY -->
+      <section id="cascade">
+        <div class="section-header">3 · Cascade, Specificity & Inheritance</div>
+        <div class="section-body">
+          <h3>Urutan Prioritas Cascade</h3>
+          <p>
+            Dari terendah ke tertinggi: browser default → user stylesheet →
+            author external → author internal → author inline →
+            <code>!important</code>.
+          </p>
+          <h3>Specificity Scoring</h3>
+          <pre
+            style="
+              background: #263238;
+              color: #cfd8dc;
+              padding: 1rem 1.25rem;
+              border-radius: 8px;
+              font-size: 0.82rem;
+              overflow-x: auto;
+              margin: 0.75rem 0;
+              line-height: 1.6;
+            "
+          >
+/* Format: (ID, Class/Attr/Pseudo, Tag) — kolom kiri SELALU mengalahkan kolom kanan */
+p                    /* (0,0,1) */
+.harga               /* (0,1,0) */
+p.harga              /* (0,1,1) */
+.kartu .harga        /* (0,2,0) */
+#kasir .harga        /* (1,1,0) — satu ID mengalahkan berapapun class */</pre
+          >
+          <h3>Properti yang Diwariskan vs Tidak</h3>
+          <p>
+            Properti teks (<code>color</code>, <code>font-family</code>,
+            <code>line-height</code>) diwariskan otomatis. Properti kotak
+            (<code>margin</code>, <code>padding</code>, <code>border</code>,
+            <code>background</code>) tidak diwariskan.
+          </p>
+        </div>
+      </section>
+
+      <!-- LAYOUT -->
+      <section id="layout">
+        <div class="section-header">4 · Layout Systems</div>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">Pilih Layout yang Tepat</div>
+              <div class="card-body">
+                <ul>
+                  <li>Teks mengalir → <code>flow layout</code></li>
+                  <li>Satu baris/kolom → <code>Flexbox</code></li>
+                  <li>Baris DAN kolom → <code>Grid</code></li>
+                  <li>Badge, tooltip → <code>position: absolute</code></li>
+                  <li>Navbar sticky → <code>position: fixed/sticky</code></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Position Values</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>static</code> — default, tidak ada efek top/left
+                  </li>
+                  <li><code>relative</code> — offset dari posisi normal</li>
+                  <li>
+                    <code>absolute</code> — relatif ke nearest positioned
+                    ancestor
+                  </li>
+                  <li><code>fixed</code> — relatif ke viewport</li>
+                  <li>
+                    <code>sticky</code> — normal flow + menempel saat scroll
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STUDI KASUS -->
+      <section id="studi-kasus">
+        <div class="section-header">5 · Studi Kasus: Toko Sembako</div>
+        <div class="section-body">
+          <h3>Design Tokens (CSS Variables)</h3>
+          <pre
+            style="
+              background: #263238;
+              color: #cfd8dc;
+              padding: 1rem 1.25rem;
+              border-radius: 8px;
+              font-size: 0.82rem;
+              overflow-x: auto;
+              margin: 0.75rem 0;
+              line-height: 1.6;
+            "
+          >
+:root {
+  --warna-brand: #2e7d32;         /* hijau toko */
+  --warna-brand-gelap: #1b5e20;
+  --warna-brand-muda: #e8f5e9;
+  --warna-bahaya: #c62828;        /* stok kritis */
+  --warna-bg: #f4f7fc;
+  --warna-bg-kartu: #ffffff;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --radius-md: 8px;
+  --transisi: 0.2s ease;
+}</pre
+          >
+
+          <h3>Kartu Produk — BEM + CSS Variables</h3>
+          <pre
+            style="
+              background: #263238;
+              color: #cfd8dc;
+              padding: 1rem 1.25rem;
+              border-radius: 8px;
+              font-size: 0.82rem;
+              overflow-x: auto;
+              margin: 0.75rem 0;
+              line-height: 1.6;
+            "
+          >
+/* Block */
+.kartu-produk {
+  position: relative;                        /* container untuk badge ::after */
+  background: var(--warna-bg-kartu);
+  border: 1px solid #e0e0e0;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  transition: transform var(--transisi), box-shadow var(--transisi);
+}
+
+.kartu-produk:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Elements */
+.kartu-produk__judul { font-size: 1rem; font-weight: bold; margin-bottom: .25rem; }
+.kartu-produk__harga { color: var(--warna-brand); font-size: 1.2rem; font-weight: bold; }
+.kartu-produk__tombol { background: var(--warna-brand); color: white; border: none; padding: .5rem 1rem; border-radius: 6px; cursor: pointer; }
+
+/* Modifiers */
+.kartu-produk--stok-kritis { border-left: 4px solid var(--warna-bahaya); }
+.kartu-produk--stok-kritis::after { content: "⚠ Stok Kritis"; position: absolute; top: 8px; right: 8px; background: var(--warna-bahaya); color: white; font-size: .7rem; padding: 2px 8px; border-radius: 4px; }
+
+/* Grid responsif tanpa media query */
+.grid-produk { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }</pre
+          >
+        </div>
+      </section>
+
+      <!-- GLOSARIUM -->
+      <section id="glosarium">
+        <div class="section-header">6 · Glosarium</div>
+        <div class="section-body">
+          <div class="glos-item">
+            <div class="glos-term">
+              Cascade <span class="glos-tag">konsep</span>
+            </div>
+            <div class="glos-def">
+              Sistem prioritas CSS yang menentukan aturan mana yang berlaku saat
+              terjadi konflik. Urutan: browser default → user → author external
+              → internal → inline → !important.
+            </div>
+          </div>
+
+          <div class="glos-item">
+            <div class="glos-term">
+              Specificity <span class="glos-tag">konsep</span>
+            </div>
+            <div class="glos-def">
+              Sistem skor CSS (ID, Class, Tag) yang menentukan pemenang ketika
+              dua aturan berkonflik dalam level cascade yang sama. Satu ID
+              selalu mengalahkan berapapun class.
+            </div>
+          </div>
+
+          <div class="glos-item">
+            <div class="glos-term">
+              Box Model <span class="glos-tag">layout</span>
+            </div>
+            <div class="glos-def">
+              Model yang merepresentasikan setiap elemen HTML sebagai kotak
+              berlapis: content → padding → border → margin. Dengan box-sizing:
+              border-box, width mencakup padding dan border.
+            </div>
+          </div>
+
+          <div class="glos-item">
+            <div class="glos-term">
+              Flexbox <span class="glos-tag">layout</span>
+            </div>
+            <div class="glos-def">
+              Layout system satu dimensi (baris atau kolom) yang memudahkan
+              alignment dan distribusi ruang antar item. Diaktifkan dengan
+              display: flex pada container.
+            </div>
+          </div>
+
+          <div class="glos-item">
+            <div class="glos-term">
+              CSS Grid <span class="glos-tag">layout</span>
+            </div>
+            <div class="glos-def">
+              Layout system dua dimensi (baris dan kolom secara bersamaan).
+              Ideal untuk layout halaman dan grid produk. Pola auto-fill minmax
+              membuat grid responsif tanpa media query.
+            </div>
+          </div>
+
+          <div class="glos-item">
+            <div class="glos-term">
+              Stacking Context <span class="glos-tag">layout</span>
+            </div>
+            <div class="glos-def">
+              Konteks tiga dimensi dalam halaman yang dibuat oleh elemen dengan
+              z-index dan position, opacity < 1, atau transform. Z-index hanya
+              bermakna di dalam stacking context yang sama.
+            </div>
+          </div>
+
+          <div class="glos-item">
+            <div class="glos-term">
+              Custom Properties / CSS Variables
+              <span class="glos-tag">variabel</span>
+            </div>
+            <div class="glos-def">
+              Variabel CSS yang didefinisikan dengan -- prefix, diakses dengan
+              var(). Fondasi design system dan theming. Bisa dimanipulasi
+              JavaScript dan mendukung dark mode.
+            </div>
+          </div>
+
+          <div class="glos-item">
+            <div class="glos-term">
+              BEM <span class="glos-tag">metodologi</span>
+            </div>
+            <div class="glos-def">
+              Block Element Modifier — konvensi penamaan class CSS.
+              .block__element--modifier. Menjaga specificity (0,1,0) secara
+              konsisten dan mencegah konflik nama.
+            </div>
+          </div>
+
+          <div class="glos-item">
+            <div class="glos-term">
+              Critical CSS <span class="glos-tag">performa</span>
+            </div>
+            <div class="glos-def">
+              Subset CSS minimal yang diperlukan untuk merender konten
+              above-the-fold. Di-inline di head untuk mempercepat First
+              Contentful Paint.
+            </div>
+          </div>
+
+          <div class="glos-item">
+            <div class="glos-term">
+              Repaint vs Reflow <span class="glos-tag">performa</span>
+            </div>
+            <div class="glos-def">
+              Reflow (Layout) terjadi ketika dimensi/posisi berubah — mahal.
+              Repaint terjadi ketika warna/visual berubah — lebih murah.
+              Transform dan opacity hanya memicu Composite — paling murah.
+            </div>
+          </div>
+
+          <div class="glos-item">
+            <div class="glos-term">
+              Media Query <span class="glos-tag">responsif</span>
+            </div>
+            <div class="glos-def">
+              Kondisi CSS yang berlaku berdasarkan karakteristik viewport
+              (lebar, orientasi, preferensi pengguna). Mobile-first menggunakan
+              min-width.
+            </div>
+          </div>
+
+          <div class="glos-item">
+            <div class="glos-term">
+              Container Query <span class="glos-tag">responsif</span>
+            </div>
+            <div class="glos-def">
+              Seperti media query tapi berdasarkan ukuran container elemen,
+              bukan viewport. Membuat komponen benar-benar reusable di berbagai
+              konteks layout.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FLASH CARDS -->
+      <section id="flashcards">
+        <div class="section-header">7 · Flash Cards</div>
+        <div class="section-body">
+          <div class="flashcard-grid">
+            <div class="flashcard">
+              <div class="front">
+                Apa perbedaan display: none vs visibility: hidden?
+              </div>
+              <div class="back">
+                display:none menghapus elemen dari layout (ruang tidak ada).
+                visibility:hidden menyembunyikan visual tapi ruang tetap ada.
+                Keduanya tidak terlihat pengguna, tapi display:none juga
+                disembunyikan dari screen reader.
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">Kapan pakai position: absolute vs fixed?</div>
+              <div class="back">
+                absolute: relatif ke nearest positioned ancestor — untuk badge,
+                tooltip, dropdown. fixed: relatif ke viewport — untuk navbar,
+                chat button. Keduanya keluar dari normal flow.
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">
+                Apa syarat pseudo-element ::before bekerja?
+              </div>
+              <div class="back">
+                Wajib ada properti content: (boleh kosong ""). Tanpa content,
+                elemen virtual tidak muncul di halaman.
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">
+                Kenapa transform lebih smooth dari menganimasikan width?
+              </div>
+              <div class="back">
+                transform hanya memicu Composite layer yang dieksekusi GPU.
+                Menganimasikan width memicu Layout ulang di setiap frame — CPU
+                yang mengerjakan, lebih lambat, menyebabkan jank pada 60fps.
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">Apa itu mobile-first approach?</div>
+              <div class="back">
+                Tulis style default untuk mobile, tambahkan media query
+                min-width untuk layar lebih besar. Direkomendasikan karena
+                mayoritas traffic e-commerce dari mobile, dan memaksa prioritas
+                konten.
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">
+                Bagaimana grid responsif tanpa media query?
+              </div>
+              <div class="back">
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)).
+                auto-fill buat kolom sebanyak muat. minmax(200px,1fr) tiap kolom
+                min 200px max 1fr. Hasilnya otomatis responsif.
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">
+                Apa perbedaan CSS Variable dan Sass Variable?
+              </div>
+              <div class="back">
+                CSS Variable (--nama) hidup di browser, bisa diubah runtime via
+                JS, mendukung dark mode. Sass Variable ($nama) dikompilasi
+                menjadi nilai statis sebelum ke browser — tidak bisa diubah
+                runtime.
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">Apa itu BEM dan mengapa digunakan?</div>
+              <div class="back">
+                Block__Element--Modifier. Konvensi naming class untuk mencegah
+                konflik dan menjaga specificity tetap (0,1,0). Block=komponen,
+                Element=bagian komponen (--), Modifier=variasi (__).
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">Apa fungsi clamp(min, preferred, max)?</div>
+              <div class="back">
+                Nilai yang dibatasi antara minimum dan maximum. Digunakan untuk
+                responsive typography tanpa media query: clamp(1rem, 3vw, 2rem)
+                — font yang mengikuti lebar layar tapi dibatasi ukurannya.
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">Kenapa !important harus dihindari?</div>
+              <div class="back">
+                !important membalikkan urutan cascade dan membuat kode sulit
+                di-override. Jika sering dipakai, itu sinyal bahwa struktur
+                selector CSS perlu direstrukturisasi. Gunakan hanya untuk
+                library overrides atau utility yang memang harus menang.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIPS & ANTI-PATTERN -->
+      <section id="tips">
+        <div class="section-header">8 · Tips & Anti-Pattern</div>
+        <div class="section-body">
+          <h3>Anti-Pattern yang Harus Dihindari</h3>
+          <div class="warn">
+            ⚠️ Menggunakan <code>!important</code> sebagai solusi konflik —
+            perbaiki struktur selector, bukan paksa dengan !important.
+          </div>
+          <div class="warn">
+            ⚠️ ID selector di CSS (<code>#kasir</code>) — gunakan class,
+            specificity ID terlalu tinggi dan susah di-override.
+          </div>
+          <div class="warn">
+            ⚠️ Inline style untuk keputusan desain statis — gunakan class.
+            Inline style hanya untuk nilai runtime dinamis.
+          </div>
+          <div class="warn">
+            ⚠️ Menganimasikan width/height/top/left — gunakan transform. Animasi
+            layout properties menyebabkan jank.
+          </div>
+          <div class="warn">
+            ⚠️ <code>outline: none</code> tanpa pengganti — selalu ganti dengan
+            focus-visible yang estetik.
+          </div>
+          <div class="warn">
+            ⚠️ Mengandalkan <code>display: none</code> untuk aksesibilitas —
+            gunakan visually-hidden class agar screen reader tetap bisa membaca.
+          </div>
+
+          <h3>Tips Produksi</h3>
+          <div class="good">
+            ✅ Selalu gunakan <code>box-sizing: border-box</code> pada
+            <code>*, *::before, *::after</code>.
+          </div>
+          <div class="good">
+            ✅ Definisikan design tokens di <code>:root</code> — warna, spacing,
+            shadow, radius.
+          </div>
+          <div class="good">
+            ✅ Gunakan <code>:focus-visible</code> bukan
+            <code>:focus</code> untuk focus ring yang tidak mengganggu mouse
+            user.
+          </div>
+          <div class="good">
+            ✅ Gunakan <code>gap</code> pada Flexbox/Grid daripada margin pada
+            item individual.
+          </div>
+          <div class="good">
+            ✅ Pertimbangkan <code>prefers-reduced-motion</code> untuk pengguna
+            yang sensitif terhadap animasi.
+          </div>
+          <div class="good">
+            ✅ Gunakan <code>min-height: 44px</code> pada touch target untuk
+            aksesibilitas mobile.
+          </div>
+          <div class="good">
+            ✅ Naming class yang mendeskripsikan fungsi, bukan tampilan:
+            <code>.teks-penting</code> bukan <code>.teks-merah</code>.
+          </div>
+        </div>
+      </section>
+
+      <!-- METODOLOGI -->
+      <section id="metodologi">
+        <div class="section-header">9 · Metodologi: Kapan Pakai Apa</div>
+        <div class="section-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Metodologi</th>
+                <th>Keunggulan</th>
+                <th>Digunakan di</th>
+                <th>Cocok Untuk</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>BEM</strong></td>
+                <td>Naming konsisten, specificity terjaga</td>
+                <td>HTML/CSS biasa, Sass</td>
+                <td>Semua project</td>
+              </tr>
+              <tr>
+                <td><strong>Sass/SCSS</strong></td>
+                <td>Nesting, mixin, partials</td>
+                <td>Semua framework</td>
+                <td>Project medium-large</td>
+              </tr>
+              <tr>
+                <td><strong>PostCSS</strong></td>
+                <td>Autoprefixer, minification, modern CSS</td>
+                <td>Build pipeline</td>
+                <td>Semua project dengan build tool</td>
+              </tr>
+              <tr>
+                <td><strong>CSS Modules</strong></td>
+                <td>Scoped styles, no global conflicts</td>
+                <td>React, Vue, Next.js</td>
+                <td>Component-based apps</td>
+              </tr>
+              <tr>
+                <td><strong>CSS-in-JS</strong></td>
+                <td>Props-based dynamic styling</td>
+                <td>React</td>
+                <td>Design systems kompleks</td>
+              </tr>
+              <tr>
+                <td><strong>Tailwind CSS</strong></td>
+                <td>Rapid development, utility-first</td>
+                <td>Semua framework</td>
+                <td>Prototyping, startup</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            Untuk proyek retail fullstack yang sedang dibangun: gunakan
+            <strong>BEM + SCSS</strong> untuk CSS murni sekarang. Saat masuk
+            React nanti, gunakan <strong>CSS Modules atau Tailwind</strong>.
+            Design system jangka panjang:
+            <strong>CSS Variables + Tailwind</strong>.
+          </p>
+        </div>
+      </section>
+    </div>
+    <!-- /wrapper -->
+
+    <footer class="site-footer">
+      <p>&copy; 2026 Muhammad Ricky Yusuf — CSS Complete Reference</p>
+      <p><small>Referensi lengkap seluruh materi CSS modul fullstack</small></p>
+    </footer>
+  </body>
+</html>

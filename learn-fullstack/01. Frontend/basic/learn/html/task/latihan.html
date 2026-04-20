@@ -1,0 +1,598 @@
+<!doctype html>
+<!--
+    ================================================================
+    VERSI JAWABAN YANG SEHARUSNYA
+    Setiap perbaikan diberi komentar "KOREKSI:" agar kamu bisa
+    membandingkan langsung dengan versi kamu sendiri.
+    ================================================================
+-->
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✅ Challenge 1: KOREKSI #1 — meta description harus diisi konten nyata, bukan "..." -->
+    <!-- Meta description adalah yang muncul di hasil pencarian Google di bawah judul. -->
+    <!-- Maksimal ~155 karakter agar tidak terpotong di SERP (Search Engine Result Page). -->
+    <meta
+      name="description"
+      content="Halaman profil Muhammad Ricky Yusuf, mahasiswa S1 Sistem Informasi yang sedang belajar fullstack development dan cybersecurity."
+    />
+
+    <!-- ✅ Challenge 1: KOREKSI #2 — "Muhhamad" (typo, double 'h') → "Muhammad" -->
+    <title>Muhammad Ricky Yusuf - Fullstack Developer in Progress</title>
+
+    <style>
+      /*
+            KOREKSI #3 — CSS untuk form sebaiknya menggunakan layout berbasis
+            flexbox atau grid, BUKAN table. Di sini kita biarkan dulu karena
+            kamu belum belajar CSS, tapi ini akan kita refactor total di modul CSS.
+            Style di bawah hanya untuk keterbacaan dasar.
+        */
+      body {
+        font-family: sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 16px;
+      }
+
+      /* Styling tabel jadwal */
+      #table-jadwal-belajar {
+        text-align: center;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #table-jadwal-belajar th,
+      #table-jadwal-belajar td {
+        border: 1px solid black;
+        padding: 8px 12px;
+      }
+
+      /* Styling form — sederhana, tanpa table layout */
+      .form-group {
+        margin-bottom: 12px;
+      }
+
+      .form-group label {
+        display: block; /* label di atas input, bukan di sampingnya */
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+
+      /* Checkbox row membutuhkan layout horizontal, jadi kita flex */
+      .form-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .policy {
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================================================
+         SECTION 1: HEADER — Identitas diri
+         ============================================================ -->
+
+    <!--
+        KOREKSI #4 — <header> seharusnya hanya berisi konten
+        "pengantar/identitas halaman" seperti nama, tagline, dan foto.
+        Konten "Tentang Saya" (list hobi, jurusan) lebih tepat ada di
+        <main> sebagai <section> tersendiri, bukan di dalam <header>.
+        Header ≈ "sampul depan", bukan tempat narasi panjang.
+    -->
+    <header>
+      <!-- ✅ h1: hanya SATU per halaman — ini sinyal utama ke Google tentang topik halaman -->
+      <h1>Muhammad Ricky Yusuf</h1>
+
+      <!-- h2 untuk sub-identitas, masih bagian dari "sampul" -->
+      <h2>
+        Mahasiswa S1 Sistem Informasi &amp; Fullstack Developer in Progress
+      </h2>
+    </header>
+
+    <!-- ============================================================
+         NAVIGASI — Di luar header, atau bisa di dalam header.
+         Keduanya valid. Yang penting <nav> ada.
+         ============================================================ -->
+
+    <!--
+        KOREKSI #5 — Isi <nav> sebaiknya menggunakan <ul>/<li>, bukan <br />.
+        Alasannya: screen reader mengumumkan "daftar navigasi dengan 3 item"
+        ketika melihat <ul> di dalam <nav>. Dengan <br />, ia hanya membaca
+        teks satu per satu tanpa konteks bahwa ini adalah daftar navigasi.
+        <br /> juga adalah pemformatan visual (baris baru), bukan struktur.
+    -->
+    <nav aria-label="Navigasi Utama">
+      <!-- aria-label memberitahu screen reader nama dari nav ini -->
+      <h3>Platform &amp; Kontak</h3>
+      <ul>
+        <!-- target="_blank" + rel="noopener noreferrer" → ✅ sudah benar dan alasannya tepat! -->
+        <li>
+          <a
+            href="https://github.com/mrickyyusuf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </li>
+        <li>
+          <!-- Anchor link ke section lain di halaman ini → ✅ bagus! -->
+          <a href="#tentang-saya">Tentang Saya</a>
+        </li>
+        <li>
+          <!-- mailto: → ✅ sudah benar. Tidak perlu target="_blank" di sini. -->
+          <a href="mailto:rickyyusuf78@gmail.com">Kirim Email</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ============================================================
+         MAIN — Semua konten utama ada di sini
+         ============================================================ -->
+    <main>
+      <!-- Section: Tentang Saya -->
+      <!--
+            KOREKSI #6 — Challenge 3 meminta 2 <p> (paragraf) dengan <strong> dan <em>.
+            Kamu menggunakan <ol> berisi list item. Itu bukan paragraf.
+            <p> adalah blok teks naratif/deskriptif. <ol>/<ul> adalah enumerasi.
+            Untuk "Tentang Saya", paragraf jauh lebih natural dan semantik.
+        -->
+      <section id="tentang-saya" aria-labelledby="heading-tentang">
+        <h3 id="heading-tentang">Tentang Saya</h3>
+
+        <!-- Paragraf 1: satu kata penting dengan <strong> -->
+        <p>
+          Saya adalah mahasiswa <strong>S1 Sistem Informasi</strong> yang sedang
+          menekuni dunia pemrograman. Saya percaya bahwa konsistensi setiap
+          hari, meskipun kecil, akan mengalahkan ledakan semangat sesaat.
+        </p>
+
+        <!-- Paragraf 2: satu frasa italic dengan <em> -->
+        <p>
+          Di luar coding, saya mengisi waktu dengan
+          <em>nonton anime, workout, dan jalan-jalan</em> sebagai cara menjaga
+          keseimbangan antara belajar teknis dan kesehatan mental.
+        </p>
+
+        <!--
+                Ini tetap kita pertahankan sebagai data faktual — list cocok di sini
+                karena ini enumerasi atribut, bukan narasi.
+            -->
+        <ul>
+          <li>Jurusan: <strong>S1 Sistem Informasi</strong></li>
+          <li>Hobi: <em>Nonton Anime, workout, coding, jalan-jalan</em></li>
+          <li>Career Dream: Programmer &amp; Cybersecurity</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================
+             SECTION 3: LISTS
+             ============================================================ -->
+
+      <section id="skill" aria-labelledby="heading-skill">
+        <h3 id="heading-skill">Skill yang Sedang Dipelajari</h3>
+        <!--
+                KOREKSI #7 — "ES16" bukan standar yang ada. Yang ada:
+                ES5, ES6 (ES2015), ES2016, ES2017... dst.
+                Yang paling sering disebut adalah "JavaScript (ES6+)".
+            -->
+        <ul>
+          <li><strong>HTML5</strong> — Struktur & Semantik</li>
+          <li><strong>CSS3</strong> — Tampilan & Layout</li>
+          <li><strong>JavaScript (ES6+)</strong> — Interaktivitas</li>
+        </ul>
+      </section>
+
+      <section id="target-belajar" aria-labelledby="heading-target">
+        <h3 id="heading-target">3 Tujuan Belajarku Tahun Ini</h3>
+        <!-- ✅ Penggunaan reversed dan start — bagus, ini eksplorasi yang tepat! -->
+        <ol reversed start="6">
+          <li>Fullstack JS (HTML → CSS → JS → React → Node.js)</li>
+          <li>Matakuliah Kampus (tetap prioritas)</li>
+          <li>Algorithm, Data Structure &amp; OOP in Java</li>
+        </ol>
+      </section>
+
+      <section id="roadmap-belajar" aria-labelledby="heading-roadmap">
+        <h3 id="heading-roadmap">Roadmap Belajar Fullstack</h3>
+
+        <!--
+                KOREKSI #8 — INI KESALAHAN STRUKTURAL PALING PENTING.
+                Dalam HTML, <ul> atau <ol> TIDAK BOLEH langsung menjadi
+                child dari <ol>/<ul> lain. Yang boleh jadi child hanya <li>.
+                <ul> harus berada DI DALAM <li>, bukan sejajar dengan <li>.
+
+                Kode kamu (SALAH):
+                <ol>
+                    <li>Frontend</li>
+                    <ul>          ← ul langsung di dalam ol = INVALID
+                        <li>HTML</li>
+                    </ul>
+                </ol>
+
+                Yang benar: ul ada di DALAM li-nya.
+            -->
+        <ol>
+          <li>
+            <strong>Frontend</strong>
+            <ul>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Backend</strong>
+            <ul>
+              <li>Node.js</li>
+              <li>PostgreSQL &amp; MongoDB</li>
+            </ul>
+          </li>
+          <li>
+            <strong>DevOps</strong>
+            <ul>
+              <li>Linux &amp; CLI</li>
+              <li>AWS (EC2, S3, Route53)</li>
+              <li>GitHub Actions</li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ============================================================
+             SECTION 4: ENTITIES
+             Challenge 8 dipindah ke sini — entities punya section sendiri,
+             bukan diselipkan di footer.
+             ============================================================ -->
+
+      <section id="entities-demo" aria-labelledby="heading-entities">
+        <h3 id="heading-entities">Demo HTML Entities</h3>
+
+        <!--
+                KOREKSI #9 — Challenge 8 (entities) seharusnya punya
+                section tersendiri dengan penjelasan, bukan cuma di footer.
+                Footer hanya untuk informasi penutup/copyright.
+            -->
+        <p>
+          <!-- &copy; = © | &amp; = & | &lt;&gt; = <> | &nbsp; = spasi non-breaking -->
+          &copy; 2026 Muhammad&nbsp;Ricky&nbsp;Yusuf. Semua hak dilindungi.
+        </p>
+        <p>
+          Tag HTML ditulis menggunakan tanda kurung siku, misalnya &lt;p&gt;
+          untuk paragraf &amp; &lt;h1&gt; untuk heading utama. Tanpa entitas,
+          browser akan mengira &lt;p&gt; adalah tag sungguhan!
+        </p>
+        <p>
+          Simbol lain yang berguna: &euro; (Euro), &pound; (Pound), &hearts;
+          (hati ♥), &infin; (tak hingga ∞).
+        </p>
+      </section>
+
+      <!-- ============================================================
+             SECTION 5: TABLE
+             ============================================================ -->
+
+      <section id="jadwal-belajar" aria-labelledby="heading-jadwal">
+        <h3 id="heading-jadwal">Jadwal Belajar Mingguan</h3>
+
+        <!--
+                KOREKSI #10 — Atribut border="1" sudah DEPRECATED (tidak disarankan)
+                di HTML5. Styling tabel seharusnya 100% lewat CSS.
+                border="1" adalah warisan HTML4 — jangan dipakai di kode modern.
+                Kita sudah handle border-nya di CSS di atas.
+            -->
+        <table id="table-jadwal-belajar">
+          <thead>
+            <tr>
+              <th scope="col">Hari</th>
+              <!--
+                            scope="col" memberitahu screen reader bahwa
+                            header ini berlaku untuk seluruh kolom di bawahnya.
+                            scope="row" untuk header baris.
+                            Ini penting untuk aksesibilitas tabel!
+                        -->
+              <th scope="col">Topik</th>
+              <th scope="col">Durasi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Senin</td>
+              <td>HTML — Struktur &amp; Semantik</td>
+              <td>1 Jam</td>
+            </tr>
+            <tr>
+              <td>Selasa</td>
+              <td>CSS — Selectors &amp; Box Model</td>
+              <td>1 Jam</td>
+            </tr>
+            <tr>
+              <td>Rabu</td>
+              <td>JavaScript — DOM &amp; Events</td>
+              <td>1 Jam</td>
+            </tr>
+            <tr>
+              <td>Kamis</td>
+              <td>React — Components &amp; Hooks</td>
+              <td>1 Jam</td>
+            </tr>
+            <tr>
+              <td>Jumat</td>
+              <td>Node.js — REST API</td>
+              <td>1 Jam</td>
+            </tr>
+            <tr>
+              <td>Sabtu</td>
+              <td>Database — SQL &amp; NoSQL</td>
+              <td>1 Jam</td>
+            </tr>
+            <tr>
+              <td>Minggu</td>
+              <td>Review &amp; Project</td>
+              <td>2 Jam</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <!--
+                            ✅ colspan — penggunaannya sudah benar!
+                            Tapi perhatikan: di tfoot, gunakan <td> bukan <th>
+                            untuk sel data, dan <th scope="row"> untuk label baris.
+                        -->
+              <th scope="row">Total Jam Belajar</th>
+              <td colspan="2">8 Jam / Minggu</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- ============================================================
+             SECTION 6: MEDIA
+             ============================================================ -->
+
+      <section id="foto" aria-labelledby="heading-foto">
+        <h3 id="heading-foto">Foto</h3>
+
+        <!--
+                KOREKSI #11 — width dan height dalam HTML attribute
+                menggunakan ANGKA SAJA, tanpa satuan "px".
+                "px" adalah unit CSS, bukan HTML.
+
+                Salah  : width="300px" height="300px"
+                Benar  : width="300" height="300"
+
+                Mengapa ini penting? Browser hanya menerima angka untuk
+                atribut ini. Jika kamu tulis "300px", beberapa browser
+                mungkin masih toleran, tapi itu bukan standar yang valid.
+                Satuan px (dan lainnya) hanya untuk CSS.
+            -->
+        <figure>
+          <img
+            src="https://picsum.photos/300/300"
+            alt="Foto profil placeholder — foto acak dari Picsum Photos"
+            width="300"
+            height="300"
+            loading="lazy"
+          />
+          <!--
+                    loading="lazy" adalah atribut modern yang memberitahu browser
+                    agar tunda memuat gambar ini sampai hampir terlihat di viewport.
+                    Ini mengoptimalkan performa halaman — bagus untuk dipahami sejak dini.
+                -->
+          <figcaption>
+            Foto profil — ditampilkan secara acak dari
+            <a
+              href="https://picsum.photos"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Picsum Photos
+            </a>
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- ============================================================
+             SECTION 7: FORM
+             ============================================================ -->
+
+      <section id="form-kontak" aria-labelledby="heading-kontak">
+        <h3 id="heading-kontak">Form Kontak</h3>
+
+        <!--
+                KOREKSI #12 — ANTI-PATTERN: Jangan gunakan <table> untuk layout form.
+                Ini adalah kesalahan klasik yang sangat umum di kalangan pemula.
+
+                <table> HANYA untuk data tabular (data yang memang berbentuk baris/kolom
+                dan saling berhubungan, seperti tabel jadwal di atas).
+
+                Form BUKAN data tabular — ia adalah sekumpulan input yang
+                urutannya linear, bukan matriks. Layout form diatur dengan CSS
+                (Flexbox/Grid), bukan table.
+
+                Selain semantik yang salah, table-layout form juga:
+                - Rusak tampilannya di layar kecil/HP
+                - Sulit dibaca screen reader
+                - Susah di-maintain ketika ada perubahan desain
+
+                Di bawah ini adalah struktur form yang benar menggunakan
+                <div class="form-group"> sebagai wrapper per-field.
+                Nanti di modul CSS, kita akan styling ini dengan Flexbox.
+            -->
+        <form action="#" method="post" novalidate>
+          <!--
+                    action: ke mana data dikirim (nanti diisi URL backend)
+                    method: GET atau POST
+                    novalidate: matikan validasi bawaan browser sementara
+                    (kita akan custom validasinya dengan JS nanti)
+                -->
+
+          <div class="form-group">
+            <label for="nama-lengkap"
+              >Nama Lengkap <span aria-hidden="true">*</span></label
+            >
+            <!--
+                        aria-hidden="true" pada tanda * berarti asterisk ini
+                        disembunyikan dari screen reader (karena required sudah
+                        dikomunikasikan lewat atribut required di input).
+                        Ini detail kecil tapi penting untuk aksesibilitas.
+                    -->
+            <input
+              type="text"
+              id="nama-lengkap"
+              name="nama-lengkap"
+              placeholder="Masukkan nama lengkap"
+              required
+              autocomplete="name"
+            />
+            <!--
+                        autocomplete="name" membantu browser dan password manager
+                        mengisi form otomatis — UX yang lebih baik untuk pengguna.
+                    -->
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email <span aria-hidden="true">*</span></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="nama@email.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="pesan">Tulis Pesan</label>
+            <!--
+                        <textarea> tidak punya atribut value.
+                        Konten default-nya ditulis di antara tag pembuka dan penutup.
+                        cols sebaiknya dihapus dan diatur lewat CSS width.
+                    -->
+            <textarea
+              id="pesan"
+              name="pesan"
+              rows="5"
+              placeholder="Tulis pesanmu di sini..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="topik">Pilih Topik</label>
+            <select id="topik" name="topik">
+              <option value="">-- Pilih Topik --</option>
+              <!--
+                            KOREKSI #13 — Setiap <option> HARUS punya atribut value.
+                            value adalah data yang dikirim ke server.
+                            Teks di antara tag adalah yang ditampilkan ke pengguna.
+                            Keduanya bisa berbeda!
+
+                            Salah  : <option>Kolaborasi</option>
+                            Benar  : <option value="kolaborasi">Kolaborasi</option>
+                        -->
+              <option value="kolaborasi">Kolaborasi</option>
+              <option value="pertanyaan">Pertanyaan</option>
+              <option value="lainnya">Lainnya</option>
+            </select>
+          </div>
+
+          <div class="form-checkbox">
+            <!--
+                        Untuk checkbox: <input> boleh sebelum atau sesudah <label>.
+                        Yang penting atribut for dan id harus cocok.
+                        Di sini kita taruh input SEBELUM label — konvensi paling umum.
+                    -->
+            <input
+              type="checkbox"
+              id="setuju-policy"
+              name="setuju-policy"
+              required
+            />
+            <label for="setuju-policy" class="policy">
+              Saya setuju dengan
+              <a href="#">Syarat &amp; Ketentuan</a>
+              <!--
+                            &amp; — ✅ penggunaan entitas sudah benar di sini!
+                            Tanda & harus selalu di-escape menjadi &amp; dalam HTML.
+                        -->
+            </label>
+          </div>
+
+          <button type="submit">Kirim Pesan</button>
+        </form>
+      </section>
+    </main>
+    <!-- /main -->
+
+    <!-- ============================================================
+         FOOTER — Hanya untuk informasi penutup
+         ============================================================ -->
+
+    <!--
+        ✅ Penggunaan entities di footer sudah bagus!
+        &copy; &nbsp; &amp; &lt; semuanya tepat.
+        CATATAN: &#128150; dan &#128170; adalah cara menulis emoji
+        via numeric character reference — valid, tapi lebih mudah
+        langsung pakai emoji: ❤️ 💪
+    -->
+    <footer>
+      <hr />
+      <p>
+        &copy; 2026 Muhammad Ricky Yusuf.&nbsp; Dibuat dengan ❤️ &amp; 💪
+        menggunakan
+        <code>&lt;html&gt;</code>
+        <!--
+                <code> adalah tag semantik untuk menampilkan potongan kode.
+                Lebih tepat daripada hanya menggunakan entitas &lt;&gt; tanpa konteks.
+            -->
+      </p>
+      <address>
+        <!--
+                <address> adalah tag semantik untuk informasi kontak.
+                Screen reader akan mengumumkan ini sebagai "contact information".
+            -->
+        Kontak:
+        <a href="mailto:rickyyusuf78@gmail.com">rickyyusuf78@gmail.com</a>
+      </address>
+    </footer>
+
+    <!-- ============================================================
+         SCRIPT — Selalu di bawah, sebelum </body>
+         ============================================================ -->
+
+    <!--
+        KOREKSI #14 — Challenge meminta console.log(), bukan alert().
+        alert() memblokir halaman dan sangat mengganggu pengguna.
+        Dalam development, selalu pakai console.log() untuk debugging.
+        alert() hanya untuk situasi yang benar-benar perlu interaksi user.
+
+        Jawaban refleksi kenapa script di bawah:
+        Browser membaca HTML dari atas ke bawah secara berurutan (parsing).
+        Jika <script> ada di <head>, browser akan mengeksekusi JS SEBELUM
+        HTML di-render. Akibatnya, jika script mencoba mengakses elemen
+        (misal document.getElementById), elemen itu belum ada di DOM!
+        Solusi modern: taruh script sebelum </body>, atau gunakan atribut
+        defer pada script di head: <script defer src="...">
+    -->
+    <script>
+      console.log("✅ Halaman berhasil dimuat!");
+      console.log("Selamat belajar HTML, Ricky!");
+    </script>
+  </body>
+</html>

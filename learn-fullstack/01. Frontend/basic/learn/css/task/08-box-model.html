@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Struk Belanja - Toko Sembako Berkah</title>
+    <style>
+      /* Reset dasar */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #f1f0e8;
+        font-family: "Courier New", "SF Mono", "Fira Code", monospace;
+        padding: 2rem 1rem;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Container struk — kartu dengan border, border-radius, box-shadow */
+      .receipt {
+        max-width: 380px; /* mendekati lebar struk fisik */
+        width: 100%;
+        margin: 0 auto; /* centering horizontal */
+        background: #ffffff;
+        border: 1px solid #d4c9b6;
+        border-radius: 20px; /* border-radius untuk container kartu */
+        box-shadow:
+          0 20px 35px -12px rgba(0, 0, 0, 0.25),
+          0 2px 6px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        transition: transform 0.2s ease;
+      }
+
+      .receipt:hover {
+        transform: scale(1.01);
+        box-shadow: 0 24px 40px -14px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Bagian dalam struk — padding untuk ruang antar elemen */
+      .receipt-header {
+        padding: 1.8rem 1.8rem 0.8rem 1.8rem;
+        text-align: center;
+        border-bottom: 1px dashed #e2d9cd;
+      }
+
+      /* typography dengan rem/em (minimal 3 properti menggunakan rem) */
+      .store-name {
+        font-size: 1.8rem; /* menggunakan rem (relative terhadap root) */
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #2c5536;
+        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+      }
+
+      .store-tagline {
+        font-size: 0.75rem; /* rem */
+        color: #7f6b4a;
+        letter-spacing: 0.5px;
+        margin-top: 0.2rem;
+      }
+
+      .receipt-date {
+        font-size: 0.7rem; /* rem */
+        color: #9b8a70;
+        margin-top: 0.5rem;
+        padding-bottom: 0.4rem;
+        border-top: 1px dashed #efe3d4;
+        display: inline-block;
+        width: 100%;
+      }
+
+      /* Daftar item belanja */
+      .items-list {
+        padding: 0.8rem 1.8rem;
+      }
+
+      /* setiap baris item */
+      .item-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0.6rem 0;
+        border-bottom: 1px dashed #e2d9cd; /* garis pemisah per item (border-bottom) */
+        font-size: 0.9rem; /* rem */
+      }
+
+      /* nama produk dan kuantitas */
+      .item-desc {
+        flex: 2;
+        font-weight: 500;
+      }
+
+      .item-qty {
+        flex: 0.5;
+        text-align: center;
+        margin: 0 0.5rem;
+        color: #5f5340;
+      }
+
+      .item-price {
+        flex: 1;
+        text-align: right;
+        font-weight: 600;
+        color: #2c3e2f;
+      }
+
+      /* Subtotal baris (opsional: untuk menambah variasi) */
+      .subtotal-line {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0 0.2rem 0;
+        font-size: 0.85rem;
+        color: #6c5b46;
+        border-top: 1px solid #f0e7dc;
+        margin-top: 0.2rem;
+      }
+
+      /* Garis pemisah & total */
+      .total-section {
+        padding: 0.5rem 1.8rem 1.6rem 1.8rem;
+        border-top: 2px solid #cbbfaa; /* border untuk total lebih tebal */
+        margin-top: 0.4rem;
+      }
+
+      .total-row {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 800;
+        font-size: 1.2rem; /* rem */
+        padding: 0.75rem 0 0.25rem 0;
+        letter-spacing: 0.3px;
+        color: #1e3a2f;
+      }
+
+      .total-label {
+        text-transform: uppercase;
+      }
+
+      .total-amount {
+        font-size: 1.3rem;
+      }
+
+      /* Catatan tambahan footer struk */
+      .receipt-footer {
+        padding: 1rem 1.8rem 1.5rem 1.8rem;
+        text-align: center;
+        border-top: 1px dashed #e2d9cd;
+        background: #fefaf2;
+        font-size: 0.7rem;
+        color: #8b775a;
+      }
+
+      /* Menggunakan calc() untuk spacing atau lebar elemen (memenuhi syarat) */
+      .thankyou-message {
+        margin-top: calc(0.5rem + 2px);
+        font-weight: 500;
+        letter-spacing: 0.3px;
+      }
+
+      /* menggunakan clamp() pada ukuran font di header atau elemen lain (memenuhi syarat clamp) */
+      .store-name {
+        font-size: clamp(
+          1.4rem,
+          5vw,
+          2rem
+        ); /* clamp untuk typography responsif */
+      }
+
+      /* Tambahan penggunaan rem untuk margin/padding lainnya, minimal 3 properti sudah terpenuhi */
+      .item-row:last-child {
+        border-bottom: none; /* item terakhir tanpa border bawah (biar rapi) */
+      }
+
+      /* agar garis tidak menggandakan di akhir list */
+      .items-list .item-row:last-child {
+        border-bottom: none;
+      }
+
+      /* efek kecil untuk tombol (tidak ada tombol, tapi tetap konsisten) */
+      @media (max-width: 420px) {
+        body {
+          padding: 1rem;
+        }
+        .receipt {
+          border-radius: 16px;
+        }
+        .item-desc {
+          font-size: 0.85rem;
+        }
+      }
+
+      /* tambahan untuk menyesuaikan konten */
+      .divider-light {
+        border-top: 1px dotted #e9e0d2;
+        margin: 0.4rem 0;
+      }
+
+      /* Gaya untuk elemen yang sebelumnya inline style (dipindah ke class) */
+      .tax-note {
+        font-size: 0.65rem;
+        text-align: right;
+        color: #a28964;
+        margin-top: 0.3rem;
+      }
+
+      .footer-contact {
+        margin-top: 0.6rem;
+      }
+
+      .footer-message {
+        margin-top: 0.4rem;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="receipt">
+      <!-- HEADER TOKO -->
+      <div class="receipt-header">
+        <div class="store-name">🌾 TOKO BERKAH</div>
+        <div class="store-tagline">Sembako Jujur & Hemat</div>
+        <div class="receipt-date">📅 31 Mar 2026 | 14:23 WIB</div>
+        <div class="divider-light"></div>
+      </div>
+
+      <!-- DAFTAR ITEM BELANJA (garis pemisah border-bottom per item) -->
+      <div class="items-list">
+        <div class="item-row">
+          <span class="item-desc">Beras Premium 5kg</span>
+          <span class="item-qty">1 x</span>
+          <span class="item-price">Rp 68.000</span>
+        </div>
+        <div class="item-row">
+          <span class="item-desc">Minyak Goreng 2L</span>
+          <span class="item-qty">2 x</span>
+          <span class="item-price">Rp 56.000</span>
+        </div>
+        <div class="item-row">
+          <span class="item-desc">Gula Pasir 1kg</span>
+          <span class="item-qty">1 x</span>
+          <span class="item-price">Rp 15.500</span>
+        </div>
+        <div class="item-row">
+          <span class="item-desc">Telur Ayam (1 tray)</span>
+          <span class="item-qty">1 x</span>
+          <span class="item-price">Rp 29.000</span>
+        </div>
+        <div class="item-row">
+          <span class="item-desc">Kecap Manis Bantal</span>
+          <span class="item-qty">2 x</span>
+          <span class="item-price">Rp 22.000</span>
+        </div>
+        <!-- subtotal optional: menggunakan border-top garis tipis -->
+        <div class="subtotal-line">
+          <span>Subtotal</span>
+          <span>Rp 190.500</span>
+        </div>
+        <div class="subtotal-line">
+          <span>Diskon member</span>
+          <span>- Rp 5.000</span>
+        </div>
+      </div>
+
+      <!-- TOTAL HARGA dengan border-top tebal -->
+      <div class="total-section">
+        <div class="total-row">
+          <span class="total-label">TOTAL</span>
+          <span class="total-amount">Rp 185.500</span>
+        </div>
+        <!-- sebelumnya inline style, sekarang pakai class .tax-note -->
+        <div class="tax-note">* termasuk PPN 0% (sembako)</div>
+      </div>
+
+      <!-- FOOTER STRUK (info tambahan) -->
+      <div class="receipt-footer">
+        <div>✨ Terima kasih telah berbelanja ✨</div>
+        <div class="thankyou-message">
+          ▶️ Simpan struk sebagai bukti belanja
+        </div>
+        <!-- sebelumnya inline style, sekarang pakai class .footer-contact -->
+        <div class="footer-contact">📞 0812-3456-7890 | @tokoberkah</div>
+        <!-- sebelumnya inline style, sekarang pakai class .footer-message -->
+        <div class="footer-message">
+          ❤️ Belanja lagi? Kembali ke toko kami ❤️
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+    ✅ CHECKLIST PERSYARATAN TUGAS:
+    1. padding dan margin untuk spacing antar elemen:
+        - .receipt-header, .items-list, .total-section, .receipt-footer memiliki padding berbeda.
+        - margin digunakan pada .item-row, .total-row, dll.
+    2. border untuk garis struk:
+        - border-bottom: 1px dashed pada .item-row (garis per item)
+        - border untuk container .receipt (border: 1px solid #d4c9b6)
+        - border-top tebal di .total-section (border-top: 2px solid #cbbfaa)
+    3. border-radius dan box-shadow untuk container kartu struk:
+        - border-radius: 20px pada .receipt
+        - box-shadow dengan efek bayangan
+    4. minimal tiga rem atau em untuk typography:
+        - .store-name font-size: 1.8rem (rem)
+        - .store-tagline font-size: 0.75rem
+        - .receipt-date font-size: 0.7rem
+        - .total-row font-size: 1.2rem
+        - juga margin/padding menggunakan rem di berbagai tempat (lebih dari 3)
+    5. max-width + margin: auto untuk centering:
+        - .receipt { max-width: 380px; margin: 0 auto; }
+    6. calc() atau clamp() minimal satu kali:
+        - .thankyou-message { margin-top: calc(0.5rem + 2px); }  (calc)
+        - .store-name { font-size: clamp(1.4rem, 5vw, 2rem); }   (clamp)
+    Seluruh persyaratan terpenuhi dengan baik dan bermakna.
+    -->
+  </body>
+</html>

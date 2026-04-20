@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Complete Reference — Ricky Yusuf</title>
+    <link rel="stylesheet" href="../../css/notes/summary-css.css" />
+  </head>
+  <body>
+    <header class="cover">
+      <h1>HTML Complete Reference</h1>
+      <p>Markup Language · Semantics · Accessibility · SEO · Best Practices</p>
+      <p>Materi lengkap HTML dari dasar hingga praktik modern</p>
+      <span class="badge">Muhammad Ricky Yusuf · 2026</span>
+    </header>
+
+    <nav class="toc" aria-label="Daftar Isi">
+      <h2>Daftar Isi</h2>
+      <ol>
+        <li><a href="#intro">Pendahuluan &amp; Cara Kerja Web</a></li>
+        <li><a href="#basics">Dasar‑dasar HTML</a></li>
+        <li><a href="#text">Textual Tags &amp; Links</a></li>
+        <li><a href="#grouping">Grouping &amp; Attributes</a></li>
+        <li><a href="#lists">Lists &amp; Tables</a></li>
+        <li>
+          <a href="#media">Embedding Media (Images, Audio, Video, iframe)</a>
+        </li>
+        <li><a href="#forms">Forms &amp; Inputs</a></li>
+        <li><a href="#semantic">Semantic Markup &amp; Layout</a></li>
+        <li><a href="#styling">Styling Basics &amp; JavaScript</a></li>
+        <li><a href="#accessibility">Accessibility &amp; SEO</a></li>
+        <li><a href="#casestudy">Studi Kasus: Toko Sembako Berkah</a></li>
+        <li><a href="#cheatsheet">Cheatsheet</a></li>
+        <li><a href="#glosarium">Glosarium</a></li>
+        <li><a href="#flashcards">Flash Cards</a></li>
+        <li><a href="#bestpractices">Best Practices &amp; Anti‑Patterns</a></li>
+      </ol>
+    </nav>
+
+    <div class="wrapper">
+      <!-- ==================== 1. PENDAHULUAN ==================== -->
+      <section id="intro">
+        <div class="section-header">1 · Pendahuluan &amp; Cara Kerja Web</div>
+        <div class="section-body">
+          <p>
+            <strong>HTML (HyperText Markup Language)</strong> adalah bahasa
+            markup untuk membuat struktur halaman web. Bukan bahasa pemrograman
+            — tidak memiliki logika, hanya mendefinisikan elemen dan makna
+            konten.
+          </p>
+          <ul>
+            <li>
+              <strong>Markup Language</strong> → sistem anotasi teks menggunakan
+              tag yang memberikan makna dan instruksi kepada mesin. HTML untuk
+              tampilan, XML untuk data, Markdown untuk teks sederhana.
+            </li>
+            <li>
+              <strong>Frontend Development</strong> → tiga pilar: HTML
+              (struktur), CSS (presentasi), JavaScript (perilaku).
+            </li>
+            <li>
+              <strong>How the web works:</strong> Browser mengirim permintaan
+              HTTP ke server → server merespon dengan file HTML → browser
+              mem-<em>parse</em> HTML, membangun DOM → memuat CSS/JS →
+              menampilkan halaman.
+            </li>
+            <li>
+              <strong>Komponen kunci:</strong> HTTP (protokol komunikasi), DNS
+              (menerjemahkan domain ke IP), domain name, hosting (tempat file
+              disimpan), browser (penafsir HTML).
+            </li>
+            <li>
+              <strong>SEO (Search Engine Optimization):</strong> praktik
+              mengoptimasi halaman agar mudah ditemukan mesin pencari → struktur
+              semantik, meta tags, kecepatan, aksesibilitas.
+            </li>
+          </ul>
+          <div class="info">
+            ⚡ Prinsip kunci: HTML hanya mengatur
+            <strong>struktur dan makna</strong>. Tampilan adalah tugas CSS,
+            interaksi tugas JavaScript.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 2. DASAR HTML ==================== -->
+      <section id="basics">
+        <div class="section-header">2 · Dasar‑dasar HTML</div>
+        <div class="section-body">
+          <p><strong>Struktur dokumen minimal:</strong></p>
+          <pre><span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"id"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="val">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"viewport"</span> <span class="attr">content</span>=<span class="val">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>Judul Halaman<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+  <span class="komentar">&lt;!-- konten halaman --&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+          <ul>
+            <li>
+              <code>&lt;!DOCTYPE html&gt;</code> → deklarasi tipe dokumen, wajib
+              di awal.
+            </li>
+            <li>
+              <code>&lt;html&gt;</code> → elemen akar, atribut
+              <code>lang</code> menentukan bahasa konten.
+            </li>
+            <li>
+              <code>&lt;head&gt;</code> → metadata, tidak tampil di halaman.
+            </li>
+            <li>
+              <code>&lt;meta charset="UTF-8"&gt;</code> → encoding karakter,
+              wajib.
+            </li>
+            <li><code>&lt;body&gt;</code> → semua konten yang terlihat.</li>
+          </ul>
+          <p>
+            <strong>Aturan dasar:</strong> Tag case‑insensitive (tapi
+            rekomendasi lowercase). Komentar <code>&lt;!-- ... --&gt;</code>.
+            Whitespace berlebih diabaikan browser. HTML Entities:
+            <code>&amp;lt;</code> untuk &lt;, <code>&amp;gt;</code> untuk &gt;,
+            <code>&amp;amp;</code> untuk &amp;, <code>&amp;nbsp;</code> untuk
+            spasi tak terputus.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================== 3. TEXTUAL TAGS & LINKS ==================== -->
+      <section id="text">
+        <div class="section-header">3 · Textual Tags &amp; Links</div>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">Headings &amp; Paragraf</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>&lt;h1&gt;</code> – <code>&lt;h6&gt;</code> → hierarki
+                    konten, <code>&lt;h1&gt;</code> hanya sekali per halaman.
+                  </li>
+                  <li><code>&lt;p&gt;</code> → paragraf naratif.</li>
+                  <li>
+                    <code>&lt;hr&gt;</code> → garis horizontal (pergantian
+                    tema).
+                  </li>
+                  <li><code>&lt;br&gt;</code> → baris baru (alamat, puisi).</li>
+                  <li>
+                    <code>&lt;pre&gt;</code> → teks preformatted (mempertahankan
+                    spasi).
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Inline Text Semantics</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>&lt;strong&gt;</code> → penting secara semantik
+                    (default bold).
+                  </li>
+                  <li>
+                    <code>&lt;b&gt;</code> → bold visual saja (tanpa makna).
+                  </li>
+                  <li>
+                    <code>&lt;em&gt;</code> → penekanan stres (default italic).
+                  </li>
+                  <li>
+                    <code>&lt;i&gt;</code> → italic visual (istilah asing, nama
+                    ilmiah).
+                  </li>
+                  <li>
+                    <code>&lt;mark&gt;</code> → teks ditandai (relevan konteks).
+                  </li>
+                  <li>
+                    <code>&lt;sub&gt;</code> / <code>&lt;sup&gt;</code> →
+                    subscript / superscript.
+                  </li>
+                  <li><code>&lt;code&gt;</code> → kode program inline.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Links (Anchor)</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>&lt;a href="URL"&gt;</code> → tautan ke halaman lain,
+                    anchor, email, telepon.
+                  </li>
+                  <li>
+                    <code>target="_blank"</code> → buka di tab baru, selalu
+                    sertakan <code>rel="noopener noreferrer"</code> untuk
+                    keamanan.
+                  </li>
+                  <li>
+                    Teks link harus deskriptif: "baca selengkapnya" bukan "klik
+                    di sini".
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 4. GROUPING & ATTRIBUTES ==================== -->
+      <section id="grouping">
+        <div class="section-header">
+          4 · Grouping Text &amp; Standard Attributes
+        </div>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">Grouping Containers</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>&lt;div&gt;</code> → block-level container tanpa makna
+                    (untuk layout).
+                  </li>
+                  <li>
+                    <code>&lt;span&gt;</code> → inline container tanpa makna
+                    (untuk styling).
+                  </li>
+                  <li>
+                    Gunakan semantik bila ada, baru
+                    <code>&lt;div&gt;</code>/<code>&lt;span&gt;</code> jika
+                    tidak ada tag yang cocok.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Standard / Global Attributes</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>id</code> → identifier unik (untuk CSS, JS, anchor).
+                  </li>
+                  <li>
+                    <code>class</code> → pengelompokan elemen (styling, JS).
+                  </li>
+                  <li><code>data-*</code> → menyimpan data kustom.</li>
+                  <li>
+                    <code>style</code> → inline CSS (hindari kecuali dinamis).
+                  </li>
+                  <li>
+                    <code>lang</code>, <code>title</code>,
+                    <code>tabindex</code>, <code>aria-*</code> (aksesibilitas).
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 5. LISTS & TABLES ==================== -->
+      <section id="lists">
+        <div class="section-header">5 · Lists &amp; Tables</div>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">Lists</div>
+              <div class="card-body">
+                <ul>
+                  <li><code>&lt;ul&gt;</code> → unordered list (bullet).</li>
+                  <li>
+                    <code>&lt;ol&gt;</code> → ordered list (angka/huruf),
+                    atribut <code>type</code>, <code>start</code>,
+                    <code>reversed</code>.
+                  </li>
+                  <li>
+                    <code>&lt;dl&gt;</code> + <code>&lt;dt&gt;</code> +
+                    <code>&lt;dd&gt;</code> → definition list (glosarium).
+                  </li>
+                  <li>
+                    Nested list: letakkan <code>&lt;ul&gt;</code> di dalam
+                    <code>&lt;li&gt;</code>, bukan langsung di bawah list.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Table Tag</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>&lt;table&gt;</code> → data tabular (bukan layout!).
+                  </li>
+                  <li>
+                    <code>&lt;caption&gt;</code> → judul tabel (wajib untuk
+                    aksesibilitas).
+                  </li>
+                  <li>
+                    <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>,
+                    <code>&lt;tfoot&gt;</code> → struktur.
+                  </li>
+                  <li>
+                    <code>&lt;th scope="col"&gt;</code> /
+                    <code>scope="row"</code> → header kolom/baris.
+                  </li>
+                  <li>
+                    <code>colspan</code> / <code>rowspan</code> → menggabungkan
+                    sel.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 6. EMBEDDING MEDIA ==================== -->
+      <section id="media">
+        <div class="section-header">6 · Embedding Media</div>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">Images</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code
+                      >&lt;img src="..." alt="..." width="..." height="..."
+                      loading="lazy" fetchpriority="high"&gt;</code
+                    >.
+                  </li>
+                  <li>
+                    Alt wajib: deskriptif untuk konten, kosong
+                    (<code>alt=""</code>) untuk dekoratif.
+                  </li>
+                  <li>
+                    <code>&lt;figure&gt;</code> +
+                    <code>&lt;figcaption&gt;</code> → gambar dengan keterangan
+                    yang terikat secara semantik.
+                  </li>
+                  <li>
+                    <code>loading="lazy"</code> → muat saat mendekati viewport
+                    (performa).
+                  </li>
+                  <li>
+                    <code>fetchpriority="high"</code> → prioritas tinggi (gambar
+                    hero).
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Audio, Video, iframe</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code
+                      >&lt;audio controls&gt;&lt;source src="..."
+                      type="..."&gt;&lt;/audio&gt;</code
+                    >.
+                  </li>
+                  <li>
+                    <code
+                      >&lt;video controls poster="..." width
+                      height&gt;&lt;source&gt;&lt;/video&gt;</code
+                    >.
+                  </li>
+                  <li>
+                    <code
+                      >&lt;iframe title="..." src="..." loading="lazy"
+                      sandbox&gt;</code
+                    >
+                    → embed halaman lain (YouTube, map).
+                  </li>
+                  <li>
+                    <strong>CSP (Content Security Policy):</strong> header atau
+                    meta tag untuk membatasi sumber yang boleh dimuat
+                    (pertahanan XSS).
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 7. FORMS ==================== -->
+      <section id="forms">
+        <div class="section-header">7 · Using Forms</div>
+        <div class="section-body">
+          <p>
+            <code
+              >&lt;form action="/proses" method="POST"
+              enctype="multipart/form-data"&gt;</code
+            >
+            → mengirim data ke server.
+          </p>
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">Input &amp; Labels</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    Setiap <code>&lt;input&gt;</code> harus punya
+                    <code>&lt;label for="id"&gt;</code> yang terhubung.
+                  </li>
+                  <li>
+                    Tipe input: text, email, number, password, date, checkbox,
+                    radio, file, submit.
+                  </li>
+                  <li>
+                    <code>required</code>, <code>minlength</code>,
+                    <code>maxlength</code>, <code>min</code>, <code>max</code>,
+                    <code>pattern</code> untuk validasi client‑side.
+                  </li>
+                  <li>
+                    <code>&lt;textarea&gt;</code> → area teks multi‑baris.
+                  </li>
+                  <li>
+                    <code>&lt;select&gt;</code> + <code>&lt;option&gt;</code> →
+                    dropdown.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">File Upload &amp; Limitations</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code
+                      >&lt;input type="file" accept="image/*" multiple&gt;</code
+                    >
+                    → unggah file.
+                  </li>
+                  <li>
+                    Validasi HTML hanya untuk UX, keamanan tetap harus
+                    divalidasi di server.
+                  </li>
+                  <li>
+                    Batasan: tidak ada validasi custom tanpa JavaScript, file
+                    upload membutuhkan
+                    <code>enctype="multipart/form-data"</code>.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 8. SEMANTIC MARKUP ==================== -->
+      <section id="semantic">
+        <div class="section-header">8 · Semantic Markup &amp; Layout</div>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">Highlighting Changes &amp; Quotations</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>&lt;del datetime&gt;</code> → teks yang dihapus,
+                    <code>&lt;ins&gt;</code> → teks ditambahkan,
+                    <code>&lt;s&gt;</code> → tidak relevan lagi (harga lama).
+                  </li>
+                  <li>
+                    <code>&lt;abbr title="..."&gt;</code> → singkatan dengan
+                    tooltip.
+                  </li>
+                  <li><code>&lt;cite&gt;</code> → judul karya (buku, film).</li>
+                  <li><code>&lt;dfn&gt;</code> → definisi pertama istilah.</li>
+                  <li>
+                    <code>&lt;address&gt;</code> → informasi kontak
+                    penulis/toko.
+                  </li>
+                  <li>
+                    <code>&lt;blockquote cite&gt;</code> → kutipan panjang,
+                    <code>&lt;q&gt;</code> → kutipan inline.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Layout Tags (HTML5)</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>&lt;header&gt;</code> → pengantar, logo, navigasi.
+                  </li>
+                  <li><code>&lt;nav&gt;</code> → navigasi utama.</li>
+                  <li>
+                    <code>&lt;main&gt;</code> → konten utama (hanya satu).
+                  </li>
+                  <li>
+                    <code>&lt;section&gt;</code> → kelompok tematik (butuh
+                    heading).
+                  </li>
+                  <li>
+                    <code>&lt;article&gt;</code> → konten independen (postingan,
+                    berita).
+                  </li>
+                  <li>
+                    <code>&lt;aside&gt;</code> → konten pelengkap (sidebar).
+                  </li>
+                  <li><code>&lt;footer&gt;</code> → footer halaman/section.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="good">
+            ✨ Gunakan heading (<code>&lt;h2&gt;</code> –
+            <code>&lt;h6&gt;</code>) untuk setiap
+            <code>&lt;section&gt;</code>/<code>&lt;article&gt;</code>, dan beri
+            <code>id</code> agar bisa dirujuk dengan
+            <code>aria-labelledby</code>.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 9. STYLING & JAVASCRIPT ==================== -->
+      <section id="styling">
+        <div class="section-header">
+          9 · Styling Basics &amp; Including JavaScript
+        </div>
+        <div class="section-body">
+          <ul>
+            <li>
+              <strong>Inline CSS:</strong>
+              <code>style="property: value;"</code> → specificity tertinggi,
+              hindari untuk maintainability.
+            </li>
+            <li>
+              <strong>Internal CSS:</strong>
+              <code>&lt;style&gt; ... &lt;/style&gt;</code> di
+              <code>&lt;head&gt;</code>, cocok untuk halaman tunggal.
+            </li>
+            <li>
+              <strong>External CSS:</strong>
+              <code>&lt;link rel="stylesheet" href="style.css"&gt;</code> →
+              standar industri, reusable, caching.
+            </li>
+            <li>
+              <strong>JavaScript:</strong>
+              <code>&lt;script src="script.js" defer&gt;&lt;/script&gt;</code> →
+              <code>defer</code> menunda eksekusi hingga HTML selesai di‑parse,
+              tidak memblokir rendering.
+            </li>
+            <li>
+              <code>async</code> → eksekusi segera setelah file diunduh (cocok
+              untuk analitik).
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ==================== 10. ACCESSIBILITY & SEO ==================== -->
+      <section id="accessibility">
+        <div class="section-header">10 · Accessibility &amp; Basics of SEO</div>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">Accessibility (a11y)</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <strong>WCAG POUR:</strong> Perceivable, Operable,
+                    Understandable, Robust.
+                  </li>
+                  <li>Gunakan semantic HTML sebagai fondasi.</li>
+                  <li>
+                    Focus indicator yang jelas (<code>:focus-visible</code>).
+                  </li>
+                  <li>
+                    <code>alt</code> pada gambar, <code>label</code> pada form.
+                  </li>
+                  <li>
+                    ARIA: <code>aria-label</code>, <code>aria-labelledby</code>,
+                    <code>role</code> hanya jika semantic tidak cukup.
+                  </li>
+                  <li><code>skip link</code> untuk lompat ke konten utama.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Basics of SEO</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <strong>Crawling, indexing, ranking</strong> → mesin pencari
+                    membaca HTML.
+                  </li>
+                  <li>
+                    <code>&lt;title&gt;</code> (50‑60 karakter),
+                    <code>meta name="description"</code> (155 karakter).
+                  </li>
+                  <li>
+                    <code>meta name="robots" content="index, follow"</code>.
+                  </li>
+                  <li><code>link rel="canonical"</code> → URL utama.</li>
+                  <li>
+                    <strong>Open Graph tags:</strong>
+                    <code>og:title, og:description, og:image, og:type</code>
+                    untuk media sosial.
+                  </li>
+                  <li>
+                    <strong>Structured data (JSON-LD):</strong>
+                    <code
+                      >&lt;script
+                      type="application/ld+json"&gt;{...}&lt;/script&gt;</code
+                    >
+                    untuk rich snippets.
+                  </li>
+                  <li>
+                    <strong>GEO (Generative Engine Optimization):</strong>
+                    konten terstruktur dan faktual agar dikutip oleh AI search.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 11. STUDI KASUS ==================== -->
+      <section id="casestudy">
+        <div class="section-header">11 · Studi Kasus: Toko Sembako Berkah</div>
+        <div class="section-body">
+          <div class="case-study">
+            <div class="demo-card">
+              <div class="demo-card__header">🏪 Toko Sembako Berkah</div>
+              <div class="demo-card__grid">
+                <div class="product">
+                  🌾 Beras Premium <span>Rp 78.000</span>
+                </div>
+                <div class="product">
+                  🫒 Minyak Goreng <span>Rp 24.500</span>
+                </div>
+                <div class="product">🍬 Gula Pasir <span>Rp 17.500</span></div>
+              </div>
+              <div class="demo-card__footer">
+                <strong>Penerapan semantik:</strong>
+                <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+                <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>,
+                <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>,
+                <code>&lt;footer&gt;</code>. Aksesibilitas: <code>alt</code>,
+                <code>aria-label</code>, <code>skip link</code>. SEO:
+                <code>title</code>, <code>description</code>,
+                <code>og:tags</code>, JSON‑LD.
+              </div>
+            </div>
+          </div>
+          <p>
+            Struktur halaman toko menggunakan elemen semantik modern, setiap
+            produk di dalam <code>&lt;article&gt;</code>, kategori di
+            <code>&lt;aside&gt;</code>, navigasi dengan
+            <code>&lt;nav&gt;</code>. Ini memudahkan screen reader dan mesin
+            pencari.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================== 12. CHEATSHEET ==================== -->
+      <section id="cheatsheet">
+        <div class="section-header">12 · Cheatsheet — Ringkasan Cepat</div>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">Struktur Dasar</div>
+              <div class="card-body">
+                <ul>
+                  <li><code>&lt;!DOCTYPE html&gt;</code></li>
+                  <li><code>&lt;html lang="id"&gt;</code></li>
+                  <li><code>&lt;meta charset="UTF-8"&gt;</code></li>
+                  <li><code>&lt;title&gt;Judul&lt;/title&gt;</code></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Semantik Umum</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>,
+                    <code>&lt;main&gt;</code>
+                  </li>
+                  <li>
+                    <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>,
+                    <code>&lt;aside&gt;</code>
+                  </li>
+                  <li><code>&lt;footer&gt;</code></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Form</div>
+              <div class="card-body">
+                <ul>
+                  <li><code>&lt;label for="id"&gt;</code></li>
+                  <li><code>&lt;input type="text" id="..."&gt;</code></li>
+                  <li><code>required</code>, <code>pattern</code></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">Media</div>
+              <div class="card-body">
+                <ul>
+                  <li><code>&lt;img src alt loading="lazy"&gt;</code></li>
+                  <li><code>&lt;figure&gt;&lt;figcaption&gt;</code></li>
+                  <li><code>&lt;iframe title sandbox&gt;</code></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 13. GLOSARIUM ==================== -->
+      <section id="glosarium">
+        <div class="section-header">13 · Glosarium</div>
+        <div class="section-body">
+          <div class="glos-item">
+            <span class="glos-term">DOM (Document Object Model)</span
+            ><span class="glos-tag">konsep</span>
+            <div class="glos-def">
+              Representasi HTML sebagai pohon di memori browser, dimanipulasi
+              oleh JavaScript.
+            </div>
+          </div>
+          <div class="glos-item">
+            <span class="glos-term">Semantic HTML</span
+            ><span class="glos-tag">konsep</span>
+            <div class="glos-def">
+              Memilih tag berdasarkan makna konten, bukan tampilan. Meningkatkan
+              aksesibilitas dan SEO.
+            </div>
+          </div>
+          <div class="glos-item">
+            <span class="glos-term">Self‑closing tag</span
+            ><span class="glos-tag">sintaks</span>
+            <div class="glos-def">
+              Tag tanpa penutup, contoh <code>&lt;img&gt;</code>,
+              <code>&lt;br&gt;</code>, <code>&lt;input&gt;</code>.
+            </div>
+          </div>
+          <div class="glos-item">
+            <span class="glos-term">Block vs Inline</span
+            ><span class="glos-tag">perilaku</span>
+            <div class="glos-def">
+              Block: ambil lebar penuh, baris baru. Inline: mengalir dalam teks,
+              tidak bisa diatur lebar.
+            </div>
+          </div>
+          <div class="glos-item">
+            <span class="glos-term">ARIA</span
+            ><span class="glos-tag">aksesibilitas</span>
+            <div class="glos-def">
+              Atribut untuk menambah informasi semantik bagi teknologi asistif.
+              Gunakan hanya jika HTML tidak cukup.
+            </div>
+          </div>
+          <div class="glos-item">
+            <span class="glos-term">CSP</span
+            ><span class="glos-tag">keamanan</span>
+            <div class="glos-def">
+              Content Security Policy, membatasi sumber daya yang boleh dimuat
+              browser untuk mencegah XSS.
+            </div>
+          </div>
+          <div class="glos-item">
+            <span class="glos-term">Structured Data / JSON‑LD</span
+            ><span class="glos-tag">SEO</span>
+            <div class="glos-def">
+              Data terstruktur yang membantu mesin pencari memahami konten dan
+              menampilkan rich snippets.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 14. FLASH CARDS ==================== -->
+      <section id="flashcards">
+        <div class="section-header">14 · Flash Cards</div>
+        <div class="section-body">
+          <div class="flashcard-grid">
+            <div class="flashcard">
+              <div class="front">
+                Apa perbedaan <code>&lt;strong&gt;</code> dan
+                <code>&lt;b&gt;</code>?
+              </div>
+              <div class="back">
+                <code>&lt;strong&gt;</code> memiliki makna semantik (penting),
+                <code>&lt;b&gt;</code> hanya visual bold. Screen reader membaca
+                <code>&lt;strong&gt;</code> dengan penekanan.
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">
+                Mengapa menggunakan <code>&lt;figure&gt;</code> untuk gambar?
+              </div>
+              <div class="back">
+                <code>&lt;figure&gt;</code> +
+                <code>&lt;figcaption&gt;</code> mengelompokkan gambar dengan
+                keterangan yang secara semantik terikat, berbeda dengan
+                <code>&lt;img&gt;</code> + teks di luar.
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">
+                Apa itu <code>defer</code> pada <code>&lt;script&gt;</code>?
+              </div>
+              <div class="back">
+                Menunda eksekusi script hingga HTML selesai di‑parse, mencegah
+                render‑blocking, urutan eksekusi sesuai deklarasi.
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">
+                Kapan menggunakan <code>&lt;section&gt;</code> vs
+                <code>&lt;article&gt;</code>?
+              </div>
+              <div class="back">
+                <code>&lt;section&gt;</code> untuk kelompok tematik yang terkait
+                dengan halaman; <code>&lt;article&gt;</code> untuk konten
+                independen yang bisa berdiri sendiri (postingan, berita).
+              </div>
+            </div>
+            <div class="flashcard">
+              <div class="front">
+                Apa fungsi atribut <code>scope</code> pada tabel?
+              </div>
+              <div class="back">
+                <code>scope="col"</code> pada <code>&lt;th&gt;</code> menandakan
+                header kolom, <code>scope="row"</code> header baris, membantu
+                screen reader memahami struktur tabel.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 15. BEST PRACTICES & ANTI-PATTERNS ==================== -->
+      <section id="bestpractices">
+        <div class="section-header">
+          15 · Best Practices &amp; Anti‑Patterns
+        </div>
+        <div class="section-body">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head">✅ Pola yang Selalu Digunakan</div>
+              <div class="card-body">
+                <ul>
+                  <li>
+                    Gunakan semantic HTML: <code>&lt;nav&gt;</code>,
+                    <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>,
+                    bukan <code>&lt;div&gt;</code> semua.
+                  </li>
+                  <li>
+                    Setiap <code>&lt;input&gt;</code> harus punya
+                    <code>&lt;label for&gt;</code> yang terhubung.
+                  </li>
+                  <li>
+                    Link eksternal:
+                    <code>target="_blank" rel="noopener noreferrer"</code>.
+                  </li>
+                  <li>
+                    Alt pada gambar: deskriptif untuk konten, kosong
+                    (<code>alt=""</code>) untuk dekoratif.
+                  </li>
+                  <li>
+                    Gunakan <code>width</code> dan <code>height</code> pada
+                    <code>&lt;img&gt;</code> untuk mencegah layout shift (CLS).
+                  </li>
+                  <li>
+                    Sertakan <code>lang="id"</code> pada
+                    <code>&lt;html&gt;</code>.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head">❌ Anti‑Pattern yang Harus Dihindari</div>
+              <div class="card-body">
+                <ul>
+                  <li>Menggunakan <code>&lt;table&gt;</code> untuk layout.</li>
+                  <li>
+                    <code>&lt;br&gt;&lt;br&gt;</code> untuk spasi vertikal →
+                    gunakan CSS margin.
+                  </li>
+                  <li>
+                    <code>&lt;b&gt;</code> dan <code>&lt;i&gt;</code> untuk
+                    makna penting (gunakan
+                    <code>&lt;strong&gt;</code>/<code>&lt;em&gt;</code>).
+                  </li>
+                  <li>
+                    <code>width="300px"</code> pada <code>&lt;img&gt;</code> →
+                    atribut hanya menerima angka tanpa satuan.
+                  </li>
+                  <li>
+                    <code>border="1"</code> pada tabel → styling dengan CSS.
+                  </li>
+                  <li>
+                    <code>innerHTML</code> untuk menampilkan input pengguna
+                    (rentan XSS), gunakan <code>textContent</code>.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 Muhammad Ricky Yusuf — HTML Complete Reference</p>
+      <p>
+        <small
+          >Semua materi HTML dari dasar hingga praktik modern, disusun untuk
+          recall cepat</small
+        >
+      </p>
+    </footer>
+  </body>
+</html>

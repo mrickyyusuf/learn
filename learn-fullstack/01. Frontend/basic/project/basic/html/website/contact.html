@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontak | Ricky Yusuf</title>
+    <meta
+      name="description"
+      content="Hubungi Muhammad Ricky Yusuf untuk kolaborasi, pertanyaan, atau sekadar ngobrol tentang web development dan teknologi."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Kontak — Ricky Yusuf" />
+    <meta property="og:type" content="website" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>"
+    />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Lewati navigasi ke konten utama</a>
+
+    <header>
+      <h1>Ricky Yusuf</h1>
+      <nav aria-label="Navigasi utama situs">
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="projects.html">Proyek</a></li>
+          <li><a href="articles.html">Artikel</a></li>
+          <li>
+            <a href="contact.html" aria-current="page">Kontak</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section aria-labelledby="h-kontak">
+        <h2 id="h-kontak">Hubungi Saya</h2>
+        <p>
+          Terbuka untuk diskusi tentang web development, kolaborasi proyek, atau
+          pertanyaan apapun tentang journey belajar saya. Pilih cara yang paling
+          nyaman untuk kamu.
+        </p>
+      </section>
+
+      <hr />
+
+      <!-- FORM KONTAK -->
+      <section aria-labelledby="h-form-kontak">
+        <h2 id="h-form-kontak">Kirim Pesan</h2>
+
+        <form action="/api/contact" method="POST" novalidate>
+          <div>
+            <label for="nama"
+              >Nama Lengkap <span aria-hidden="true">*</span></label
+            >
+            <input
+              type="text"
+              id="nama"
+              name="nama"
+              required
+              minlength="3"
+              maxlength="80"
+              placeholder="Nama kamu"
+              autocomplete="name"
+              aria-required="true"
+              title="Nama minimal 3 karakter"
+            />
+          </div>
+
+          <div>
+            <label for="email"
+              >Alamat Email <span aria-hidden="true">*</span></label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="nama@email.com"
+              autocomplete="email"
+              aria-required="true"
+              title="Masukkan alamat email yang valid"
+            />
+          </div>
+
+          <div>
+            <label for="topik"
+              >Topik Pesan <span aria-hidden="true">*</span></label
+            >
+            <select id="topik" name="topik" required aria-required="true">
+              <option value="">-- Pilih Topik --</option>
+              <option value="kolaborasi">Kolaborasi Proyek</option>
+              <option value="pertanyaan">Pertanyaan Teknis</option>
+              <option value="feedback">Feedback &amp; Saran</option>
+              <option value="lainnya">Lainnya</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="pesan">Pesan <span aria-hidden="true">*</span></label>
+            <textarea
+              id="pesan"
+              name="pesan"
+              required
+              minlength="20"
+              maxlength="1000"
+              rows="6"
+              placeholder="Tulis pesanmu di sini... (minimal 20 karakter)"
+              aria-required="true"
+              aria-describedby="petunjuk-pesan"
+              title="Pesan minimal 20 karakter"
+            ></textarea>
+            <span id="petunjuk-pesan">Maksimal 1000 karakter.</span>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              id="setuju"
+              name="setuju"
+              required
+              aria-required="true"
+            />
+            <label for="setuju">
+              Saya setuju bahwa data ini digunakan hanya untuk membalas pesan
+              saya (<abbr title="sesuai kebijakan privasi">Privacy Policy</abbr
+              >).
+            </label>
+          </div>
+
+          <div role="alert" id="form-status" aria-atomic="true"></div>
+
+          <button type="submit">Kirim Pesan</button>
+        </form>
+      </section>
+
+      <hr />
+
+      <!-- INFO KONTAK LANGSUNG -->
+      <section aria-labelledby="h-info-kontak">
+        <h2 id="h-info-kontak">Info Kontak Langsung</h2>
+        <address>
+          <p>
+            Email:
+            <a
+              href="mailto:rickyyusuf78@gmail.com"
+              title="Kirim email langsung ke Ricky"
+            >
+              rickyyusuf78@gmail.com
+            </a>
+          </p>
+          <p>
+            GitHub:
+            <a
+              href="https://github.com/mrickyyusuf"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Kunjungi profil GitHub Muhammad Ricky Yusuf"
+            >
+              github.com/mrickyyusuf
+            </a>
+          </p>
+          <p>Lokasi: Jakarta, Indonesia</p>
+        </address>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Muhammad Ricky Yusuf</p>
+      <nav aria-label="Navigasi footer">
+        <a href="index.html">Beranda</a> &middot;
+        <a href="projects.html">Proyek</a> &middot;
+        <a href="articles.html">Artikel</a> &middot;
+        <a href="contact.html">Kontak</a>
+      </nav>
+    </footer>
+  </body>
+</html>

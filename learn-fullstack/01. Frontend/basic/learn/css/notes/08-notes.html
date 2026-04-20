@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>08 · Box Model, Units, Border, Shadow</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --hijau: #2e7d32;
+        --merah: #c62828;
+        --bg: #f4f7fc;
+      }
+
+      body {
+        font-family: Georgia, serif;
+        background: var(--bg);
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.6;
+      }
+
+      h1 {
+        font-size: clamp(
+          1.4rem,
+          4vw,
+          2rem
+        ); /* clamp: responsive tanpa media query */
+        color: var(--hijau);
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .kartu {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        max-width: 760px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      h2 {
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: var(--hijau);
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      /* ─────────────────────────────────
+       BOX MODEL — visualisasi nyata
+    ──────────────────────────────────── */
+      .demo-boxmodel .kotak {
+        /* Content: 200px x 60px */
+        width: 200px;
+        height: 60px;
+        background: #e8f5e9;
+
+        /* Padding: jarak konten ke border */
+        padding: 16px 24px;
+
+        /* Border: garis tepi */
+        border: 3px solid var(--hijau);
+
+        /* Margin: jarak ke elemen lain */
+        margin: 16px;
+
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .demo-boxmodel .info {
+        font-size: 0.8rem;
+        color: #555;
+        margin-top: 8px;
+        font-family: monospace;
+      }
+
+      /* ─────────────────────────────────
+       PADDING SHORTHAND
+    ──────────────────────────────────── */
+      .p-all {
+        padding: 24px;
+        background: #e3f2fd;
+        border: 1px dashed #1565c0;
+      }
+      .p-tb-lr {
+        padding: 8px 32px;
+        background: #f3e5f5;
+        border: 1px dashed #7b1fa2;
+      }
+      .p-trbl {
+        padding: 4px 16px 24px 8px;
+        background: #fff9c4;
+        border: 1px dashed #f9a825;
+      }
+
+      .demo-padding div {
+        border-radius: 6px;
+        margin-bottom: 8px;
+        font-size: 0.85rem;
+        font-family: monospace;
+      }
+
+      /* ─────────────────────────────────
+       MARGIN: auto untuk centering
+    ──────────────────────────────────── */
+      .demo-margin .kotak-tengah {
+        width: 60%;
+        background: #e8f5e9;
+        border: 1px solid var(--hijau);
+        padding: 12px;
+        margin: 0 auto; /* kiri kanan auto = tengahkan */
+        text-align: center;
+        border-radius: 6px;
+        font-size: 0.85rem;
+      }
+
+      .margin-collapse-demo p {
+        background: #fff3e0;
+        border: 1px solid #ff9800;
+        padding: 8px;
+        margin: 20px 0;
+        font-size: 0.8rem;
+      }
+
+      /* ─────────────────────────────────
+       BORDER
+    ──────────────────────────────────── */
+      .demo-border div {
+        padding: 10px 14px;
+        margin-bottom: 8px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-family: monospace;
+      }
+
+      .b-solid {
+        border: 2px solid var(--hijau);
+      }
+      .b-dashed {
+        border: 2px dashed #f57f17;
+      }
+      .b-dotted {
+        border: 2px dotted #1565c0;
+      }
+      .b-left {
+        border-left: 5px solid var(--merah);
+        background: #fce4ec;
+      }
+      .b-radius {
+        border: 2px solid #7b1fa2;
+        border-radius: 50px;
+      } /* pill shape */
+      .b-circle {
+        border: 3px solid var(--hijau);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      /* ─────────────────────────────────
+       OUTLINE — di luar box model
+    ──────────────────────────────────── */
+      .demo-outline .kotak-outline {
+        padding: 12px 20px;
+        background: #e8f5e9;
+        border: 2px solid var(--hijau);
+        border-radius: 8px;
+        margin-bottom: 12px;
+        font-size: 0.85rem;
+        display: inline-block;
+      }
+
+      .dengan-outline {
+        outline: 3px solid #1565c0;
+        outline-offset: 4px; /* jarak outline dari border */
+      }
+
+      /* Perbedaan visual: border menggeser layout, outline tidak */
+      .demo-outline .baris {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+      }
+
+      /* ─────────────────────────────────
+       BOX SHADOW
+       offset-x  offset-y  blur  spread  color
+    ──────────────────────────────────── */
+      .demo-shadow div {
+        padding: 14px 20px;
+        background: white;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        font-size: 0.85rem;
+        font-family: monospace;
+      }
+
+      .s-kecil {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      }
+      .s-sedang {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      .s-besar {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      }
+      .s-berwarna {
+        box-shadow: 0 4px 16px rgba(46, 125, 50, 0.4);
+        border: 1px solid #a5d6a7;
+      }
+      .s-berlapis {
+        box-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.06),
+          0 8px 16px rgba(0, 0, 0, 0.1),
+          0 16px 32px rgba(0, 0, 0, 0.06);
+      }
+      .s-inset {
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.12);
+        background: #f5f5f5;
+      }
+
+      /* ─────────────────────────────────
+       CSS UNITS
+    ──────────────────────────────────── */
+      .demo-units table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+      }
+      .demo-units th,
+      .demo-units td {
+        padding: 8px 12px;
+        border: 1px solid #e0e0e0;
+        vertical-align: top;
+      }
+      .demo-units th {
+        background: var(--hijau);
+        color: white;
+      }
+      .demo-units tr:nth-child(even) td {
+        background: #f5f5f5;
+      }
+
+      /* Demonstrasi visual perbedaan em vs rem */
+      .em-demo {
+        font-size: 20px;
+        padding: 1em;
+        background: #e3f2fd;
+        margin-bottom: 6px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+      }
+      .rem-demo {
+        font-size: 20px;
+        padding: 1rem;
+        background: #e8f5e9;
+        border-radius: 4px;
+        font-size: 0.85rem;
+      }
+
+      /* ─────────────────────────────────
+       FUNCTIONS: calc, min, max, clamp
+    ──────────────────────────────────── */
+      .demo-functions .kotak-calc {
+        width: calc(100% - 48px); /* 100% parent dikurangi 48px */
+        background: #fff9c4;
+        border: 1px solid #f9a825;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        font-family: monospace;
+        font-size: 0.85rem;
+      }
+
+      .demo-functions .kotak-min {
+        width: min(100%, 400px); /* ambil yang lebih kecil: 100% atau 400px */
+        background: #fce4ec;
+        border: 1px solid #e91e63;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        font-family: monospace;
+        font-size: 0.85rem;
+      }
+
+      .demo-functions .judul-clamp {
+        /* responsive font: min 1rem, preferred 3vw, max 2.5rem */
+        font-size: clamp(1rem, 3vw, 2.5rem);
+        color: var(--hijau);
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+
+      /* ─────────────────────────────────
+       STUDI KASUS NYATA:
+       Kartu produk yang menerapkan semua konsep
+    ──────────────────────────────────── */
+      .kartu-produk {
+        /* Width dengan max-width — responsif */
+        width: 100%;
+        max-width: min(100%, 340px); /* min() agar tidak lebih dari 340px */
+
+        /* Padding menggunakan rem — konsisten */
+        padding: 1.25rem;
+
+        /* Border */
+        border: 1px solid #e0e0e0;
+        border-left: 4px solid var(--hijau);
+        border-radius: 12px;
+
+        /* Box shadow — kedalaman visual */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+
+        /* Transisi saat hover */
+        transition:
+          box-shadow 0.2s,
+          transform 0.2s;
+
+        background: white;
+        margin-bottom: 1rem;
+      }
+
+      .kartu-produk:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+        transform: translateY(-2px);
+      }
+
+      /* Focus ring menggunakan outline, BUKAN border */
+      .kartu-produk:focus-visible {
+        outline: 3px solid #1565c0;
+        outline-offset: 3px;
+      }
+
+      .kartu-produk h3 {
+        font-size: 1.1rem; /* rem — relatif ke root */
+        margin-bottom: 0.5rem;
+        color: #1a2c3e;
+      }
+
+      .kartu-produk .harga {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: var(--hijau);
+        margin-bottom: 0.75rem;
+      }
+
+      .kartu-produk .btn {
+        display: inline-block;
+        padding: 0.5rem 1.25rem; /* em/rem — konsisten dengan typography */
+        background: var(--hijau);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-family: inherit;
+        box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
+        transition:
+          box-shadow 0.2s,
+          transform 0.15s;
+      }
+
+      .kartu-produk .btn:hover {
+        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4);
+        transform: translateY(-1px);
+      }
+
+      .kartu-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Box Model · Units · Border · Outline · Box Shadow</h1>
+
+    <!-- Box Model -->
+    <section class="kartu demo-boxmodel">
+      <h2>Box Model (box-sizing: border-box aktif)</h2>
+      <div class="kotak">Content 200×60</div>
+      <p class="info">
+        width: 200px | padding: 16px 24px | border: 3px solid | margin: 16px<br />
+        Dengan border-box: total lebar tetap 200px meski ada padding & border.
+      </p>
+    </section>
+
+    <!-- Padding -->
+    <section class="kartu demo-padding">
+      <h2>Padding Shorthand</h2>
+      <div class="p-all">padding: 24px — semua sisi sama</div>
+      <div class="p-tb-lr">padding: 8px 32px — top&bottom 8, left&right 32</div>
+      <div class="p-trbl">
+        padding: 4px 16px 24px 8px — top right bottom left
+      </div>
+    </section>
+
+    <!-- Margin -->
+    <section class="kartu demo-margin">
+      <h2>Margin: auto untuk centering</h2>
+      <div class="kotak-tengah">
+        margin: 0 auto → elemen ini selalu di tengah
+      </div>
+      <div class="margin-collapse-demo" style="margin-top: 12px">
+        <p>Paragraf atas (margin-bottom: 20px)</p>
+        <p>
+          Paragraf bawah (margin-top: 20px) — margin bertemu → COLLAPSE ke 20px,
+          bukan 40px
+        </p>
+      </div>
+    </section>
+
+    <!-- Border -->
+    <section class="kartu demo-border">
+      <h2>Border</h2>
+      <div class="b-solid">border: 2px solid #2e7d32</div>
+      <div class="b-dashed">border: 2px dashed #f57f17</div>
+      <div class="b-dotted">border: 2px dotted #1565c0</div>
+      <div class="b-left">border-left: 5px solid red — hanya sisi kiri</div>
+      <div class="b-radius">border-radius: 50px — pill shape</div>
+      <div class="b-circle">🌾</div>
+    </section>
+
+    <!-- Outline -->
+    <section class="kartu demo-outline">
+      <h2>Outline — di luar box model, tidak geser layout</h2>
+      <div class="baris">
+        <div class="kotak-outline">Tanpa outline</div>
+        <div class="kotak-outline dengan-outline">
+          Dengan outline (tidak geser elemen lain)
+        </div>
+      </div>
+      <p style="font-size: 0.8rem; color: #555">
+        Coba bandingkan: menambah border menggeser layout; menambah outline
+        tidak.
+      </p>
+    </section>
+
+    <!-- Box Shadow -->
+    <section class="kartu demo-shadow">
+      <h2>Box Shadow: offset-x offset-y blur spread color</h2>
+      <div class="s-kecil">0 2px 4px rgba(0,0,0,0.08) — kecil</div>
+      <div class="s-sedang">0 4px 12px rgba(0,0,0,0.15) — sedang</div>
+      <div class="s-besar">0 8px 24px rgba(0,0,0,0.2) — besar</div>
+      <div class="s-berwarna">0 4px 16px rgba(46,125,50,0.4) — berwarna</div>
+      <div class="s-berlapis">berlapis tiga shadow — efek kedalaman nyata</div>
+      <div class="s-inset">inset 0 2px 8px — bayangan ke dalam</div>
+    </section>
+
+    <!-- Units -->
+    <section class="kartu demo-units">
+      <h2>CSS Units</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Unit</th>
+            <th>Tipe</th>
+            <th>Relatif terhadap</th>
+            <th>Kapan pakai</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>px</td>
+            <td>Absolute</td>
+            <td>—</td>
+            <td>Border, shadow, nilai presisi</td>
+          </tr>
+          <tr>
+            <td>em</td>
+            <td>Relative</td>
+            <td>font-size elemen sendiri/parent</td>
+            <td>Padding/margin relatif font</td>
+          </tr>
+          <tr>
+            <td>rem</td>
+            <td>Relative</td>
+            <td>font-size root (&lt;html&gt;)</td>
+            <td>Typography, spacing konsisten</td>
+          </tr>
+          <tr>
+            <td>%</td>
+            <td>Relative</td>
+            <td>Ukuran parent</td>
+            <td>Width/height fleksibel</td>
+          </tr>
+          <tr>
+            <td>vw/vh</td>
+            <td>Relative</td>
+            <td>Lebar/tinggi viewport</td>
+            <td>Hero section, full-screen</td>
+          </tr>
+          <tr>
+            <td>calc()</td>
+            <td>Function</td>
+            <td>Campuran</td>
+            <td>Width dinamis</td>
+          </tr>
+          <tr>
+            <td>clamp()</td>
+            <td>Function</td>
+            <td>Campuran</td>
+            <td>Responsive typography</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 12px">
+        <div class="em-demo">
+          padding: 1em (= font-size elemen itu, sering berubah sesuai nesting)
+        </div>
+        <div class="rem-demo">
+          padding: 1rem (= font-size root, selalu konsisten)
+        </div>
+      </div>
+    </section>
+
+    <!-- Functions -->
+    <section class="kartu demo-functions">
+      <h2>CSS Functions: calc(), min(), max(), clamp()</h2>
+      <div class="kotak-calc">
+        width: calc(100% - 48px) → selalu 48px lebih kecil dari parent
+      </div>
+      <div class="kotak-min">
+        width: min(100%, 400px) → max 400px, tapi menyempit di layar kecil
+      </div>
+      <p class="judul-clamp">font-size: clamp(1rem, 3vw, 2.5rem)</p>
+      <p style="font-size: 0.8rem; color: #555">
+        Resize jendela browser — judul di atas berubah ukuran antara 1rem dan
+        2.5rem.
+      </p>
+    </section>
+
+    <!-- Studi kasus nyata -->
+    <section class="kartu">
+      <h2>Studi Kasus: Kartu Produk Sembako</h2>
+      <div class="kartu-row">
+        <article class="kartu-produk" tabindex="0">
+          <h3>Beras Premium 5kg</h3>
+          <p class="harga">Rp 78.000</p>
+          <button class="btn" type="button">+ Keranjang</button>
+        </article>
+        <article class="kartu-produk" tabindex="0">
+          <h3>Gula Pasir 1kg</h3>
+          <p class="harga">Rp 14.000</p>
+          <button class="btn" type="button">+ Keranjang</button>
+        </article>
+        <article class="kartu-produk" tabindex="0">
+          <h3>Minyak Goreng 2L</h3>
+          <p class="harga">Rp 32.500</p>
+          <button class="btn" type="button">+ Keranjang</button>
+        </article>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10 · Position</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.7;
+      }
+      .kartu {
+        max-width: 760px;
+        margin: 0 auto 1.5rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      h1 {
+        text-align: center;
+        color: #1b5e20;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        margin-bottom: 2rem;
+      }
+      h2 {
+        color: #1b5e20;
+        font-size: 1rem;
+        font-family: monospace;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
+      pre {
+        background: #263238;
+        color: #cfd8dc;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+      .tip {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      .warn {
+        background: #fff9c4;
+        border-left: 4px solid #f9a825;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      code {
+        font-family: monospace;
+        background: #f5f5f5;
+        color: #c62828;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.87rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0.75rem 0;
+        font-size: 0.87rem;
+      }
+      th {
+        background: #2e7d32;
+        color: white;
+        padding: 8px 10px;
+        text-align: left;
+      }
+      td {
+        padding: 7px 10px;
+        border-bottom: 1px solid #e0e0e0;
+        vertical-align: top;
+      }
+      tr:nth-child(even) td {
+        background: #f5f5f5;
+      }
+
+      /* DEMO */
+      .demo-container {
+        position: relative;
+        background: #e8f5e9;
+        border: 2px solid #2e7d32;
+        height: 160px;
+        margin: 0.75rem 0;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .demo-box {
+        background: #2e7d32;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        display: inline-block;
+      }
+      .demo-relative {
+        position: relative;
+        top: 20px;
+        left: 30px;
+      }
+      .demo-absolute {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+      .demo-sticky-wrapper {
+        height: 120px;
+        overflow-y: scroll;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin: 0.75rem 0;
+      }
+      .demo-sticky-header {
+        position: sticky;
+        top: 0;
+        background: #2e7d32;
+        color: white;
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        z-index: 1;
+      }
+      .demo-sticky-wrapper p {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        border-bottom: 1px solid #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>10 · Position Property</h1>
+
+    <section class="kartu">
+      <h2>Konsep: Normal Flow vs Positioned Elements</h2>
+      <p>
+        Secara default, semua elemen mengikuti <strong>normal flow</strong> —
+        block elements mengalir dari atas ke bawah, inline elements mengalir
+        kiri ke kanan dalam baris. Properti <code>position</code> memungkinkan
+        kamu "keluar" dari flow normal untuk menempatkan elemen di posisi yang
+        lebih presisi. Tapi keluar dari flow ada konsekuensinya — elemen lain
+        mungkin tidak "tahu" elemen itu ada.
+      </p>
+      <p>
+        Setiap nilai position (kecuali <code>static</code>) mengaktifkan
+        properti <code>top</code>, <code>right</code>, <code>bottom</code>,
+        <code>left</code> untuk mengatur posisi, serta membuat elemen menjadi
+        <strong>positioned element</strong> yang relevan untuk z-index.
+      </p>
+    </section>
+
+    <section class="kartu">
+      <h2>Perbandingan Cepat Lima Nilai</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Value</th>
+            <th>Referensi Posisi</th>
+            <th>Pengaruh ke Layout</th>
+            <th>Kapan Pakai</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>static</code></td>
+            <td>Normal flow (default)</td>
+            <td>Normal</td>
+            <td>Default — tidak perlu ditulis eksplisit</td>
+          </tr>
+          <tr>
+            <td><code>relative</code></td>
+            <td>Posisi normalnya sendiri</td>
+            <td>Ruangnya tetap ada</td>
+            <td>Offset kecil, container untuk absolute</td>
+          </tr>
+          <tr>
+            <td><code>absolute</code></td>
+            <td>Nearest positioned ancestor</td>
+            <td>Dikeluarkan dari flow</td>
+            <td>Badge, tooltip, dropdown, modal</td>
+          </tr>
+          <tr>
+            <td><code>fixed</code></td>
+            <td>Viewport (jendela browser)</td>
+            <td>Dikeluarkan dari flow</td>
+            <td>Navbar sticky, chat button, cookie banner</td>
+          </tr>
+          <tr>
+            <td><code>sticky</code></td>
+            <td>Normal flow + viewport saat scroll</td>
+            <td>Normal sampai threshold</td>
+            <td>Header tabel sticky, section header</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="kartu">
+      <h2>position: relative</h2>
+      <p>
+        Elemen tetap di flow normal (ruangnya dipertahankan), tapi secara visual
+        digeser relatif terhadap <em>posisi normalnya sendiri</em>. Yang paling
+        penting: <code>relative</code> membuat elemen menjadi
+        <strong>containing block</strong> untuk child yang
+        <code>absolute</code>.
+      </p>
+      <div class="demo-container">
+        <span class="demo-box">Normal</span>
+        <span class="demo-box demo-relative">Relative: top:20 left:30</span>
+        <span class="demo-box demo-absolute">Absolute: top:10 right:10</span>
+      </div>
+      <pre>
+.kartu-produk {
+  position: relative; /* ← menjadi "penjangkar" untuk badge di dalamnya */
+}
+
+.badge-diskon {
+  position: absolute;
+  top: 8px;
+  right: 8px; /* ← dihitung dari .kartu-produk, bukan viewport */
+}</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>position: absolute</h2>
+      <p>
+        Elemen dikeluarkan dari normal flow (elemen lain seolah ia tidak ada)
+        dan diposisikan relatif terhadap
+        <strong>nearest ancestor yang memiliki position selain static</strong>.
+        Jika tidak ada, ia menggunakan viewport. Ini adalah pola yang hampir
+        selalu dipakai bersama <code>relative</code> pada parent-nya.
+      </p>
+      <div class="warn">
+        ⚠️ Kesalahan paling umum: lupa menambahkan
+        <code>position: relative</code> pada parent, sehingga elemen absolute
+        "kabur" ke posisi yang tidak diharapkan karena menggunakan viewport
+        sebagai referensi.
+      </div>
+      <pre>
+/* Pola klasik: parent relative, child absolute */
+.container { position: relative; }
+.overlay   { position: absolute; inset: 0; background: rgba(0,0,0,.5); }
+/* inset: shorthand untuk top: 0; right: 0; bottom: 0; left: 0 */</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>position: fixed</h2>
+      <p>
+        Elemen menempel di posisi yang sama di <strong>viewport</strong> bahkan
+        saat halaman di-scroll. Berguna untuk navbar yang selalu terlihat,
+        tombol "kembali ke atas", atau chat widget. Karena keluar dari flow,
+        perlu hati-hati agar tidak menutupi konten penting — beri padding pada
+        elemen di bawahnya.
+      </p>
+      <pre>
+.navbar-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;         /* atau width: 100% */
+  z-index: 100;     /* pastikan di atas konten lain */
+}
+
+/* Kompensasi agar konten tidak tersembunyi di balik navbar */
+body { padding-top: 56px; } /* tinggi navbar */</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>position: sticky</h2>
+      <p>
+        Berperilaku seperti <code>relative</code> sampai elemen mencapai
+        threshold yang ditentukan saat scroll, lalu "menempel" seperti
+        <code>fixed</code> sampai parent-nya keluar dari viewport. Sangat
+        berguna untuk header tabel yang panjang atau section header dalam
+        halaman artikel panjang.
+      </p>
+      <div class="demo-sticky-wrapper">
+        <div class="demo-sticky-header">
+          Header Kategori: Bahan Pokok (sticky saat scroll)
+        </div>
+        <p>Beras Premium 5kg — Rp 78.000</p>
+        <p>Gula Pasir 1kg — Rp 14.000</p>
+        <p>Minyak Goreng 2L — Rp 32.500</p>
+        <p>Tepung Terigu 1kg — Rp 12.000</p>
+        <p>Garam Halus — Rp 5.000</p>
+      </div>
+      <pre>
+thead th {
+  position: sticky;
+  top: 0; /* menempel di posisi 0 dari atas container scroll */
+  background: white; /* harus solid agar tidak transparan saat scroll */
+  z-index: 1;
+}</pre
+      >
+      <div class="tip">
+        💡 <code>sticky</code> membutuhkan parent yang memiliki
+        <code>overflow</code> yang sesuai dan tinggi yang terdefinisi. Jika
+        tidak bekerja, periksa apakah ada ancestor dengan
+        <code>overflow: hidden</code> yang memblokir scroll context.
+      </div>
+    </section>
+  </body>
+</html>

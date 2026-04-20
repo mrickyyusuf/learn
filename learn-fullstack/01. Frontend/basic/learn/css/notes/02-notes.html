@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02 · Frontend Development</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.7;
+      }
+      .kartu {
+        max-width: 760px;
+        margin: 0 auto 1.5rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      h1 {
+        text-align: center;
+        color: #1b5e20;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        margin-bottom: 2rem;
+      }
+      h2 {
+        color: #1b5e20;
+        font-size: 1rem;
+        font-family: monospace;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
+      pre {
+        background: #263238;
+        color: #cfd8dc;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+      .tip {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      .lapisan {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin: 1rem 0;
+      }
+      .lapisan div {
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+      .l-html {
+        background: #e3f2fd;
+        color: #1565c0;
+      }
+      .l-css {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+      .l-js {
+        background: #fff9c4;
+        color: #f57f17;
+      }
+      code {
+        font-family: monospace;
+        background: #f5f5f5;
+        color: #c62828;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.87rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>02 · Frontend Development: HTML, CSS, JS</h1>
+
+    <section class="kartu">
+      <h2>Tiga Lapisan Frontend</h2>
+      <p>
+        Frontend development dibangun dari tiga teknologi yang bekerja bersama
+        secara komplementer. Analoginya seperti sebuah toko fisik: HTML adalah
+        bangunan fisiknya (dinding, rak, kasir), CSS adalah desain interiornya
+        (warna, pencahayaan, tata letak), dan JavaScript adalah sistem
+        operasionalnya (pintu otomatis, mesin kasir, alarm stok).
+      </p>
+      <div class="lapisan">
+        <div class="l-html">HTML<br /><small>Struktur &amp; Makna</small></div>
+        <div class="l-css">
+          CSS<br /><small>Tampilan &amp; Presentasi</small>
+        </div>
+        <div class="l-js">
+          JavaScript<br /><small>Perilaku &amp; Interaktivitas</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="kartu">
+      <h2>HTML dari Perspektif CSS</h2>
+      <p>
+        Ketika CSS engineer membaca HTML, yang dilihatnya bukan sekadar konten —
+        melainkan <strong>kumpulan target yang bisa diseleksi</strong>. Setiap
+        class, id, hubungan parent-child, dan state interaktif adalah titik yang
+        bisa "diarahkan" oleh selector CSS.
+      </p>
+      <p>
+        HTML yang baik untuk CSS memberikan <em>hooks</em> (pengait) yang
+        bermakna — bukan terlalu sedikit (CSS jadi penuh selector panjang rapuh)
+        dan bukan terlalu banyak (HTML berantakan dengan class tidak bermakna).
+      </p>
+      <pre>
+/* ❌ HTML tanpa CSS hooks */
+&lt;div&gt;&lt;div&gt;Beras 5kg&lt;/div&gt;&lt;div&gt;Rp 78.000&lt;/div&gt;&lt;/div&gt;
+
+/* ✅ HTML dengan hooks semantik */
+&lt;article class="kartu-produk" data-stok="42"&gt;
+  &lt;h3 class="kartu-produk__judul"&gt;Beras Premium 5kg&lt;/h3&gt;
+  &lt;p class="kartu-produk__harga"&gt;Rp 78.000&lt;/p&gt;
+&lt;/article&gt;</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>CSS: State-Driven Design</h2>
+      <p>
+        CSS mendefinisikan
+        <strong>semua kemungkinan state visual</strong> sebuah komponen.
+        JavaScript hanya bertugas menambah atau menghapus class untuk beralih
+        antar state. Tidak ada logika warna atau ukuran di JavaScript.
+      </p>
+      <pre>
+/* CSS mendefinisikan SEMUA state */
+.kartu-produk { border: 1px solid #ddd; transition: all 0.2s; }
+.kartu-produk:hover { box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+.kartu-produk.dipilih { border-color: #2e7d32; background: #e8f5e9; }
+.kartu-produk.stok-habis { opacity: 0.4; cursor: not-allowed; }
+
+/* JavaScript hanya toggle class — tidak menyentuh warna sama sekali */
+tombol.addEventListener('click', () => {
+  kartu.classList.toggle('dipilih');
+});</pre
+      >
+      <div class="tip">
+        💡 Prinsip ini disebut <strong>State-Driven CSS</strong> dan adalah
+        standar di semua framework modern (React className, Vue :class, Angular
+        [ngClass]). Pelajari dari sekarang karena akan terus relevan.
+      </div>
+    </section>
+
+    <section class="kartu">
+      <h2>JavaScript dari Perspektif CSS</h2>
+      <p>
+        JavaScript berinteraksi dengan CSS melalui tiga cara utama. Pertama,
+        menambah/menghapus class via <code>classList</code> (paling
+        direkomendasikan). Kedua, membaca nilai CSS yang dihitung via
+        <code>getComputedStyle</code>. Ketiga, menulis inline style untuk nilai
+        yang benar-benar dinamis via
+        <code>element.style.width = nilai + '%'</code> — ini satu-satunya kasus
+        di mana inline style dibenarkan.
+      </p>
+    </section>
+  </body>
+</html>

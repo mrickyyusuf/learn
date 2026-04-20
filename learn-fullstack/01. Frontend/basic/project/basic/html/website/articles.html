@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artikel | Ricky Yusuf</title>
+    <meta
+      name="description"
+      content="Artikel dan catatan belajar Muhammad Ricky Yusuf seputar HTML, CSS, JavaScript, dan web development."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Artikel — Ricky Yusuf" />
+    <meta property="og:type" content="website" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>"
+    />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Lewati navigasi ke konten utama</a>
+
+    <header>
+      <h1>Ricky Yusuf</h1>
+      <nav aria-label="Navigasi utama situs">
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="projects.html">Proyek</a></li>
+          <li><a href="articles.html" aria-current="page">Artikel</a></li>
+          <li><a href="contact.html">Kontak</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section aria-labelledby="h-artikel">
+        <h2 id="h-artikel">Catatan &amp; Artikel</h2>
+        <p>
+          Catatan belajar yang ditulis selama perjalanan menguasai web
+          development. Prinsip saya: yang sudah dipelajari perlu diajarkan
+          kembali — baik ke orang lain maupun ke diri sendiri di masa depan.
+        </p>
+      </section>
+
+      <hr />
+
+      <article id="artikel-semantic-html">
+        <header>
+          <h2>Mengapa Semantic HTML Bukan Sekadar "Best Practice"</h2>
+          <p>
+            <time datetime="2026-03-01">1 Maret 2026</time> &mdash; oleh
+            <strong>Muhammad Ricky Yusuf</strong>
+          </p>
+        </header>
+
+        <section aria-labelledby="h-a1-intro">
+          <h3 id="h-a1-intro">Lebih dari Sekadar Tampilan</h3>
+          <p>
+            Banyak pemula berpikir bahwa pilihan antara
+            <code>&lt;div&gt;</code> dan <code>&lt;section&gt;</code> adalah
+            soal selera atau kebiasaan. Kenyataannya, setiap tag yang kita pilih
+            adalah <dfn id="def-komunikasi-semantik">komunikasi semantik</dfn> —
+            kita sedang memberitahu browser, mesin pencari, dan teknologi
+            asistif tentang <em>makna</em> konten tersebut, bukan hanya
+            strukturnya.
+          </p>
+          <p>
+            Saat <abbr title="Googlebot">bot Google</abbr> merayapi halaman
+            kita, ia tidak melihat tampilan visual. Ia membaca HTML mentah dan
+            mencoba memahami apa topik utama halaman (<code>&lt;h1&gt;</code>),
+            mana navigasi (<code>&lt;nav&gt;</code>), mana konten utama
+            (<code>&lt;main&gt;</code>), dan mana informasi pendukung
+            (<code>&lt;aside&gt;</code>).
+          </p>
+        </section>
+
+        <section aria-labelledby="h-a1-dampak">
+          <h3 id="h-a1-dampak">Dampak Nyata</h3>
+          <blockquote
+            cite="https://developer.mozilla.org/en-US/docs/Glossary/Semantics"
+          >
+            <p>
+              Semantic HTML gives information about the contents of those
+              elements, beyond just how they look on a page.
+            </p>
+          </blockquote>
+          <p>&mdash; <cite>MDN Web Docs: Semantics</cite></p>
+
+          <p>
+            Dampaknya tiga arah: <strong>aksesibilitas</strong> (pengguna
+            tunanetra bisa navigasi via heading dan landmark),
+            <strong>SEO</strong>
+            (Google memahami hierarki dan relevansi konten), dan
+            <strong>maintainability</strong> (kode lebih mudah dibaca tim).
+            Ketiganya tidak bisa dipisahkan.
+          </p>
+        </section>
+
+        <footer>
+          <p><small>Tag: HTML, Semantik, Aksesibilitas, SEO</small></p>
+        </footer>
+      </article>
+
+      <hr />
+
+      <article id="artikel-accessibility">
+        <header>
+          <h2>Aksesibilitas Bukan Fitur Tambahan — Catatan Belajar ARIA</h2>
+          <p>
+            <time datetime="2026-03-15">15 Maret 2026</time> &mdash; oleh
+            <strong>Muhammad Ricky Yusuf</strong>
+          </p>
+        </header>
+
+        <p>
+          Sebelum belajar
+          <abbr title="Accessible Rich Internet Applications">ARIA</abbr>, saya
+          mengira aksesibilitas adalah sesuatu yang "nanti ditambahkan." Setelah
+          mempelajarinya, saya menyadari bahwa HTML semantik yang benar
+          <em>sudah</em> aksesibel secara default — ARIA hanya mengisi celah
+          yang tidak bisa dijangkau HTML standar.
+        </p>
+
+        <p>
+          Aturan yang paling mengubah cara saya berpikir adalah:
+          <q
+            >No
+            <abbr title="Accessible Rich Internet Applications">ARIA</abbr> is
+            better than bad ARIA.</q
+          >
+          ARIA yang salah lebih merusak aksesibilitas daripada tidak ada ARIA
+          sama sekali.
+        </p>
+
+        <footer>
+          <p><small>Tag: Aksesibilitas, ARIA, WCAG, Screen Reader</small></p>
+        </footer>
+      </article>
+
+      <aside aria-label="Artikel yang akan datang">
+        <h2>Segera Hadir</h2>
+        <p>Catatan belajar CSS: Box Model, Flexbox, dan Grid System.</p>
+      </aside>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Muhammad Ricky Yusuf</p>
+      <nav aria-label="Navigasi footer">
+        <a href="index.html">Beranda</a> &middot;
+        <a href="projects.html">Proyek</a> &middot;
+        <a href="articles.html">Artikel</a> &middot;
+        <a href="contact.html">Kontak</a>
+      </nav>
+    </footer>
+  </body>
+</html>

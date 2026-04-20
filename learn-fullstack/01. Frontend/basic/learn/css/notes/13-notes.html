@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>13 · Pseudo Elements</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.7;
+      }
+      .kartu {
+        max-width: 760px;
+        margin: 0 auto 1.5rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      h1 {
+        text-align: center;
+        color: #1b5e20;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        margin-bottom: 2rem;
+      }
+      h2 {
+        color: #1b5e20;
+        font-size: 1rem;
+        font-family: monospace;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
+      pre {
+        background: #263238;
+        color: #cfd8dc;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+      .tip {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      .warn {
+        background: #fff9c4;
+        border-left: 4px solid #f9a825;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      code {
+        font-family: monospace;
+        background: #f5f5f5;
+        color: #c62828;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.87rem;
+      }
+
+      /* Demo ::before dan ::after */
+      .demo-quote {
+        position: relative;
+        padding: 1rem 1.5rem;
+        background: #e8f5e9;
+        border-radius: 8px;
+        font-style: italic;
+        margin: 0.75rem 0;
+      }
+      .demo-quote::before {
+        content: '"';
+        font-size: 4rem;
+        color: #2e7d32;
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        line-height: 1;
+        font-family: Georgia, serif;
+      }
+
+      .demo-badge-container {
+        position: relative;
+        display: inline-block;
+        background: #e8f5e9;
+        border: 1px solid #2e7d32;
+        padding: 16px;
+        border-radius: 8px;
+        margin: 0.75rem 0;
+      }
+      .demo-badge-container::after {
+        content: "DISKON";
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #c62828;
+        color: white;
+        font-size: 0.65rem;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      .demo-clearfix::before,
+      .demo-clearfix::after {
+        content: "";
+        display: table;
+      }
+      .demo-clearfix::after {
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>13 · Pseudo Elements</h1>
+
+    <section class="kartu">
+      <h2>Pseudo Element vs Pseudo Class</h2>
+      <p>
+        Pseudo class (<code>:</code>) menarget elemen berdasarkan
+        <em>state</em>. Pseudo element (<code>::</code>) membuat
+        <strong>bagian virtual dari elemen</strong> yang tidak ada di HTML tapi
+        bisa di-style atau ditambahkan konten. Ditulis dengan dua titik dua
+        untuk membedakan dari pseudo class.
+      </p>
+      <div class="warn">
+        ⚠️ Wajib ada properti <code>content</code> (bisa kosong <code>""</code>)
+        pada <code>::before</code> dan <code>::after</code> agar muncul di
+        halaman.
+      </div>
+    </section>
+
+    <section class="kartu">
+      <h2>::before dan ::after — Konten Dekoratif</h2>
+      <p>
+        Dua pseudo element paling sering dipakai.
+        <code>::before</code> memasukkan konten virtual <em>sebelum</em> konten
+        asli elemen. <code>::after</code> memasukkan <em>sesudah</em>. Keduanya
+        berperilaku seperti inline element secara default tapi bisa diubah
+        dengan <code>display</code>.
+      </p>
+
+      <div class="demo-quote">
+        Produk kami sudah diuji kualitasnya secara ketat.
+      </div>
+      <div class="demo-badge-container">
+        Beras Premium 5kg — ::after untuk badge DISKON
+      </div>
+
+      <pre>
+.kartu-produk {
+  position: relative; /* diperlukan agar ::after bisa absolute */
+}
+
+/* Badge "Diskon" di sudut kanan atas — tidak perlu HTML tambahan */
+.kartu-produk.diskon::after {
+  content: "DISKON";    /* WAJIB ADA — tanpa ini elemen tidak muncul */
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #c62828;
+  color: white;
+  font-size: .7rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Garis dekoratif sebelum heading */
+h2::before {
+  content: "";         /* kosong tapi tetap WAJIB ada */
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #2e7d32;
+  margin-bottom: 8px;
+}
+
+/* Icon setelah link eksternal */
+a[target="_blank"]::after {
+  content: " ↗";
+  font-size: .8em;
+  opacity: .6;
+}</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>::first-line dan ::first-letter</h2>
+      <pre>
+/* Baris pertama paragraf */
+p::first-line {
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+/* Huruf pertama — efek drop cap seperti majalah */
+article > p:first-child::first-letter {
+  font-size: 3rem;
+  font-weight: bold;
+  float: left;
+  line-height: 0.8;
+  margin-right: 8px;
+  color: #2e7d32;
+}</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>::placeholder dan ::selection</h2>
+      <pre>
+/* Teks placeholder di dalam input */
+input::placeholder {
+  color: #9e9e9e;
+  font-style: italic;
+}
+
+/* Teks yang diseleksi (di-highlight) pengguna */
+::selection {
+  background: #a5d6a7;
+  color: #1b5e20;
+}</pre
+      >
+      <div class="tip">
+        💡 Prinsip untuk <code>::before</code> dan <code>::after</code>: gunakan
+        hanya untuk konten <strong>dekoratif</strong> yang tidak punya makna
+        semantik. Kalau konten penting untuk dipahami (label, informasi), taruh
+        di HTML. Screen reader tidak membaca pseudo elements secara konsisten.
+      </div>
+    </section>
+  </body>
+</html>

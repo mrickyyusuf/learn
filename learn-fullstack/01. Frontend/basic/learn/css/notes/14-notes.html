@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>14 · Flow Layout</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Georgia, serif;
+        background: #f4f7fc;
+        color: #1a2c3e;
+        padding: 2rem 1rem;
+        line-height: 1.7;
+      }
+      .kartu {
+        max-width: 760px;
+        margin: 0 auto 1.5rem;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      h1 {
+        text-align: center;
+        color: #1b5e20;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        margin-bottom: 2rem;
+      }
+      h2 {
+        color: #1b5e20;
+        font-size: 1rem;
+        font-family: monospace;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+      }
+      pre {
+        background: #263238;
+        color: #cfd8dc;
+        padding: 1rem 1.25rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+      .tip {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 0.75rem 1rem;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      code {
+        font-family: monospace;
+        background: #f5f5f5;
+        color: #c62828;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 0.87rem;
+      }
+
+      /* Flow demo */
+      .flow-demo {
+        background: #f9f9f9;
+        border: 1px dashed #ccc;
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 0.75rem 0;
+      }
+      .flow-demo .block-el {
+        background: #a5d6a7;
+        border: 1px solid #2e7d32;
+        padding: 6px 10px;
+        margin-bottom: 4px;
+        font-size: 0.8rem;
+      }
+      .flow-demo .inline-el {
+        background: #bbdefb;
+        border: 1px solid #1565c0;
+        padding: 4px 8px;
+        font-size: 0.8rem;
+      }
+      .float-demo {
+        overflow: hidden;
+      }
+      .float-demo .floated {
+        float: left;
+        background: #fff9c4;
+        border: 1px solid #f9a825;
+        padding: 8px 12px;
+        margin: 0 12px 8px 0;
+        border-radius: 4px;
+        font-size: 0.8rem;
+      }
+      .float-demo p {
+        font-size: 0.85rem;
+      }
+      .multicol-demo {
+        column-count: 2;
+        column-gap: 1.5rem;
+        column-rule: 1px solid #ddd;
+        margin: 0.75rem 0;
+        font-size: 0.85rem;
+        background: #f9f9f9;
+        padding: 1rem;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>14 · Flow Layout</h1>
+
+    <section class="kartu">
+      <h2>Normal Flow: Cara Default Browser Menyusun Elemen</h2>
+      <p>
+        Flow layout adalah sistem layout bawaan browser sebelum kamu menambahkan
+        apapun. Dalam flow layout, setiap elemen mengikuti dua aturan sederhana:
+        elemen block mengalir dari atas ke bawah (membentuk "block formatting
+        context"), dan elemen inline mengalir dari kiri ke kanan dalam satu
+        baris sebelum wrap ke baris berikutnya ("inline formatting context").
+      </p>
+      <p>
+        Memahami flow layout adalah fondasi penting sebelum belajar Flexbox dan
+        Grid — karena Flexbox dan Grid pada dasarnya adalah cara untuk mengambil
+        alih kendali dari flow layout dan mengganti dengan model yang lebih
+        fleksibel.
+      </p>
+      <div class="flow-demo">
+        <div class="block-el">Block element 1</div>
+        <div class="block-el">Block element 2</div>
+        <span class="inline-el">Inline 1</span>
+        <span class="inline-el">Inline 2</span>
+        <span class="inline-el">Inline 3 — mengalir bersama</span>
+      </div>
+    </section>
+
+    <section class="kartu">
+      <h2>Margin Collapse</h2>
+      <p>
+        Salah satu perilaku flow layout yang paling sering mengejutkan pemula
+        adalah <strong>margin collapse</strong>. Ketika dua margin vertikal
+        bertemu (margin-bottom elemen di atas bertemu margin-top elemen di
+        bawah), keduanya tidak dijumlahkan — melainkan yang lebih besar yang
+        berlaku. Ini hanya terjadi pada margin vertikal dalam flow normal, tidak
+        pada Flexbox atau Grid.
+      </p>
+      <pre>
+/* Contoh: dua p berturut-turut */
+p { margin-bottom: 20px; margin-top: 20px; }
+/* Jarak antar dua p = 20px (bukan 40px) karena margin collapse */
+
+/* Margin collapse TIDAK terjadi pada: */
+/* - elemen dalam flex container */
+/* - elemen dalam grid container */
+/* - elemen dengan overflow selain visible */
+/* - elemen dengan border atau padding di antaranya */</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>Float — Warisan yang Masih Perlu Diketahui</h2>
+      <p>
+        Float awalnya dirancang untuk "gambar yang dikelilingi teks" seperti di
+        majalah, bukan untuk layout halaman. Dulu dipakai untuk membuat layout
+        kolom sebelum Flexbox ada. Sekarang hampir tidak dipakai untuk layout,
+        tapi masih relevan untuk use case aslinya.
+      </p>
+      <div class="float-demo">
+        <div class="floated">Gambar yang di-float</div>
+        <p>
+          Teks ini mengalir mengelilingi elemen yang di-float kiri. Ini adalah
+          use case asli float — mengelilingi gambar dengan teks seperti di
+          majalah atau koran. Parent harus punya overflow: hidden atau clearfix
+          agar container tidak collapse.
+        </p>
+      </div>
+      <pre>
+img { float: left; margin: 0 16px 8px 0; }
+
+/* Clearfix — cara klasik mengatasi container yang collapse karena float */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Cara modern: gunakan display: flow-root pada parent */
+.container { display: flow-root; } /* membuat Block Formatting Context baru */</pre
+      >
+    </section>
+
+    <section class="kartu">
+      <h2>Multi-Column Layout</h2>
+      <p>
+        Multi-column layout berguna untuk konten teks panjang yang perlu dibagi
+        ke beberapa kolom seperti koran atau majalah. Konten mengalir otomatis
+        dari kolom ke kolom.
+      </p>
+      <div class="multicol-demo">
+        <p>
+          Toko sembako adalah tulang punggung ekonomi rakyat. Setiap hari jutaan
+          keluarga bergantung pada ketersediaan bahan pokok yang terjangkau dan
+          berkualitas. Dengan sistem manajemen yang baik, toko sembako bisa
+          melayani lebih banyak pelanggan dengan lebih efisien.
+        </p>
+        <p>
+          Teknologi modern memungkinkan pengelolaan stok, kasir, dan pelaporan
+          dilakukan secara digital — mengurangi kesalahan manusia dan
+          meningkatkan kepuasan pelanggan secara signifikan.
+        </p>
+      </div>
+      <pre>
+.artikel {
+  column-count: 3;      /* 3 kolom */
+  /* atau gunakan column-width untuk responsif: */
+  column-width: 250px;  /* lebar minimum per kolom, otomatis hitung jumlahnya */
+  column-gap: 2rem;
+  column-rule: 1px solid #ddd; /* garis pemisah antar kolom */
+}
+
+/* Elemen yang tidak boleh terpotong antar kolom */
+h2 { break-after: avoid; } /* h2 tidak boleh diikuti break kolom */
+figure { break-inside: avoid; } /* gambar tidak boleh terpotong */</pre
+      >
+      <div class="tip">
+        💡 Untuk layout halaman modern (kartu produk, grid konten, sidebar +
+        main), gunakan Flexbox atau Grid (materi 15). Float dan multi-column
+        hanya untuk use case teks/konten editorial.
+      </div>
+    </section>
+  </body>
+</html>

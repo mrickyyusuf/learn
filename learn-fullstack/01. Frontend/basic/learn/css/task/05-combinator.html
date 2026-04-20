@@ -1,0 +1,259 @@
+<!-- Tugas Praktik
+        Buat file css-labs/06-combinator.html. Di dalamnya buat halaman daftar belanja toko sembako — satu heading <h2>, beberapa <article> berisi nama produk dan harga, dan satu paragraf penutup di bawah semua artikel.
+        Kemudian style-nya menggunakan keempat combinator secara bermakna:
+        Hint — descendant untuk styling semua teks harga di mana saja di dalam .daftar; child (>) untuk styling hanya <h2> yang langsung di dalam .daftar, bukan heading yang mungkin ada di dalam article; next sibling (+) untuk memberi style berbeda pada paragraf yang langsung mengikuti <h2> (misalnya intro bold); subsequent sibling (~) untuk memberi border-top atau jarak pada semua <article> yang mengikuti <article> pertama. Tulis comment di setiap rule yang menjelaskan mengapa combinator itu dipilih untuk kasus tersebut. 
+-->
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Praktik Combinator - Daftar Belanja Sembako</title>
+    <style>
+      /* Reset dasar untuk tampilan rapi */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f0;
+        padding: 2rem;
+        line-height: 1.5;
+      }
+
+      /* Container utama yang menggunakan class .daftar sesuai petunjuk soal */
+      .daftar {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      }
+
+      /* ==================== 1. DESCENDANT COMBINATOR (spasi) ==================== */
+      /* 
+            Mengapa memilih descendant combinator?
+            - Kita ingin semua elemen harga (dengan class 'price') yang berada DI MANA SAJA 
+              di dalam elemen .daftar mendapat gaya yang sama.
+            - Tidak peduli seberapa dalam nested-nya (misal di dalam article, di dalam p, dll).
+            - Dengan descendant combinator (spasi), kita menjangkau semua .price yang merupakan
+              keturunan dari .daftar, tanpa harus membuat rule yang spesifik per parent.
+            - Ini efisien untuk memastikan konsistensi tampilan harga di seluruh daftar belanja.
+        */
+      .daftar .price {
+        font-weight: 700;
+        color: #c0392b;
+        background-color: #fff0e6;
+        padding: 0.2rem 0.5rem;
+        border-radius: 12px;
+        font-size: 1rem;
+        display: inline-block;
+      }
+
+      /* ==================== 2. CHILD COMBINATOR (>) ==================== */
+      /* 
+            Mengapa memilih child combinator (>)?
+            - Kita hanya ingin memberi gaya pada elemen <h2> yang merupakan ANAK LANGSUNG dari .daftar.
+            - Jika ada heading <h2> di dalam elemen lain (misal di dalam <article> atau <div>), 
+              mereka TIDAK boleh terkena gaya ini.
+            - Child combinator memastikan bahwa hanya elemen yang menjadi anak langsung (direct child)
+              dari .daftar yang akan di-style, menghindari pewarisan ke heading yang lebih dalam.
+            - Dalam struktur ini, kita ingin heading utama toko tampil beda, tanpa mempengaruhi 
+              judul produk di dalam artikel.
+        */
+      .daftar > h2 {
+        font-size: 2rem;
+        color: #2c3e2f;
+        border-left: 6px solid #4caf50;
+        padding-left: 1rem;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+      }
+
+      /* ==================== 3. NEXT SIBLING COMBINATOR (+) ==================== */
+      /* 
+            Mengapa memilih next sibling combinator (+)?
+            - Paragraf yang langsung mengikuti <h2> perlu mendapatkan gaya berbeda: 
+              tebal, background lembut, untuk menonjolkan pernyataan pembuka.
+            - Kombinator + memilih elemen yang merupakan sibling LANGSUNG (immediately following)
+              dari elemen sebelumnya.
+            - Dengan ini, kita bisa memastikan hanya paragraf pertama setelah heading utama yang 
+              di-bold, bukan semua paragraf yang ada di dalam .daftar.
+            - Cocok untuk memberikan aksen pada elemen pembuka tanpa mempengaruhi paragraf penutup 
+              di bawah artikel.
+            - Catatan: Selector menggunakan tag p (bukan class) karena class tidak diperlukan 
+              untuk styling ini, sehingga HTML lebih bersih tanpa class yang tidak terpakai.
+        */
+      .daftar h2 + p {
+        font-weight: bold;
+        background-color: #e8f5e9;
+        padding: 0.8rem 1rem;
+        border-radius: 16px;
+        margin-bottom: 1.8rem;
+        color: #2e6b2f;
+        border-left: 3px solid #4caf50;
+        font-size: 1.05rem;
+      }
+
+      /* ==================== 4. SUBSEQUENT SIBLING COMBINATOR (~) ==================== */
+      /* 
+            Mengapa memilih subsequent sibling combinator (~)?
+            - Kita ingin memberikan efek border-top dan jarak pada SEMUA <article> yang muncul
+              SETELAH <article> pertama di dalam .daftar.
+            - Kombinator ~ memilih semua elemen yang merupakan sibling (selevel) setelah 
+              elemen acuan (dalam hal ini, setiap <article> yang memiliki <article> lain sebelumnya).
+            - Dengan pola .daftar article ~ article, semua artikel yang bukan artikel pertama
+              mendapatkan gaya pemisah visual. Ini meningkatkan keterbacaan daftar belanja,
+              memisahkan setiap produk dengan jelas tanpa menambahkan kelas ekstra.
+            - Solusi ini rapi dan otomatis mengikuti jumlah artikel berapa pun.
+        */
+      .daftar article ~ article {
+        border-top: 2px dashed #cfe9cf;
+        margin-top: 1.2rem;
+        padding-top: 1.2rem;
+      }
+
+      /* Styling tambahan untuk artikel agar tampil rapi */
+      .daftar article {
+        transition: all 0.2s ease;
+        padding: 0.2rem 0;
+      }
+
+      .daftar article h3 {
+        font-size: 1.3rem;
+        color: #2c3e2f;
+        margin-bottom: 0.25rem;
+        font-weight: 600;
+      }
+
+      .daftar article p {
+        color: #4a5b4a;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      /* Paragraf penutup (concluding paragraph) di bawah semua artikel */
+      .daftar .closing {
+        margin-top: 2rem;
+        padding: 1rem;
+        background-color: #faf9f2;
+        border-radius: 16px;
+        text-align: center;
+        color: #5d6e5d;
+        font-style: italic;
+        border-top: 1px solid #dce8dc;
+        font-size: 0.95rem;
+      }
+
+      /* Styling untuk box keterangan penjelasan — memindahkan inline style ke sini */
+      .keterangan {
+        max-width: 800px;
+        margin: 1.5rem auto 0;
+        font-size: 0.85rem;
+        background-color: #fff9ef;
+        padding: 1rem;
+        border-radius: 16px;
+        color: #5a4a2e;
+      }
+
+      .keterangan strong {
+        color: #3b5a2b;
+      }
+
+      .keterangan code {
+        background-color: #f0e7d6;
+        padding: 0.1rem 0.3rem;
+        border-radius: 6px;
+        font-family: monospace;
+        font-size: 0.85rem;
+      }
+
+      /* Responsif sederhana */
+      @media (max-width: 600px) {
+        body {
+          padding: 1rem;
+        }
+        .daftar {
+          padding: 1.5rem;
+        }
+        .daftar > h2 {
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="daftar">
+      <!-- Heading utama (h2) yang merupakan direct child dari .daftar, akan terkena child combinator (>) -->
+      <h2>🛒 Daftar Belanja Sembako</h2>
+
+      <!-- Paragraf intro yang LANGSUNG mengikuti <h2>. Akan terkena next sibling combinator (+).
+         Tidak menggunakan class intro karena selector menggunakan tag p dan class tidak diperlukan
+         untuk styling — menghindari dead class. -->
+      <p>
+        ✨ Berikut daftar produk dengan harga terbaru (langsung dari
+        distributor):
+      </p>
+
+      <!-- Artikel pertama: produk Beras -->
+      <article>
+        <h3>🌾 Beras Premium</h3>
+        <p>Harga: <span class="price">Rp 78.000</span> / 5kg</p>
+      </article>
+
+      <!-- Artikel kedua: produk Minyak Goreng -->
+      <article>
+        <h3>🫒 Minyak Goreng Curah</h3>
+        <p>Harga: <span class="price">Rp 24.500</span> / liter</p>
+      </article>
+
+      <!-- Artikel ketiga: produk Gula Pasir -->
+      <article>
+        <h3>🍬 Gula Pasir Putih</h3>
+        <p>Harga: <span class="price">Rp 17.500</span> / kg</p>
+      </article>
+
+      <!-- Artikel keempat: produk Telur Ayam -->
+      <article>
+        <h3>🥚 Telur Ayam Negeri</h3>
+        <p>Harga: <span class="price">Rp 31.000</span> / kg</p>
+      </article>
+
+      <!-- Artikel kelima: produk Susu Kental Manis (menunjukkan combinator ~ tetap berlaku) -->
+      <article>
+        <h3>🥛 Susu Kental Manis</h3>
+        <p>Harga: <span class="price">Rp 15.200</span> / kaleng</p>
+      </article>
+
+      <!-- Paragraf penutup di bawah semua artikel (tidak terpengaruh next sibling combinator karena bukan sibling langsung setelah h2) -->
+      <p class="closing">
+        ✅ Terima kasih telah berbelanja di Toko Sembako "Berkah". Belanja
+        hemat, kualitas terjamin! 🛍️
+      </p>
+    </div>
+
+    <!-- Box penjelasan kini menggunakan class .keterangan, semua styling sudah ada di <style> -->
+    <div class="keterangan">
+      <strong>📘 Keterangan Penerapan Combinator CSS:</strong><br />
+      ✔ <strong>Descendant (spasi):</strong> <code>.daftar .price</code> → semua
+      teks harga di manapun di dalam .daftar memiliki gaya merah dan background
+      lembut.<br />
+      ✔ <strong>Child (>) :</strong> <code>.daftar > h2</code> → hanya heading
+      utama yang merupakan anak langsung .daftar yang mendapat border kiri dan
+      gaya khusus.<br />
+      ✔ <strong>Next sibling (+):</strong> <code>.daftar h2 + p</code> →
+      paragraf intro yang langsung setelah h2 menjadi tebal & background hijau
+      muda (selector berdasarkan tag p, tanpa class tidak terpakai).<br />
+      ✔ <strong>Subsequent sibling (~):</strong>
+      <code>.daftar article ~ article</code> → semua artikel setelah artikel
+      pertama mendapat garis putus-putus dan margin atas.
+    </div>
+  </body>
+</html>

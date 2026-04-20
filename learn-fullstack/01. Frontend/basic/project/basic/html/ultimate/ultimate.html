@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="id">
+  <!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║           ULTIMATE FINAL PROJECT — HTML MODUL                   ║
+  ║     Sistem Informasi Apotek "Sehat Selalu"                       ║
+  ║                                                                  ║
+  ║  Project ini SENGAJA LEBIH SULIT dari tugas-tugas sebelumnya.    ║
+  ║  Kamu perlu BERPIKIR, MENGINGAT, dan MENCARI untuk               ║
+  ║  menyelesaikan bagian-bagian yang belum pernah diajarkan         ║
+  ║  secara eksplisit (ditandai dengan 🔍 TANTANGAN).               ║
+  ║                                                                  ║
+  ║  Gunakan: MDN Web Docs, validator.w3.org, dan DevTools.          ║
+  ╚══════════════════════════════════════════════════════════════════╝
+
+  KONTEKS PROJECT:
+  Kamu diminta membangun halaman HTML untuk "Apotek Sehat Selalu" —
+  sebuah apotek kecil di Jakarta yang ingin go-online. Mereka butuh:
+  1. Halaman katalog obat dengan informasi lengkap
+  2. Form pemesanan obat yang aksesibel
+  3. Tabel laporan stok obat dengan struktur kompleks
+  4. Informasi apotek yang SEO-friendly dan aksesibel
+
+  CSS dan JS sudah disediakan (lihat bagian <style> dan <script>).
+  Tugasmu adalah MELENGKAPI semua bagian HTML yang bertanda [TODO].
+
+  ATURAN MAIN:
+  - Tidak boleh mengubah CSS atau JS yang sudah ada
+  - Harus memenuhi semua kriteria aksesibilitas yang diminta
+  - Harus valid di validator.w3.org
+  - Semua [TODO] harus diselesaikan
+-->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+    🔍 TANTANGAN 1 — SEO HEAD LENGKAP
+    Tambahkan SEMUA elemen head berikut secara benar:
+    (a) <title> yang optimal untuk SEO (mengandung kata kunci
+        "apotek" dan "Jakarta", maks 60 karakter)
+    (b) <meta name="description"> — 1 kalimat persuasif, maks 155 karakter
+    (c) <meta name="robots"> yang mengizinkan indexing dan following
+    (d) Empat OG tags wajib (title, description, image, type)
+        — og:image harus URL langsung ke file, BUKAN hanya domain
+    (e) JSON-LD untuk LocalBusiness dengan semua field yang valid
+        PENTING: gunakan "addressCountry": "ID" (bukan countryDescription)
+    (f) <link rel="canonical"> ke URL apotek ini
+    (g) Favicon menggunakan emoji 💊 via SVG data URI
+        (lihat cv.html di project sebelumnya sebagai referensi)
+  -->
+
+    <!-- [TODO: (a) title] -->
+    <title>Apotek Sehat Selalu | Obat &amp; Kesehatan Jakarta Selatan</title>
+
+    <!-- [TODO: (b) meta description] -->
+    <meta
+      name="description"
+      content="Apotek Sehat Selalu — solusi kebutuhan obat dan kesehatan keluarga di Jakarta Selatan. Resep dokter, obat bebas, dan konsultasi apoteker."
+    />
+
+    <!-- [TODO: (c) robots] -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- [TODO: (d) OG tags] -->
+    <meta
+      property="og:title"
+      content="Apotek Sehat Selalu — Obat &amp; Kesehatan Jakarta Selatan"
+    />
+    <meta
+      property="og:description"
+      content="Solusi kebutuhan obat dan kesehatan keluarga di Jakarta Selatan. Stok lengkap, apoteker berpengalaman."
+    />
+    <meta
+      property="og:image"
+      content="https://picsum.photos/seed/apotek-sehat/1200/630"
+    />
+    <meta property="og:type" content="business.business" />
+    <meta property="og:url" content="https://apoteksehatselalu.co.id" />
+
+    <!-- [TODO: (e) JSON-LD] -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Pharmacy",
+        "name": "Apotek Sehat Selalu",
+        "description": "Apotek terpercaya di Jakarta Selatan, menyediakan obat resep, obat bebas, dan konsultasi apoteker.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jl. Kesehatan No. 7",
+          "addressLocality": "Jakarta Selatan",
+          "addressRegion": "DKI Jakarta",
+          "addressCountry": "ID"
+        },
+        "telephone": "021-9876543",
+        "email": "info@apoteksehatselalu.co.id",
+        "openingHours": "Mo-Sa 07:00-21:00",
+        "image": "https://picsum.photos/seed/apotek-sehat/800/600"
+      }
+    </script>
+
+    <!-- [TODO: (f) canonical] -->
+    <link rel="canonical" href="https://apoteksehatselalu.co.id" />
+
+    <!-- [TODO: (g) favicon emoji] -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💊</text></svg>"
+    />
+
+    <style>
+      /* CSS SUDAH DISEDIAKAN — JANGAN DIUBAH */
+      :root {
+        --hijau: #1b5e20;
+        --hijau-muda: #e8f5e9;
+        --merah: #b71c1c;
+        --merah-muda: #fce4ec;
+        --kuning: #fff9c4;
+        --abu: #f5f5f5;
+        --border: #e0e0e0;
+        --teks: #212121;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Georgia, serif;
+        color: var(--teks);
+        line-height: 1.7;
+        background: var(--abu);
+      }
+      .skip-link {
+        position: absolute;
+        top: -100%;
+        left: 0;
+        background: var(--hijau);
+        color: white;
+        padding: 8px 16px;
+        text-decoration: none;
+        z-index: 9999;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+      :focus-visible {
+        outline: 3px solid var(--hijau);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+      header {
+        background: var(--hijau);
+        color: white;
+        padding: 16px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      header h1 {
+        font-size: 1.4rem;
+      }
+      nav a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        margin-left: 16px;
+        font-weight: bold;
+      }
+      nav a[aria-current="page"] {
+        color: white;
+        text-decoration: underline;
+      }
+      main {
+        max-width: 1000px;
+        margin: 24px auto;
+        padding: 0 20px;
+      }
+      section {
+        background: white;
+        padding: 24px;
+        margin-bottom: 24px;
+        border-radius: 8px;
+        border-left: 4px solid var(--hijau);
+      }
+      h2 {
+        color: var(--hijau);
+        margin-bottom: 16px;
+      }
+      h3 {
+        margin-bottom: 8px;
+      }
+      .grid-produk {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+      }
+      article.kartu-obat {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
+        background: white;
+      }
+      article.kartu-obat.resep {
+        border-left: 4px solid var(--merah);
+        background: var(--merah-muda);
+      }
+      article.kartu-obat.bebas {
+        border-left: 4px solid var(--hijau);
+        background: var(--hijau-muda);
+      }
+      .badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-weight: bold;
+      }
+      .badge-resep {
+        background: var(--merah);
+        color: white;
+      }
+      .badge-bebas {
+        background: var(--hijau);
+        color: white;
+      }
+      .badge-terbatas {
+        background: #e65100;
+        color: white;
+      }
+      .harga {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--hijau);
+      }
+      .stok-kritis {
+        color: var(--merah);
+        font-weight: bold;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+      }
+      th {
+        background: var(--hijau);
+        color: white;
+        padding: 10px 12px;
+        text-align: left;
+      }
+      td {
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--border);
+      }
+      tr:nth-child(even) td {
+        background: var(--abu);
+      }
+      td.kritis {
+        background: var(--merah-muda);
+        color: var(--merah);
+        font-weight: bold;
+      }
+      .form-group {
+        margin-bottom: 16px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 9px 12px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      .form-group .petunjuk {
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 3px;
+        display: block;
+      }
+      button[type="submit"] {
+        background: var(--hijau);
+        color: white;
+        padding: 10px 28px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-family: inherit;
+      }
+      footer {
+        background: var(--hijau);
+        color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        padding: 24px;
+        margin-top: 40px;
+        font-size: 0.9rem;
+      }
+      footer a {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      aside {
+        background: var(--kuning);
+        border-left: 4px solid #f9a825;
+        padding: 16px 20px;
+        border-radius: 0 6px 6px 0;
+        margin-bottom: 24px;
+      }
+      dl dt {
+        font-weight: bold;
+        color: var(--hijau);
+      }
+      dl dd {
+        margin-left: 16px;
+        margin-bottom: 8px;
+      }
+      blockquote {
+        border-left: 3px solid var(--border);
+        padding-left: 16px;
+        color: #555;
+        font-style: italic;
+        margin: 12px 0;
+      }
+      address {
+        font-style: normal;
+      }
+      #form-status {
+        min-height: 1.5rem;
+        margin-top: 8px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- SKIP LINK — WAJIB ADA, SUDAH DISEDIAKAN -->
+    <a href="#konten-utama" class="skip-link"
+      >Lewati navigasi ke konten utama</a
+    >
+
+    <!--
+    🔍 TANTANGAN 2 — HEADER AKSESIBEL
+    Lengkapi header berikut:
+    (a) <nav> harus punya aria-label yang deskriptif
+    (b) Link halaman aktif ("Beranda") harus punya aria-current="page"
+    (c) Nomor telepon di header harus menggunakan href="tel:"
+        (bukan teks biasa) agar bisa diklik di HP
+    (d) Tambahkan <abbr> untuk singkatan "24 Jam" menjadi
+        "Buka 24 Jam" dengan tooltip "Dua puluh empat jam sehari,
+        tujuh hari seminggu" — ini membantu aksesibilitas
+  -->
+
+    <header>
+      <h1>💊 Apotek Sehat Selalu</h1>
+      <!-- [TODO: nav dengan aria-label, link aktif dengan aria-current] -->
+      <nav aria-label="Navigasi utama apotek">
+        <a href="#" aria-current="page">Beranda</a>
+        <a href="#katalog">Katalog</a>
+        <a href="#stok">Stok</a>
+        <a href="#pesan">Pesan</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+      <p>
+        <!-- [TODO: tel: link dan abbr] -->
+        <a href="tel:+62219876543" title="Hubungi kami via telepon"
+          >021-9876543</a
+        >
+        &mdash; Buka
+        <abbr title="Dua puluh empat jam sehari, tujuh hari seminggu"
+          >24 Jam</abbr
+        >
+      </p>
+    </header>
+
+    <main id="konten-utama" tabindex="-1">
+      <!--
+      🔍 TANTANGAN 3 — ASIDE DENGAN KONTEN SEMANTIK
+      Buat aside yang berisi:
+      (a) Heading "⚠️ Peringatan Penting" menggunakan h2
+      (b) Satu paragraf tentang obat resep yang menggunakan
+          <strong> untuk kata "resep dokter" (penting secara konten)
+      (c) Satu paragraf yang menggunakan <del> dan <ins> untuk
+          menunjukkan perubahan jam operasional:
+          jam lama (del): "07:00–20:00"
+          jam baru (ins): "07:00–21:00"
+          Keduanya harus punya atribut datetime yang valid (ISO format)
+      (d) Satu kutipan menggunakan <q> dari "Kemenkes RI":
+          "Beli obat keras hanya dengan resep dokter yang sah."
+    -->
+      <!-- [TODO: aside dengan (a)-(d)] -->
+      <aside aria-label="Peringatan penting apotek">
+        <h2>⚠️ Peringatan Penting</h2>
+        <p>
+          Obat berlabel merah wajib disertai <strong>resep dokter</strong>
+          yang sah dan masih berlaku. Apoteker kami berhak menolak penjualan
+          tanpa resep.
+        </p>
+        <p>
+          Jam operasional diperbarui: sebelumnya
+          <del datetime="2026-01-01">07:00–20:00</del>, kini
+          <ins datetime="2026-03-01">07:00–21:00</ins>.
+        </p>
+        <p>
+          Menurut <cite>Kemenkes RI</cite>:
+          <q cite="https://www.kemkes.go.id"
+            >Beli obat keras hanya dengan resep dokter yang sah.</q
+          >
+        </p>
+      </aside>
+
+      <!-- ════════════════════════════════
+         SECTION 1: KATALOG PRODUK
+    ═════════════════════════════════ -->
+      <section id="katalog" aria-labelledby="h-katalog">
+        <h2 id="h-katalog">Katalog Obat &amp; Suplemen</h2>
+
+        <!--
+        🔍 TANTANGAN 4 — KARTU PRODUK DENGAN DATA ATTRIBUTES
+        Lengkapi empat artikel kartu obat berikut. Setiap kartu harus:
+        (a) Punya class yang tepat: "kartu-obat resep" ATAU "kartu-obat bebas"
+            sesuai jenis obatnya
+        (b) Punya data attributes: data-kode, data-harga, data-stok, data-jenis
+        (c) Heading h3 berisi nama obat
+        (d) Badge status menggunakan <span class="badge badge-resep/bebas/terbatas">
+        (e) <dl> untuk spesifikasi: Fungsi, Dosis, Produsen
+        (f) Harga menggunakan <p class="harga"> dengan <mark> pada harga
+            promo (hanya untuk obat yang sedang diskon)
+        (g) Gambar menggunakan <figure> dengan alt yang deskriptif
+            Sumber: https://picsum.photos/seed/[nama-obat]/200/150
+
+        Empat obat yang harus dibuat kartunya:
+        1. Paracetamol 500mg — obat bebas, kode OB-001, harga Rp 8.000,
+           stok 150 strip, fungsi: analgesik & antipiretik,
+           dosis: 3x sehari, produsen: Kimia Farma — SEDANG DISKON Rp 6.500
+        2. Amoxicillin 500mg — obat resep, kode OR-001, harga Rp 45.000,
+           stok 8 box (KRITIS), fungsi: antibiotik,
+           dosis: sesuai resep, produsen: Sanbe Farma
+        3. Vitamin C 1000mg — obat bebas, kode OB-002, harga Rp 25.000,
+           stok 60 botol, fungsi: suplemen imunitas,
+           dosis: 1x sehari, produsen: Sido Muncul
+        4. Antasida — obat bebas terbatas, kode OBT-001, harga Rp 12.000,
+           stok 35 dus, fungsi: meredakan maag & asam lambung,
+           dosis: 3x sehari sebelum makan, produsen: Pfizer Indonesia
+      -->
+
+        <div class="grid-produk">
+          <!-- [TODO: Kartu 1 — Paracetamol] -->
+          <article
+            class="kartu-obat bebas"
+            data-kode="OB-001"
+            data-harga="8000"
+            data-stok="150"
+            data-jenis="bebas"
+          >
+            <figure>
+              <img
+                src="https://picsum.photos/seed/paracetamol/200/150"
+                alt="Kemasan Paracetamol 500mg tablet strip isi 10"
+                width="200"
+                height="150"
+                loading="lazy"
+              />
+              <figcaption>Paracetamol 500mg — obat bebas</figcaption>
+            </figure>
+            <h3>Paracetamol 500mg</h3>
+            <span class="badge badge-bebas">Bebas</span>
+            <dl>
+              <dt>Fungsi</dt>
+              <dd>Analgesik &amp; antipiretik (pereda nyeri &amp; demam)</dd>
+              <dt>Dosis</dt>
+              <dd>3&times; sehari, 1 tablet</dd>
+              <dt>Produsen</dt>
+              <dd>Kimia Farma</dd>
+            </dl>
+            <p class="harga">
+              <s>Rp 8.000</s> &rarr; <mark>Rp 6.500</mark>
+              <small>(diskon)</small>
+            </p>
+          </article>
+
+          <!-- [TODO: Kartu 2 — Amoxicillin] -->
+          <article
+            class="kartu-obat resep"
+            data-kode="OR-001"
+            data-harga="45000"
+            data-stok="8"
+            data-jenis="resep"
+          >
+            <figure>
+              <img
+                src="https://picsum.photos/seed/amoxicillin/200/150"
+                alt="Kemasan Amoxicillin 500mg kapsul box isi 100"
+                width="200"
+                height="150"
+                loading="lazy"
+              />
+              <figcaption>Amoxicillin 500mg — hanya dengan resep</figcaption>
+            </figure>
+            <h3>Amoxicillin 500mg</h3>
+            <span class="badge badge-resep">Resep Dokter</span>
+            <dl>
+              <dt>Fungsi</dt>
+              <dd>Antibiotik spektrum luas</dd>
+              <dt>Dosis</dt>
+              <dd>Sesuai anjuran resep dokter</dd>
+              <dt>Produsen</dt>
+              <dd>Sanbe Farma</dd>
+            </dl>
+            <p class="harga">Rp 45.000</p>
+            <p class="stok-kritis">⚠️ Stok kritis: 8 box</p>
+          </article>
+
+          <!-- [TODO: Kartu 3 — Vitamin C] -->
+          <article
+            class="kartu-obat bebas"
+            data-kode="OB-002"
+            data-harga="25000"
+            data-stok="60"
+            data-jenis="bebas"
+          >
+            <figure>
+              <img
+                src="https://picsum.photos/seed/vitamincee/200/150"
+                alt="Botol Vitamin C 1000mg tablet effervescent isi 10"
+                width="200"
+                height="150"
+                loading="lazy"
+              />
+              <figcaption>Vitamin C 1000mg — suplemen imunitas</figcaption>
+            </figure>
+            <h3>Vitamin C 1000mg</h3>
+            <span class="badge badge-bebas">Bebas</span>
+            <dl>
+              <dt>Fungsi</dt>
+              <dd>Suplemen imunitas &amp; antioksidan</dd>
+              <dt>Dosis</dt>
+              <dd>1&times; sehari</dd>
+              <dt>Produsen</dt>
+              <dd>Sido Muncul</dd>
+            </dl>
+            <p class="harga">Rp 25.000</p>
+          </article>
+
+          <!-- [TODO: Kartu 4 — Antasida] -->
+          <article
+            class="kartu-obat bebas"
+            data-kode="OBT-001"
+            data-harga="12000"
+            data-stok="35"
+            data-jenis="bebas-terbatas"
+          >
+            <figure>
+              <img
+                src="https://picsum.photos/seed/antasida/200/150"
+                alt="Dus Antasida tablet kunyah isi 10 tablet"
+                width="200"
+                height="150"
+                loading="lazy"
+              />
+              <figcaption>Antasida — obat bebas terbatas</figcaption>
+            </figure>
+            <h3>Antasida</h3>
+            <span class="badge badge-terbatas">Bebas Terbatas</span>
+            <dl>
+              <dt>Fungsi</dt>
+              <dd>Meredakan maag &amp; asam lambung</dd>
+              <dt>Dosis</dt>
+              <dd>3&times; sehari sebelum makan</dd>
+              <dt>Produsen</dt>
+              <dd>Pfizer Indonesia</dd>
+            </dl>
+            <p class="harga">Rp 12.000</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════
+         SECTION 2: TABEL STOK KOMPLEKS
+    ═════════════════════════════════ -->
+      <section id="stok" aria-labelledby="h-stok">
+        <h2 id="h-stok">Laporan Stok Obat</h2>
+
+        <!--
+        🔍 TANTANGAN 5 — TABEL DENGAN colspan DAN rowspan
+        Buat tabel stok obat dengan struktur KOMPLEKS berikut:
+
+        STRUKTUR YANG HARUS DIBUAT:
+        - <caption> yang deskriptif
+        - <thead> dengan DUA baris header:
+          * Baris 1: "Kategori" (rowspan=2), "Informasi Produk" (colspan=3),
+            "Status Stok" (colspan=2)
+          * Baris 2: "Nama Obat", "Kode", "Harga", "Jumlah", "Status"
+        - <tbody> dengan data yang menggunakan <th scope="rowgroup">
+          untuk sel kategori yang ber-rowspan
+        - <tfoot> dengan total keseluruhan menggunakan colspan
+
+        DATA:
+        Kategori "Obat Bebas" (rowspan=2):
+          - Paracetamol 500mg | OB-001 | Rp 8.000 | 150 | Aman
+          - Vitamin C 1000mg  | OB-002 | Rp 25.000 | 60  | Aman
+
+        Kategori "Obat Resep" (rowspan=1):
+          - Amoxicillin 500mg | OR-001 | Rp 45.000 | 8   | Kritis (gunakan class="kritis")
+
+        Kategori "Bebas Terbatas" (rowspan=1):
+          - Antasida          | OBT-001| Rp 12.000 | 35  | Aman
+
+        TFOOT: "Total Produk Terdaftar: 4 item" menggunakan colspan yang tepat
+
+        WAJIB: semua <th> punya scope yang benar
+      -->
+
+        <table>
+          <!-- [TODO: caption, thead 2 baris, tbody dengan rowspan, tfoot] -->
+          <caption>
+            Laporan Stok Obat — Apotek Sehat Selalu, per Maret 2026
+          </caption>
+
+          <thead>
+            <tr>
+              <th scope="col" rowspan="2">Kategori</th>
+              <th scope="colgroup" colspan="3">Informasi Produk</th>
+              <th scope="colgroup" colspan="2">Status Stok</th>
+            </tr>
+            <tr>
+              <th scope="col">Nama Obat</th>
+              <th scope="col">Kode</th>
+              <th scope="col">Harga</th>
+              <th scope="col">Jumlah</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <th scope="rowgroup" rowspan="2">Obat Bebas</th>
+              <td>Paracetamol 500mg</td>
+              <td><code>OB-001</code></td>
+              <td>Rp 8.000</td>
+              <td>150 strip</td>
+              <td>Aman</td>
+            </tr>
+            <tr>
+              <td>Vitamin C 1000mg</td>
+              <td><code>OB-002</code></td>
+              <td>Rp 25.000</td>
+              <td>60 botol</td>
+              <td>Aman</td>
+            </tr>
+            <tr>
+              <th scope="row">Obat Resep</th>
+              <td>Amoxicillin 500mg</td>
+              <td><code>OR-001</code></td>
+              <td>Rp 45.000</td>
+              <td class="kritis">8 box ⚠️</td>
+              <td class="kritis">Kritis</td>
+            </tr>
+            <tr>
+              <th scope="row">Bebas Terbatas</th>
+              <td>Antasida</td>
+              <td><code>OBT-001</code></td>
+              <td>Rp 12.000</td>
+              <td>35 dus</td>
+              <td>Aman</td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <th scope="row" colspan="5">Total Produk Terdaftar</th>
+              <td>4 item (1 kritis)</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- ════════════════════════════════
+         SECTION 3: FORM PEMESANAN
+    ═════════════════════════════════ -->
+      <section id="pesan" aria-labelledby="h-pesan">
+        <h2 id="h-pesan">Form Pemesanan Obat</h2>
+
+        <!--
+        🔍 TANTANGAN 6 — FORM AKSESIBEL LENGKAP
+        Buat form pemesanan dengan field-field berikut. Setiap field WAJIB:
+        - <label> terhubung via for/id
+        - Atribut validasi yang sesuai
+        - aria-required="true" untuk field wajib
+        - aria-describedby menunjuk ke elemen petunjuk (span.petunjuk)
+
+        FIELD YANG HARUS ADA:
+        (a) Nama lengkap pasien — text, required, minlength=3
+        (b) Nomor rekam medis — text, pattern=[0-9]{6,10},
+            petunjuk: "6-10 digit angka. Lihat kartu pasien Anda."
+        (c) Tanggal resep — date, required,
+            petunjuk: "Resep hanya berlaku 3 hari sejak diterbitkan."
+        (d) Upload foto resep — file, accept="image/*,.pdf", required
+            petunjuk: "Format: JPG, PNG, atau PDF. Maks 5MB."
+        (e) Pilih apotek pengambilan — select, required
+            Pilihan: Jakarta Selatan (Jl. Kesehatan No. 7),
+                     Jakarta Pusat (Jl. Medika No. 3)
+        (f) Catatan tambahan — textarea, maxlength=300, TIDAK required
+            petunjuk: "Opsional. Contoh: alergi terhadap penisilin."
+        (g) Checkbox: konfirmasi bahwa resep adalah asli dan sah — required
+        (h) Tombol submit: "Kirim Pesanan"
+
+        TAMBAHAN WAJIB:
+        - Form harus punya action, method="POST", enctype yang tepat
+          (ada file upload, pikirkan enctype yang benar)
+        - <div id="status-pesan" role="alert" aria-atomic="true"> kosong
+          untuk pesan validasi JavaScript
+      -->
+
+        <form
+          action="/api/pesan-obat"
+          method="POST"
+          enctype="multipart/form-data"
+          novalidate
+        >
+          <!-- [TODO: (a) nama pasien] -->
+          <div class="form-group">
+            <label for="nama-pasien"
+              >Nama Lengkap Pasien <span aria-hidden="true">*</span></label
+            >
+            <input
+              type="text"
+              id="nama-pasien"
+              name="nama-pasien"
+              required
+              minlength="3"
+              maxlength="100"
+              placeholder="Nama sesuai KTP"
+              autocomplete="name"
+              aria-required="true"
+              aria-describedby="petunjuk-nama"
+              title="Nama pasien minimal 3 karakter"
+            />
+            <span id="petunjuk-nama" class="petunjuk"
+              >Gunakan nama sesuai identitas resmi.</span
+            >
+          </div>
+
+          <!-- [TODO: (b) nomor rekam medis] -->
+          <div class="form-group">
+            <label for="no-rekam-medis">Nomor Rekam Medis</label>
+            <input
+              type="text"
+              id="no-rekam-medis"
+              name="no-rekam-medis"
+              pattern="[0-9]{6,10}"
+              placeholder="Contoh: 1234567"
+              inputmode="numeric"
+              aria-describedby="petunjuk-rekam"
+              title="Nomor rekam medis: 6-10 digit angka"
+            />
+            <span id="petunjuk-rekam" class="petunjuk"
+              >6–10 digit angka. Lihat kartu pasien Anda.</span
+            >
+          </div>
+
+          <!-- [TODO: (c) tanggal resep] -->
+          <div class="form-group">
+            <label for="tanggal-resep"
+              >Tanggal Resep <span aria-hidden="true">*</span></label
+            >
+            <input
+              type="date"
+              id="tanggal-resep"
+              name="tanggal-resep"
+              required
+              aria-required="true"
+              aria-describedby="petunjuk-tanggal"
+              title="Masukkan tanggal resep diterbitkan"
+            />
+            <span id="petunjuk-tanggal" class="petunjuk"
+              >Resep hanya berlaku 3 hari sejak diterbitkan.</span
+            >
+          </div>
+
+          <!-- [TODO: (d) upload resep] -->
+          <div class="form-group">
+            <label for="foto-resep"
+              >Foto/Scan Resep Dokter <span aria-hidden="true">*</span></label
+            >
+            <input
+              type="file"
+              id="foto-resep"
+              name="foto-resep"
+              accept="image/*,.pdf"
+              required
+              aria-required="true"
+              aria-describedby="petunjuk-resep"
+              title="Upload foto atau scan resep dokter"
+            />
+            <span id="petunjuk-resep" class="petunjuk"
+              >Format:
+              <abbr title="Joint Photographic Experts Group">JPG</abbr>,
+              <abbr title="Portable Network Graphics">PNG</abbr>, atau
+              <abbr title="Portable Document Format">PDF</abbr>. Maks 5<abbr
+                title="Megabyte"
+                >MB</abbr
+              >.</span
+            >
+          </div>
+
+          <!-- [TODO: (e) pilih apotek] -->
+          <div class="form-group">
+            <label for="apotek-pengambilan"
+              >Apotek Pengambilan <span aria-hidden="true">*</span></label
+            >
+            <select
+              id="apotek-pengambilan"
+              name="apotek-pengambilan"
+              required
+              aria-required="true"
+              title="Pilih lokasi apotek untuk pengambilan obat"
+            >
+              <option value="">-- Pilih Apotek --</option>
+              <option value="jaksel">
+                Jakarta Selatan — Jl. Kesehatan No. 7
+              </option>
+              <option value="jakpus">Jakarta Pusat — Jl. Medika No. 3</option>
+            </select>
+          </div>
+
+          <!-- [TODO: (f) catatan] -->
+          <div class="form-group">
+            <label for="catatan">Catatan Tambahan</label>
+            <textarea
+              id="catatan"
+              name="catatan"
+              maxlength="300"
+              rows="4"
+              placeholder="Opsional. Contoh: alergi terhadap penisilin."
+              aria-describedby="petunjuk-catatan"
+            ></textarea>
+            <span id="petunjuk-catatan" class="petunjuk"
+              >Opsional. Maksimal 300 karakter.</span
+            >
+          </div>
+
+          <!-- [TODO: (g) checkbox konfirmasi] -->
+          <div class="form-group">
+            <input
+              type="checkbox"
+              id="konfirmasi-resep"
+              name="konfirmasi-resep"
+              required
+              aria-required="true"
+            />
+            <label for="konfirmasi-resep">
+              Saya menyatakan bahwa resep yang saya unggah adalah
+              <strong>asli dan sah</strong>, diterbitkan oleh dokter berlisensi.
+              Pemalsuan resep adalah tindak pidana.
+            </label>
+          </div>
+
+          <!-- [TODO: status alert dan tombol submit] -->
+          <div id="status-pesan" role="alert" aria-atomic="true"></div>
+
+          <button type="submit">Kirim Pesanan</button>
+        </form>
+      </section>
+
+      <!-- ════════════════════════════════
+         SECTION 4: INFORMASI APOTEK
+    ═════════════════════════════════ -->
+      <section id="kontak" aria-labelledby="h-kontak">
+        <h2 id="h-kontak">Informasi Apotek</h2>
+
+        <!--
+        🔍 TANTANGAN 7 — KONTEN SEMANTIK LENGKAP
+        Buat konten section ini menggunakan tag semantik berikut
+        secara kontekstual dan bermakna:
+
+        (a) <address> — berisi nama apotek, alamat, telepon (tel:), email (mailto:)
+        (b) <dl> — jam operasional: Senin–Sabtu, Minggu, Hari Libur Nasional
+        (c) <figure> + <figcaption> — foto apotek dari picsum
+            seed: "apotek-exterior", ukuran 600x300, alt deskriptif
+        (d) <blockquote> dengan <cite> — visi apotek:
+            "Kami berkomitmen menyediakan obat berkualitas dengan
+            pelayanan apoteker yang profesional dan manusiawi."
+            Attribute cite menunjuk ke URL apotek (gunakan placeholder)
+        (e) Dua penggunaan <abbr> yang berbeda: satu untuk "SIPA"
+            (Surat Izin Praktik Apoteker) dan satu untuk "BPOM"
+            (Badan Pengawas Obat dan Makanan)
+      -->
+
+        <!-- [TODO: konten (a)-(e)] -->
+
+        <figure>
+          <img
+            src="https://picsum.photos/seed/apotek-exterior/600/300"
+            alt="Tampak depan Apotek Sehat Selalu dengan papan nama hijau dan pintu kaca otomatis"
+            width="600"
+            height="300"
+            loading="lazy"
+          />
+          <figcaption>
+            Tampak depan Apotek Sehat Selalu, Jl. Kesehatan No. 7, Jakarta
+            Selatan
+          </figcaption>
+        </figure>
+
+        <figure>
+          <blockquote cite="https://apoteksehatselalu.co.id/tentang">
+            <p>
+              Kami berkomitmen menyediakan obat berkualitas dengan pelayanan
+              apoteker yang profesional dan manusiawi.
+            </p>
+          </blockquote>
+          <figcaption>— <cite>Visi Apotek Sehat Selalu</cite></figcaption>
+        </figure>
+
+        <address>
+          <strong>Apotek Sehat Selalu</strong><br />
+          Jl. Kesehatan No. 7, Jakarta Selatan 12345<br />
+          Telp:
+          <a href="tel:+62219876543" title="Hubungi kami via telepon"
+            >021-9876543</a
+          ><br />
+          Email:
+          <a
+            href="mailto:info@apoteksehatselalu.co.id"
+            title="Kirim email ke apotek"
+            >info@apoteksehatselalu.co.id</a
+          >
+        </address>
+
+        <h3>Jam Operasional</h3>
+        <dl>
+          <dt>Senin &ndash; Sabtu</dt>
+          <dd>
+            07:00 &ndash; 21:00 <abbr title="Waktu Indonesia Barat">WIB</abbr>
+          </dd>
+
+          <dt>Minggu</dt>
+          <dd>
+            08:00 &ndash; 18:00 <abbr title="Waktu Indonesia Barat">WIB</abbr>
+          </dd>
+
+          <dt>Hari Libur Nasional</dt>
+          <dd>
+            09:00 &ndash; 15:00 <abbr title="Waktu Indonesia Barat">WIB</abbr>
+          </dd>
+        </dl>
+
+        <p>
+          Apotek ini telah memiliki
+          <abbr title="Surat Izin Praktik Apoteker">SIPA</abbr>
+          yang valid dan seluruh produk kami terdaftar di
+          <abbr title="Badan Pengawas Obat dan Makanan">BPOM</abbr>
+          Republik Indonesia.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        &copy; 2026 Apotek Sehat Selalu &mdash;
+        <abbr title="Surat Izin Apotek">SIA</abbr> No. 503/2024/JKS
+      </p>
+      <address>
+        <a href="mailto:info@apoteksehatselalu.co.id"
+          >info@apoteksehatselalu.co.id</a
+        >
+        &middot;
+        <a href="tel:+62219876543">021-9876543</a>
+      </address>
+    </footer>
+
+    <script>
+      /* JS SUDAH DISEDIAKAN — JANGAN DIUBAH */
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const nama = document.getElementById("nama-pasien").value.trim();
+        const resep = document.getElementById("foto-resep").files.length;
+        const apotek = document.getElementById("apotek-pengambilan").value;
+        const konfirmasi = document.getElementById("konfirmasi-resep").checked;
+        const status = document.getElementById("status-pesan");
+        if (!nama || !resep || !apotek || !konfirmasi) {
+          status.textContent =
+            "⚠️ Lengkapi semua field wajib dan centang konfirmasi resep.";
+          status.style.color = "red";
+          return;
+        }
+        status.textContent = `✅ Pesanan atas nama ${nama} berhasil dikirim ke ${apotek === "jaksel" ? "Jakarta Selatan" : "Jakarta Pusat"}. Kami akan menghubungi Anda dalam 30 menit.`;
+        status.style.color = "green";
+      });
+    </script>
+  </body>
+</html>
